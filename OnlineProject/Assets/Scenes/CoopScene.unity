@@ -5958,9 +5958,11 @@ MonoBehaviour:
   m_LogineText: {fileID: 0}
   m_CahtMessage: {fileID: 0}
   m_PlayerName: {fileID: 0}
+  m_NameUI: {fileID: 0}
+  m_RoomUI: {fileID: 0}
   m_PlayerSpwn: 
   m_PlayerPos: []
-  m_Player: {fileID: 0}
+  m_PlayerSpownCheck: 0
   m_RoomName: 
   m_MaxPlayers: 8
   m_IsSpownMyChara: 0

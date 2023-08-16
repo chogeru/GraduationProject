@@ -1,4 +1,5 @@
 using MonobitEngine;
+using mun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,12 +19,17 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     [SerializeField, Header("プレイヤー名")]
     private Text m_PlayerName;
 
+    [SerializeField, Header("名前入力UI")]
+    private GameObject m_NameUI;
+    [SerializeField, Header("ルーム入出用UI")]
+    private GameObject m_RoomUI;
+
     [SerializeField, Header("出現用プレイヤー")]
     private string m_PlayerSpwn = "";
     [SerializeField, Header("Player出現位置")]
     private Transform[] m_PlayerPos;
     [SerializeField, Header("プレイヤースポーンチェック")]
-    private GameObject m_Player;
+    private bool m_PlayerSpownCheck=false;
     [SerializeField,Header("ルーム名")]
     private string m_RoomName="";
     [SerializeField,Header("マッチルームの最大人数")]
@@ -38,12 +44,13 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     }
     private void SarverConnect()
     {
-        if(MonobitNetwork.isConnect)
+        if(!MonobitNetwork.isConnect)
         {
-            if(MonobitNetwork.inRoom)
-            {
-                Debug.Log("ログイン済み");
-            }
+            return;
+        }
+        else if (!MonobitNetwork.inRoom)
+        {
+          //  MonobitNetworkCoreJson
         }
     }
 }

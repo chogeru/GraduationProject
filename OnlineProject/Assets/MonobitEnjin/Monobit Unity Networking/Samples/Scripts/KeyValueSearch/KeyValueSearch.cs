@@ -189,7 +189,7 @@ namespace MonobitEngine.Sample
                     customRoomParametersForLobby[keyIndex] = key;
                     keyIndex++;
                 }
-
+				
 				RoomSettings roomSettings = new RoomSettings()
 				{
 					isVisible = this.isVisible,
