@@ -78,7 +78,7 @@ public class AttackItem : MonoBehaviour
             Vector3 directionToEnemy = enemy.transform.position - transform.position;
             float distanceToEnemy = directionToEnemy.magnitude;
 
-            if (distanceToEnemy <= 10f && distanceToEnemy < closestDistance)
+            if (distanceToEnemy <= 15f && distanceToEnemy < closestDistance)
             {
                 closestEnemy = enemy.transform;
                 closestDistance = distanceToEnemy;

@@ -1264,6 +1264,10 @@ PrefabInstance:
       propertyPath: m_WeponDestroySE
       value: 
       objectReference: {fileID: 8300000, guid: 8e39db8839f02c84f98a515e8290f670, type: 3}
+    - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
+      propertyPath: m_WeponDestroyParticle
+      value: 
+      objectReference: {fileID: 100002, guid: b915ea55954041f40a3fd40ee1840dda, type: 3}
     - target: {fileID: 8747813484029322904, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
       propertyPath: m_Name
       value: Rocket launcher
@@ -1610,6 +1614,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveSpeed: 5
   m_JumpForce: 80
+  m_Speed: 5
+  m_RunSpeed: 10
   m_AccelerationAmount: 2
   m_Sensitivity: 2
 --- !u!136 &909545962484555105
@@ -1658,7 +1664,7 @@ MonoBehaviour:
   m_MuzzleTransform: {fileID: 286824859}
   m_BulletSpeed: 50
   m_CoolTime: 0.1
-  m_AudioGunSE: {fileID: 8300000, guid: 9fc29fd506eee9a4e87062863137fe39, type: 3}
+  m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
 --- !u!4 &909545962484555109 stripped
 Transform:
@@ -1710,7 +1716,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1648003916318582759, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648003916318582759, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 67795aa375b7eca48ba2293f54238e5a, type: 2}
+    - target: {fileID: 1648003916318582759, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648003916318582759, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1648003916318582776, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
       propertyPath: m_RootOrder
@@ -1756,6 +1774,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1648003916457446215, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1648003916457446232, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
@@ -1776,6 +1798,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1648003916743065467, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1648003916747692107, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1783,6 +1809,10 @@ PrefabInstance:
     - target: {fileID: 1648003917116139647, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1648003917646723691, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1648003917930556620, guid: 5e34ac2746f65cd44a5ca24107fe2ae4, type: 3}
       propertyPath: m_IsActive

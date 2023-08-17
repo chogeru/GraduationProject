@@ -8,6 +8,10 @@ public class PlayerMove : MonoBehaviour
     private float m_MoveSpeed = 5f;
     [SerializeField,Header("ジャンプ力")]
     private float m_JumpForce = 10f;
+    [SerializeField, Header("通常移動速度")]
+    private float m_Speed = 5f;
+    [SerializeField, Header("ダッシュ")]
+    private float m_RunSpeed=2f;
     [SerializeField,Header("加速力")]
     private float m_AccelerationAmount = 2f;
     [SerializeField,Header("回転力")]
@@ -36,6 +40,15 @@ public class PlayerMove : MonoBehaviour
         // オブジェクトを回転させる
         // Y軸を基準に水平方向に回転
         transform.Rotate(Vector3.up, mouseX * m_Sensitivity, Space.World);
+        //ダッシュ処理
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            m_MoveSpeed = m_RunSpeed;
+        }
+        else
+        {
+            m_MoveSpeed = m_Speed;
+        }
       
         // ジャンプ処理
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))

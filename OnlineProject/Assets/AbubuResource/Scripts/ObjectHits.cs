@@ -8,7 +8,8 @@ public class ObjectHits : MonoBehaviour
     private GameObject m_ParticleWallHit;
     [SerializeField, Header("植物に当たった時のパーティクル")]
     private GameObject m_ParticlePlant;
-
+    [SerializeField, Header("敵に当たった時のパーティクル")]
+    private GameObject m_ParticleEnemyHit;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -22,22 +23,29 @@ public class ObjectHits : MonoBehaviour
             HitParticlePlant();
             Destroy(gameObject); // 自身のオブジェクトを破壊
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            HitParticleEnemy();
+            Destroy(gameObject);
+        }
     }
 
     private void HitParticleWall()
     {
-        if (m_ParticleWallHit != null)
-        {
-            GameObject particles = Instantiate(m_ParticleWallHit, transform.position, Quaternion.identity);
-            Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration); // パーティクル再生終了後に破棄
-        }
+        GameObject particles = Instantiate(m_ParticleWallHit, transform.position, Quaternion.identity);
+        // パーティクル再生終了後に破棄
+        Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration); 
     }
     private void HitParticlePlant()
     {
-        if (m_ParticlePlant != null)
-        {
-            GameObject particles = Instantiate(m_ParticlePlant, transform.position, Quaternion.identity);
-            Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration); // パーティクル再生終了後に破棄
-        }
+        GameObject particles = Instantiate(m_ParticlePlant, transform.position, Quaternion.identity);
+        // パーティクル再生終了後に破棄
+        Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration); 
+    }
+    private void HitParticleEnemy()
+    {
+        GameObject particles = Instantiate(m_ParticleEnemyHit, transform.position, Quaternion.identity);
+        // パーティクル再生終了後に破棄
+        Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration); 
     }
 }

@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ParticleWallHit: {fileID: 8566015688288997678, guid: 8ccf0a7644ff85a4c935cf8929a25126, type: 3}
   m_ParticlePlant: {fileID: 6315511242489208918, guid: 269531054e432f04ba4f0f1a775077b5, type: 3}
+  m_ParticleEnemyHit: {fileID: 5801668810319198155, guid: bc751f93b336a57448495b739efdeb53, type: 3}
 --- !u!54 &-3687961540600055512
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class GunShot : MonoBehaviour
     
     [SerializeField, Header("発射SE")]
     private AudioClip m_AudioGunSE;
-    private float m_Volume=0.3f;
+    private float m_Volume=0.6f;
     [SerializeField, Header("弾発射SE")]
     private GameObject m_ParticleGun;
     // 発射ボタンを処理するメソッド
