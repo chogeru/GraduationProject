@@ -7,6 +7,8 @@ public class AttackItem : MonoBehaviour
     public Transform playerObject; // プレイヤーオブジェクトの参照
     [SerializeField, Header("武器が消えるときのパーティクル")]
     private GameObject m_WeponDestroyParticle;
+    [SerializeField, Header("弾のパーティクル")]
+    private GameObject m_BulletParticle;
     private bool isFloating = true;
     private bool isPlayerGet = false;
     [SerializeField, Header("Destroyまでの時間")]
@@ -20,6 +22,7 @@ public class AttackItem : MonoBehaviour
     private float m_Volume=0.6f;
     private void Start()
     {
+        m_BulletParticle.SetActive(false);
         isPlayerGet = false;
         if (isFloating)
         {
@@ -53,6 +56,7 @@ public class AttackItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            m_BulletParticle.SetActive(true);
             AudioSource.PlayClipAtPoint(m_WeponGetSE, transform.position,m_Volume);
             isFloating = false; // 浮かせる処理を停止
             transform.SetParent(playerObject); // プレイヤーオブジェクトの子に設定
