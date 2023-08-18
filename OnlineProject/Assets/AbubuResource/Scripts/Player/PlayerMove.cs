@@ -1,3 +1,4 @@
+using MalbersAnimations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,12 @@ public class PlayerMove : MonoBehaviour
     private float m_AccelerationAmount = 2f;
     [SerializeField,Header("回転力")]
     private float m_Sensitivity = 2.0f;
+
+    [SerializeField, Header("移動時のパーティクル")]
+    private GameObject m_MoveParticle;
+
+    //アニメーター
+    private Animator m_Animator;
     //リジットボディ
     private Rigidbody rb;
     //着地しているかどうか
@@ -23,7 +30,9 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        m_MoveParticle.SetActive(false);
         rb = GetComponent<Rigidbody>();
+        m_Animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -32,6 +41,11 @@ public class PlayerMove : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        //アニメーターにキー入力分の数値を代入
+        m_Animator.SetFloat("左右", Input.GetAxis("Horizontal"));
+        m_Animator.SetFloat("前後", Input.GetAxis("Vertical"));
+        m_Animator.SetFloat("強左右", Input.GetAxis("Horizontal"));
+        m_Animator.SetFloat("強前後", Input.GetAxis("Vertical"));
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * m_MoveSpeed * Time.deltaTime;
         transform.Translate(movement);
         // マウスの移動量を取得
@@ -43,20 +57,28 @@ public class PlayerMove : MonoBehaviour
         //ダッシュ処理
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            m_MoveParticle.SetActive(true);
             m_MoveSpeed = m_RunSpeed;
+            m_Animator.SetBool("Run",true);
         }
         else
         {
+            m_MoveParticle.SetActive(false);
             m_MoveSpeed = m_Speed;
+            m_Animator.SetBool("Run", false);
         }
       
         // ジャンプ処理
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
+            m_Animator.SetBool("Jump", true);
             rb.AddForce(Vector3.up * m_JumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
-
+        else
+        {
+            m_Animator.SetBool("Jump", false);
+        }
         // 加速処理
         if (Input.GetKey(KeyCode.R))
         {

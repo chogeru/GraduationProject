@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireworks bees
       objectReference: {fileID: 0}
+    - target: {fileID: 1240804380373036, guid: 91689af539d577742a81071943e8e6b3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4989672466347312, guid: 91689af539d577742a81071943e8e6b3, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -287,6 +291,10 @@ PrefabInstance:
     - target: {fileID: 1016873159940626, guid: ac06e2de69201024d867106af086aba5, type: 3}
       propertyPath: m_Name
       value: Fireworks rainbow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016873159940626, guid: ac06e2de69201024d867106af086aba5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4857371523381556, guid: ac06e2de69201024d867106af086aba5, type: 3}
       propertyPath: m_RootOrder
@@ -696,6 +704,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f87b1f5cbb16f554caba16013d5ab593, type: 3}
+--- !u!1001 &803138287
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 909545962484555109}
+    m_Modifications:
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_RootOrder
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.10000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749424362035614724, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750681045706428374, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+      propertyPath: m_Name
+      value: Polygon smoke 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
 --- !u!1001 &872431815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,6 +954,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireworks blue pion
       objectReference: {fileID: 0}
+    - target: {fileID: 2853632885906082415, guid: fecfbc9e342dc574a8c480819ed6fa4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fecfbc9e342dc574a8c480819ed6fa4f, type: 3}
 --- !u!1 &1181406286 stripped
@@ -932,6 +1013,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1225286819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2750681045706428374, guid: 7b79d3f7a6552294b81113d4f99c6eb6, type: 3}
+  m_PrefabInstance: {fileID: 803138287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1254029415
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1372,33 +1458,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
-      propertyPath: m_Volume
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
-      propertyPath: m_WeponGetSE
-      value: 
-      objectReference: {fileID: 8300000, guid: c756a4c6b9c83d04eab4907e8e214e84, type: 3}
-    - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 909545962484555109}
     - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
-      propertyPath: m_DestroyTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
       propertyPath: m_BulletParticle
       value: 
       objectReference: {fileID: 656553136}
-    - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
-      propertyPath: m_WeponDestroySE
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e39db8839f02c84f98a515e8290f670, type: 3}
-    - target: {fileID: 1419345126, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
-      propertyPath: m_WeponDestroyParticle
-      value: 
-      objectReference: {fileID: 100002, guid: b915ea55954041f40a3fd40ee1840dda, type: 3}
     - target: {fileID: 8747813484029322904, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
       propertyPath: m_Name
       value: Rocket launcher
@@ -1445,6 +1511,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8747813484029322907, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747813485376195459, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747813485381301171, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747813485771390227, guid: efa51762a000fe14c805ad19f9dedbc1, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1744,11 +1822,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MoveSpeed: 5
-  m_JumpForce: 80
+  m_JumpForce: 30
   m_Speed: 5
   m_RunSpeed: 10
   m_AccelerationAmount: 2
   m_Sensitivity: 2
+  m_MoveParticle: {fileID: 1225286819}
 --- !u!136 &909545962484555105
 CapsuleCollider:
   m_ObjectHideFlags: 0
