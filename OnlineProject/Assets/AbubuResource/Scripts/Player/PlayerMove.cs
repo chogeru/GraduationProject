@@ -21,6 +21,11 @@ public class PlayerMove : MonoBehaviour
     [SerializeField, Header("移動時のパーティクル")]
     private GameObject m_MoveParticle;
 
+
+    [SerializeField,Header("ジャンプ時のSE")]
+    private AudioClip m_JumpSound;
+    //音量
+    private float m_Volume=0.5f;
     //アニメーター
     private Animator m_Animator;
     //リジットボディ
@@ -71,6 +76,7 @@ public class PlayerMove : MonoBehaviour
         // ジャンプ処理
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
+            AudioSource.PlayClipAtPoint(m_JumpSound, transform.position,m_Volume);
             m_Animator.SetBool("Jump", true);
             rb.AddForce(Vector3.up * m_JumpForce, ForceMode.Impulse);
             isGrounded = false;

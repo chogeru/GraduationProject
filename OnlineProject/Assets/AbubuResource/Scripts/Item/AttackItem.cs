@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AttackItem : MonoBehaviour
 {
-    public Transform playerObject; // プレイヤーオブジェクトの参照
+    [SerializeField,Header("プレイヤーオブジェクト")]
+    private Transform playerObject; 
     [SerializeField, Header("発射位置")]
     private Transform m_FirePoint;
     [SerializeField, Header("武器が消えるときのパーティクル")]
