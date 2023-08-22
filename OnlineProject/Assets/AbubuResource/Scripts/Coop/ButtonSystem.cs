@@ -14,6 +14,8 @@ public class ButtonSystem : MonoBehaviour
     [SerializeField,Header("キャラクター選択モード")]
     private GameObject m_CaractorSelectMode;
 
+
+
     private void Start()
     {
         m_PlayerNameSettingScreen.SetActive(true);
