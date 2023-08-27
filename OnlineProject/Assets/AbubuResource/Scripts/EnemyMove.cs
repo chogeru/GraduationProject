@@ -67,4 +67,11 @@ public class EnemyMove : MonoBehaviour
 
         avoiding = false;
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
