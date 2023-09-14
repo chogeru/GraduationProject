@@ -28,6 +28,11 @@ public class ObjectHits : MonoBehaviour
             HitParticleEnemy();
             Destroy(gameObject);
         }
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            HitParticleGrund();
+            Destroy(gameObject);
+        }
     }
 
     private void HitParticleWall()
@@ -35,6 +40,11 @@ public class ObjectHits : MonoBehaviour
         GameObject particles = Instantiate(m_ParticleWallHit, transform.position, Quaternion.identity);
         // パーティクル再生終了後に破棄
         Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration); 
+    }
+    private void HitParticleGrund()
+    {
+        GameObject particles=Instantiate(m_ParticleWallHit,transform.position, Quaternion.identity);
+        Destroy(particles, particles.GetComponent<ParticleSystem>().main.duration);
     }
     private void HitParticlePlant()
     {

@@ -4,34 +4,58 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    public string playerTag = "Player";
-    public string wallTag = "Wall";
-    public float moveSpeed = 5.0f;
-    public float detectionDistance = 30.0f;
-    public float avoidanceDistance = 2.0f;
-    public float rotationSpeed = 5.0f;
+    [SerializeField]
+    private string m_PlayerTag = "Player";
+    [SerializeField]
+    private string m_WallTag = "Wall";
+    [SerializeField]
+    private float m_MoveSpeed = 5.0f;
+    [SerializeField]
+    private float m_DetectionDistance = 30.0f;
+    [SerializeField]
+    private float m_AvoidanceDistance = 2.0f;
+    [SerializeField]
+    private float m_RotationSpeed = 5.0f;
 
-    private Transform player;
+    private Transform m_Player;
     private bool avoiding = false;
 
+    [SerializeField,Header("戦闘開始時のアイコン")]
+    private GameObject m_StAicBattle;
+    private float m_AiconDestroyTime;
+
+    [SerializeField, Header("最大体力")]
+    private int m_MaxHp;
+    [SerializeField,Header("現在の体力")]
+    private int m_Hp;
+    [SerializeField,Header("攻撃力")]
+    private int m_Damage;
+
+    PlayerMove m_PlayerMove;
+    Animator m_Animator;
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag(playerTag).transform;
+        m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
+        m_PlayerMove=m_Player.GetComponent<PlayerMove>();
+        m_Animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        Vector3 directionToPlayer = player.position - transform.position;
+        Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
-        if (distanceToPlayer <= detectionDistance)
+        if (distanceToPlayer <= m_DetectionDistance)
         {
             if (!avoiding)
             {
+                m_AiconDestroyTime += Time.deltaTime;
+                m_StAicBattle.SetActive(true);
+                m_Animator.SetBool("isBattle", true);
                 Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
 
-                if (Physics.Raycast(transform.position, transform.forward, avoidanceDistance))
+                if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
                 {
                     // Wall is detected in front, start avoiding
                     avoiding = true;
@@ -40,7 +64,7 @@ public class EnemyMove : MonoBehaviour
                 else
                 {
                     // Move forward
-                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                    transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
                 }
             }
         }
@@ -48,13 +72,18 @@ public class EnemyMove : MonoBehaviour
         {
             // Stop avoiding if player is not nearby
             avoiding = false;
+            m_Animator.SetBool("isBattle", false);
+        }
+        if(m_Hp<=0)
+        {
+            Destroy(gameObject);
         }
     }
 
     private IEnumerator AvoidObstacle()
     {
         Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward; // Rotate by 45 degrees
-        Vector3 targetPosition = transform.position + avoidanceDirection * avoidanceDistance;
+        Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
 
         float startTime = Time.time;
         float duration = 1.0f; // Avoidance duration
@@ -64,14 +93,13 @@ public class EnemyMove : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPosition, (Time.time - startTime) / duration);
             yield return null;
         }
-
         avoiding = false;
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+           m_Hp -= m_PlayerMove.m_PlayerDamage;
         }
     }
 }

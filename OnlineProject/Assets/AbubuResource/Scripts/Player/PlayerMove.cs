@@ -17,7 +17,8 @@ public class PlayerMove : MonoBehaviour
     private float m_AccelerationAmount = 2f;
     [SerializeField,Header("回転力")]
     private float m_Sensitivity = 2.0f;
-
+    private float m_HorizontalInput;
+    private float m_VerticalInput;
     [SerializeField, Header("移動時のパーティクル")]
     private GameObject m_MoveParticle;
 
@@ -31,8 +32,15 @@ public class PlayerMove : MonoBehaviour
     //リジットボディ
     private Rigidbody rb;
     //着地しているかどうか
+    [SerializeField]
     private bool isGrounded = true;
 
+    [SerializeField]
+    private int m_MaxHp;
+    [SerializeField]
+    private int m_Hp;
+    [SerializeField]
+    public int m_PlayerDamage;
     private void Start()
     {
         m_MoveParticle.SetActive(false);
@@ -42,17 +50,25 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+      
         // プレイヤーの移動
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        m_HorizontalInput = Input.GetAxis("Horizontal");
+        m_VerticalInput = Input.GetAxis("Vertical");
 
         //アニメーターにキー入力分の数値を代入
         m_Animator.SetFloat("左右", Input.GetAxis("Horizontal"));
         m_Animator.SetFloat("前後", Input.GetAxis("Vertical"));
         m_Animator.SetFloat("強左右", Input.GetAxis("Horizontal"));
         m_Animator.SetFloat("強前後", Input.GetAxis("Vertical"));
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * m_MoveSpeed * Time.deltaTime;
-        transform.Translate(movement);
+
+        //キー入力による移動量を求める
+        Vector3 move = CalcMoveDir(m_HorizontalInput, m_VerticalInput) * m_Speed;
+        //現在の移動量を所得
+        Vector3 current = rb.velocity;
+        current.y = 0f;
+        //現在の移動量との差分だけプレイヤーに力を加える
+        rb.AddForce(move - current, ForceMode.VelocityChange);
+
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Mouse X");
 
@@ -72,18 +88,25 @@ public class PlayerMove : MonoBehaviour
             m_MoveSpeed = m_Speed;
             m_Animator.SetBool("Run", false);
         }
-      
-        // ジャンプ処理
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {
-            AudioSource.PlayClipAtPoint(m_JumpSound, transform.position,m_Volume);
-            m_Animator.SetBool("Jump", true);
-            rb.AddForce(Vector3.up * m_JumpForce, ForceMode.Impulse);
-            isGrounded = false;
-        }
-        else
-        {
-            m_Animator.SetBool("Jump", false);
+            if (hit.distance < 0.2f)
+            {
+                // ジャンプ処理
+                if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+                {
+                    AudioSource.PlayClipAtPoint(m_JumpSound, transform.position, m_Volume);
+                    m_Animator.SetBool("Jump", true);
+                    rb.AddForce(Vector3.up * m_JumpForce, ForceMode.Impulse);
+                    isGrounded = false;
+                }
+            }
+            else
+            {
+                m_Animator.SetBool("Jump", false);
+                isGrounded = true;
+            }
         }
         // 加速処理
         if (Input.GetKey(KeyCode.R))
@@ -92,12 +115,13 @@ public class PlayerMove : MonoBehaviour
             rb.AddForce(forwardDirection * m_AccelerationAmount, ForceMode.Acceleration);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private Vector3 CalcMoveDir(float moveX, float moveZ)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
+        //指定された移動力移動ベクトルを求める
+        Vector3 moveVec = new Vector3(moveX, 0f, moveZ).normalized;
+        //ベクトルに変換して、返す
+        Vector3 moveDir = transform.rotation * moveVec;
+        moveDir.y = 0f;
+        return moveDir.normalized;
     }
 }

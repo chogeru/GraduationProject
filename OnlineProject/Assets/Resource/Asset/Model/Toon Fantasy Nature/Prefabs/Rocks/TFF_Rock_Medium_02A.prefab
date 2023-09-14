@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1151812721807616600}
   m_Layer: 0
   m_Name: TFF_Rock_Medium_02A
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
