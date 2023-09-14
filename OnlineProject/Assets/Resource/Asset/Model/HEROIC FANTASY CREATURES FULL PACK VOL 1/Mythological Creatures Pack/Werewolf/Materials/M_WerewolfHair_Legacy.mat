@@ -8,22 +8,37 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_WerewolfHair_Legacy
-  m_Shader: {fileID: 54, guid: 0000000000000000f000000000000000, type: 0}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords:
   - _ALPHATEST_ON
   - _METALLICGLOSSMAP
+  - _NORMALMAP
+  m_InvalidKeywords:
+  - _COVERAGEOVERLAYTYPE_WORLD_NORMAL
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 3b5879737f6afe64695b585f4fe0ff63, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageAlbedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CoverageNormal:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -58,9 +73,29 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SurfaceAlbedo:
+        m_Texture: {fileID: 2800000, guid: 6b243729d4be292418aa353745dfaa06, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SurfaceNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BlendNormals: 0
     - _BumpScale: 1
+    - _COVERAGE: 0
+    - _CoverageContrast: 0.3
+    - _CoverageFade: 0.5
+    - _CoverageLevel: 0
+    - _CoverageOverlayType: 0
+    - _CoverageSmoothness: 0
+    - _CoverageThicknessLevel: 1
     - _Cutoff: 0.137
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -71,14 +106,21 @@ Material:
     - _Mode: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _SNOW: 0
     - _Shininess: 0.166
     - _SmoothnessTextureChannel: 0
+    - _SnowAmount: 0.5
+    - _SnowFade: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _SurfaceSmoothness: 0
     - _UVSec: 0
     - _ZWrite: 1
+    - __dirty: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _CoverageColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
+    - _SurfaceColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
