@@ -4,53 +4,59 @@ using UnityEngine;
 
 public class EnemySpown : MonoBehaviour
 {
-    public string[] playerTags; // スポーンをトリガーするプレイヤータグの配列
-    public GameObject[] enemyPrefabs; // スポーンするEnemyのプレハブの配列
-    public float spawnDistanceThreshold = 10f; // スポーンをトリガーする距離の閾値
-    public float minSpawnInterval = 3f; // 最小スポーン間隔
-    public float maxSpawnInterval = 8f; // 最大スポーン間隔
-    public GameObject particleEffectPrefab; // パーティクルエフェクトのプレハブ
     [SerializeField]
-    private float spawnTimer = 0f;
+    private string[] playerTags; // スポーンをトリガーするプレイヤータグの配列
     [SerializeField]
-    private Transform playerTransform;
+    private GameObject[] m_EnemyPrefabs; // スポーンするEnemyのプレハブの配列
+    [SerializeField]
+    private float m_SpawnDistanceThreshold = 10f; // スポーンをトリガーする距離の閾値
+    [SerializeField]
+    private float m_MinSpawnInterval = 3f; // 最小スポーン間隔]
+    [SerializeField]
+    private float m_MaxSpawnInterval = 8f; // 最大スポーン間隔
+    [SerializeField]
+    private GameObject m_ParticleEffectPrefab; // パーティクルエフェクトのプレハブ
+    [SerializeField]
+    private float m_SpawnTimer = 0f;
+    [SerializeField]
+    private Transform m_PlayerTransform;
     [SerializeField]
     private AudioClip m_SpownAudio;
     private float m_Volume=1f;
 
     private void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()
     {
         // プレイヤーとの距離を計算
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);
 
         // プレイヤーが一定距離以内にいる場合
-        if (distanceToPlayer <= spawnDistanceThreshold)
+        if (distanceToPlayer <= m_SpawnDistanceThreshold)
         {
             // タイマーを更新
-            spawnTimer -= Time.deltaTime;
+            m_SpawnTimer -= Time.deltaTime;
 
             // スポーン間隔が経過した場合
-            if (spawnTimer <= 0f)
+            if (m_SpawnTimer <= 0f)
             {
                 // ランダムなEnemyプレハブを選択
-                GameObject randomEnemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+                GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
 
                 // プレハブをスポーン
                 Instantiate(randomEnemyPrefab, transform.position, Quaternion.identity);
                 AudioSource.PlayClipAtPoint(m_SpownAudio, transform.position,m_Volume);
                 // パーティクルエフェクトを再生
-                if (particleEffectPrefab != null)
+                if (m_ParticleEffectPrefab != null)
                 {
-                    Instantiate(particleEffectPrefab, transform.position, Quaternion.identity);
+                    Instantiate(m_ParticleEffectPrefab, transform.position, Quaternion.identity);
                 }
 
                 // 新しいスポーン間隔をランダムに設定
-                spawnTimer = Random.Range(minSpawnInterval, maxSpawnInterval);
+                m_SpawnTimer = Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);
             }
         }
     }
