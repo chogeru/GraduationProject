@@ -6,6 +6,8 @@ public class GunShot : MonoBehaviour
 {
     [SerializeField,Header("球のプレハブ")]
     private GameObject m_BulletPrefab;
+    [SerializeField, Header("チャージショットの弾")]
+    private GameObject m_ChargeBulletPrefab;
     [SerializeField,Header("銃口オブジェクトのTransform")]
     private Transform m_MuzzleTransform;
     [SerializeField,Header("弾速")]
