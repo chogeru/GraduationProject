@@ -524,6 +524,7 @@ MonoBehaviour:
   m_MaxHp: 50
   m_Hp: 20
   m_Damage: 0
+  m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
 --- !u!1 &2362182767790988888
 GameObject:
   m_ObjectHideFlags: 0

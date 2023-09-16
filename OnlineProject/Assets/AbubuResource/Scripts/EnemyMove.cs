@@ -18,7 +18,7 @@ public class EnemyMove : MonoBehaviour
     private float m_RotationSpeed = 5.0f;
 
     private Transform m_Player;
-    private bool avoiding = false;
+    private bool isAvoiding = false;
 
     [SerializeField,Header("戦闘開始時のアイコン")]
     private GameObject m_StAicBattle;
@@ -30,6 +30,9 @@ public class EnemyMove : MonoBehaviour
     private int m_Hp;
     [SerializeField,Header("攻撃力")]
     private int m_Damage;
+
+    [SerializeField]
+    private AudioClip m_HitAudio;
 
     PlayerMove m_PlayerMove;
     Animator m_Animator;
@@ -47,7 +50,7 @@ public class EnemyMove : MonoBehaviour
 
         if (distanceToPlayer <= m_DetectionDistance)
         {
-            if (!avoiding)
+            if (!isAvoiding)
             {
                 m_AiconDestroyTime += Time.deltaTime;
                 m_StAicBattle.SetActive(true);
@@ -58,7 +61,7 @@ public class EnemyMove : MonoBehaviour
                 if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
                 {
                     // Wall is detected in front, start avoiding
-                    avoiding = true;
+                    isAvoiding = true;
                     StartCoroutine(AvoidObstacle());
                 }
                 else
@@ -71,7 +74,7 @@ public class EnemyMove : MonoBehaviour
         else
         {
             // Stop avoiding if player is not nearby
-            avoiding = false;
+            isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
         }
         if(m_Hp<=0)
@@ -93,12 +96,13 @@ public class EnemyMove : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPosition, (Time.time - startTime) / duration);
             yield return null;
         }
-        avoiding = false;
+        isAvoiding = false;
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Bullet"))
         {
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
            m_Hp -= m_PlayerMove.m_PlayerDamage;
         }
     }
