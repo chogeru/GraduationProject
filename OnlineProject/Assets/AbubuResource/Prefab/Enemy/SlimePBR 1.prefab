@@ -520,7 +520,8 @@ MonoBehaviour:
   m_DetectionDistance: 10
   m_AvoidanceDistance: 2
   m_RotationSpeed: 5
-  m_StAicBattle: {fileID: 5999405118222364080}
+  m_IdleAicon: {fileID: 3896024758635277563}
+  m_BattleAicon: {fileID: 5999405118222364080}
   m_MaxHp: 50
   m_Hp: 20
   m_Damage: 0
@@ -863,6 +864,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b32cc82d08627a940a27923eafd556ba, type: 3}
+--- !u!1 &3896024758635277563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3609649222576044665, guid: b32cc82d08627a940a27923eafd556ba, type: 3}
+  m_PrefabInstance: {fileID: 290896931930887810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5679904905592844550 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5393740451027216260, guid: b32cc82d08627a940a27923eafd556ba, type: 3}
