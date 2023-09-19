@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField,Header("移動速度")]
+    [SerializeField, Header("移動速度")]
     private float m_MoveSpeed = 5f;
-    [SerializeField,Header("ジャンプ力")]
+    [SerializeField, Header("ジャンプ力")]
     private float m_JumpForce = 10f;
     [SerializeField, Header("通常移動速度")]
     private float m_Speed = 5f;
     [SerializeField, Header("ダッシュ")]
-    private float m_RunSpeed=2f;
-    [SerializeField,Header("加速力")]
+    private float m_RunSpeed = 2f;
+    [SerializeField, Header("加速力")]
     private float m_AccelerationAmount = 2f;
-    [SerializeField,Header("回転力")]
+    [SerializeField, Header("回転力")]
     private float m_Sensitivity = 2.0f;
     private float m_HorizontalInput;
     private float m_VerticalInput;
@@ -23,10 +23,10 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_MoveParticle;
 
 
-    [SerializeField,Header("ジャンプ時のSE")]
+    [SerializeField, Header("ジャンプ時のSE")]
     private AudioClip m_JumpSound;
     //音量
-    private float m_Volume=0.5f;
+    private float m_Volume = 0.5f;
     //アニメーター
     private Animator m_Animator;
     //リジットボディ
@@ -38,7 +38,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private int m_MaxHp;
     [SerializeField]
-    private int m_Hp;
+    public int m_Hp;
     [SerializeField]
     public int m_PlayerDamage;
     private void Start()
@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-      
+
         // プレイヤーの移動
         m_HorizontalInput = Input.GetAxis("Horizontal");
         m_VerticalInput = Input.GetAxis("Vertical");
@@ -66,6 +66,7 @@ public class PlayerMove : MonoBehaviour
         //現在の移動量を所得
         Vector3 current = rb.velocity;
         current.y = 0f;
+
         //現在の移動量との差分だけプレイヤーに力を加える
         rb.AddForce(move - current, ForceMode.VelocityChange);
 
@@ -80,7 +81,7 @@ public class PlayerMove : MonoBehaviour
         {
             m_MoveParticle.SetActive(true);
             m_MoveSpeed = m_RunSpeed;
-            m_Animator.SetBool("Run",true);
+            m_Animator.SetBool("Run", true);
         }
         else
         {
@@ -108,12 +109,7 @@ public class PlayerMove : MonoBehaviour
                 isGrounded = true;
             }
         }
-        // 加速処理
-        if (Input.GetKey(KeyCode.R))
-        {
-            Vector3 forwardDirection = transform.forward;
-            rb.AddForce(forwardDirection * m_AccelerationAmount, ForceMode.Acceleration);
-        }
+       
     }
     private Vector3 CalcMoveDir(float moveX, float moveZ)
     {

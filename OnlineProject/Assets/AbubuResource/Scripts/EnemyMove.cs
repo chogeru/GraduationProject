@@ -32,28 +32,36 @@ public class EnemyMove : MonoBehaviour
     [SerializeField,Header("攻撃力")]
     private int m_Damage;
 
-    private GameObject m_StageWall;
-
+    private List<StageWall> m_StageWall = new List<StageWall>();
     [SerializeField]
     private AudioClip m_HitAudio;
 
-    StageWall stageWall;
+    StageWall m_stageWall;
     PlayerMove m_PlayerMove;
     Animator m_Animator;
     private void Start()
     {
+        GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
         m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
-        m_StageWall = GameObject.Find("マップ進行壁");
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
-        stageWall = m_StageWall.GetComponent<StageWall>();
         m_Animator = GetComponent<Animator>();
         m_IdleAicon.SetActive(true);
         m_BattleAicon.SetActive(false);
+
+        foreach(GameObject stagewall in stagewalls)
+        {
+            m_stageWall = stagewall.GetComponent<StageWall>();
+            if(m_stageWall!=null)
+            {
+                m_StageWall.Add(m_stageWall);
+            }
+
+        }
     }
 
     private void Update()
     {
-
+  
         Vector3 directionToPlayer = m_Player.position - transform.position;
 
         float distanceToPlayer = directionToPlayer.magnitude;
@@ -70,20 +78,17 @@ public class EnemyMove : MonoBehaviour
 
                 if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
                 {
-                    // Wall is detected in front, start avoiding
                     isAvoiding = true;
                     StartCoroutine(AvoidObstacle());
                 }
                 else
                 {
-                    // Move forward
                     transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
                 }
             }
         }
         else
         {
-            // Stop avoiding if player is not nearby
             isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
             m_IdleAicon.SetActive(true);
@@ -91,18 +96,18 @@ public class EnemyMove : MonoBehaviour
         }
         if(m_Hp<=0)
         {
-            stageWall.m_DieCount++;
+            m_stageWall.m_DieCount++;
             Destroy(gameObject);
         }
     }
 
     private IEnumerator AvoidObstacle()
     {
-        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward; // Rotate by 45 degrees
+        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward; 
         Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
 
         float startTime = Time.time;
-        float duration = 1.0f; // Avoidance duration
+        float duration = 1.0f; 
 
         while (Time.time - startTime < duration)
         {
@@ -111,6 +116,7 @@ public class EnemyMove : MonoBehaviour
         }
         isAvoiding = false;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Bullet"))

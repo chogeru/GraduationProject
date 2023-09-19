@@ -5,10 +5,11 @@ using UnityEngine;
 public class StageWall : MonoBehaviour
 {
     public int m_DieCount=0;
-  
+    [SerializeField]
+    private int m_MaxCount;
     void Update()
     {
-        if(m_DieCount>=5)
+        if(m_DieCount>=m_MaxCount)
         {
             Destroy(gameObject);
         }

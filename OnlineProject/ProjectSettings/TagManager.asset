@@ -17,7 +17,7 @@ TagManager:
   - FxTemporaire
   - Bullet
   - Item
-  - Door
+  - StageWall
   layers:
   - Default
   - TransparentFX
