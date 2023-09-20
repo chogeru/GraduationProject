@@ -39,6 +39,12 @@ public class EnemyMove : MonoBehaviour
     StageWall m_stageWall;
     PlayerMove m_PlayerMove;
     Animator m_Animator;
+
+    [SerializeField]
+    private GameObject m_DestroyEffect;
+    [SerializeField]
+    private GameObject m_DestroySE;
+    private float m_DestroyTime;
     private void Start()
     {
         GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
@@ -47,7 +53,7 @@ public class EnemyMove : MonoBehaviour
         m_Animator = GetComponent<Animator>();
         m_IdleAicon.SetActive(true);
         m_BattleAicon.SetActive(false);
-
+        m_DestroySE.SetActive(false);
         foreach(GameObject stagewall in stagewalls)
         {
             m_stageWall = stagewall.GetComponent<StageWall>();
@@ -96,8 +102,16 @@ public class EnemyMove : MonoBehaviour
         }
         if(m_Hp<=0)
         {
-            m_stageWall.m_DieCount++;
-            Destroy(gameObject);
+            m_Animator.SetBool("isDie", true);
+            m_DestroyTime += Time.deltaTime;
+            m_DestroySE.SetActive(true);
+            if(m_DestroyTime>=1.4)
+            {
+                Instantiate(m_DestroyEffect,transform.position,Quaternion.identity);
+                m_stageWall.m_DieCount++;
+                Destroy(gameObject);
+            }
+            
         }
     }
 

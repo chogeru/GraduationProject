@@ -22,14 +22,15 @@ public class PlayerMove : MonoBehaviour
     [SerializeField, Header("移動時のパーティクル")]
     private GameObject m_MoveParticle;
 
-
     [SerializeField, Header("ジャンプ時のSE")]
     private AudioClip m_JumpSound;
     //音量
     private float m_Volume = 0.5f;
     //アニメーター
+    [SerializeField]
     private Animator m_Animator;
     //リジットボディ
+    [SerializeField]
     private Rigidbody rb;
     //着地しているかどうか
     [SerializeField]
@@ -37,6 +38,7 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private int m_MaxHp;
+    private int m_MinHp;
     [SerializeField]
     public int m_Hp;
     [SerializeField]
@@ -48,9 +50,8 @@ public class PlayerMove : MonoBehaviour
         m_Animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-
         // プレイヤーの移動
         m_HorizontalInput = Input.GetAxis("Horizontal");
         m_VerticalInput = Input.GetAxis("Vertical");
@@ -60,7 +61,7 @@ public class PlayerMove : MonoBehaviour
         m_Animator.SetFloat("前後", Input.GetAxis("Vertical"));
         m_Animator.SetFloat("強左右", Input.GetAxis("Horizontal"));
         m_Animator.SetFloat("強前後", Input.GetAxis("Vertical"));
-
+       
         //キー入力による移動量を求める
         Vector3 move = CalcMoveDir(m_HorizontalInput, m_VerticalInput) * m_Speed;
         //現在の移動量を所得
@@ -69,7 +70,7 @@ public class PlayerMove : MonoBehaviour
 
         //現在の移動量との差分だけプレイヤーに力を加える
         rb.AddForce(move - current, ForceMode.VelocityChange);
-
+        
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Mouse X");
 
@@ -111,6 +112,11 @@ public class PlayerMove : MonoBehaviour
         }
        
     }
+    private void Update()
+    {
+        m_Hp = Mathf.Clamp(m_Hp, m_MinHp, m_MaxHp);
+    }
+
     private Vector3 CalcMoveDir(float moveX, float moveZ)
     {
         //指定された移動力移動ベクトルを求める

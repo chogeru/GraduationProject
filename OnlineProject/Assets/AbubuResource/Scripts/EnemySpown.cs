@@ -24,6 +24,7 @@ public class EnemySpown : MonoBehaviour
     private AudioClip m_SpownAudio;
     private float m_Volume=1f;
 
+    private bool isSpown=true;
     private void Start()
     {
         m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -31,34 +32,45 @@ public class EnemySpown : MonoBehaviour
 
     private void Update()
     {
-        // プレイヤーとの距離を計算
-        float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);
-
-        // プレイヤーが一定距離以内にいる場合
-        if (distanceToPlayer <= m_SpawnDistanceThreshold)
+        if (isSpown)
         {
-            // タイマーを更新
-            m_SpawnTimer -= Time.deltaTime;
+            // プレイヤーとの距離を計算
+            float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);
 
-            // スポーン間隔が経過した場合
-            if (m_SpawnTimer <= 0f)
+            // プレイヤーが一定距離以内にいる場合
+            if (distanceToPlayer <= m_SpawnDistanceThreshold)
             {
-                // ランダムなEnemyプレハブを選択
-                GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
+                // タイマーを更新
+                m_SpawnTimer -= Time.deltaTime;
 
-                // プレハブをスポーン
-                Instantiate(randomEnemyPrefab, transform.position, Quaternion.identity);
-                AudioSource.PlayClipAtPoint(m_SpownAudio, transform.position,m_Volume);
-                // パーティクルエフェクトを再生
-                if (m_ParticleEffectPrefab != null)
+                // スポーン間隔が経過した場合
+                if (m_SpawnTimer <= 0f)
                 {
-                    Instantiate(m_ParticleEffectPrefab, transform.position, Quaternion.identity);
-                }
+                    // ランダムなEnemyプレハブを選択
+                    GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
 
-                // 新しいスポーン間隔をランダムに設定
-                m_SpawnTimer = Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);
+                    // プレハブをスポーン
+                    Instantiate(randomEnemyPrefab, transform.position, Quaternion.identity);
+                    AudioSource.PlayClipAtPoint(m_SpownAudio, transform.position, m_Volume);
+                    // パーティクルエフェクトを再生
+                    if (m_ParticleEffectPrefab != null)
+                    {
+                        Instantiate(m_ParticleEffectPrefab, transform.position, Quaternion.identity);
+                    }
+
+                    // 新しいスポーン間隔をランダムに設定
+                    m_SpawnTimer = Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);
+                }
             }
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        isSpown = false;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        isSpown = true;
     }
 }
 

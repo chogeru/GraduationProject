@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7008369480471645858}
   - component: {fileID: 7008369480471645857}
+  - component: {fileID: 3812379210718709528}
   m_Layer: 0
   m_Name: SpownPoint
   m_TagString: Untagged
@@ -55,6 +56,20 @@ MonoBehaviour:
   m_SpawnTimer: 0
   m_PlayerTransform: {fileID: 0}
   m_SpownAudio: {fileID: 8300000, guid: 44f06f87ace5d0f419cb69c4de612304, type: 3}
+--- !u!136 &3812379210718709528
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008369480471645859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 3.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7008369480936105886
 GameObject:
   m_ObjectHideFlags: 0
