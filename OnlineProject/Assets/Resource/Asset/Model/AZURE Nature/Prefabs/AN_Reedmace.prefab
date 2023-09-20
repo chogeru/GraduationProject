@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1658889807096933610}
   m_Layer: 0
   m_Name: AN_Reedmace
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 16

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8161158093446093382}
   m_Layer: 0
   m_Name: Flowers_Purple
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 20

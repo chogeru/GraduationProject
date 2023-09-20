@@ -5,19 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - Stair
-  - WallRun
   - Climb
+  - WallRun
   - Fly
-  - Animal
   - Water
   - Ground
   - Wall
-  - Plant
   - Enemy
   - FxTemporaire
   - Bullet
   - Item
   - StageWall
+  - Plant
+  - ItemBullet
   layers:
   - Default
   - TransparentFX

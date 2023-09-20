@@ -1,0 +1,116 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine;
+
+public class BossEnemy : MonoBehaviour
+{
+    [SerializeField]
+    private int m_MaxHp;
+    private int m_MinHp;
+    [SerializeField]
+    private int m_Hp;
+
+    [SerializeField]
+    private int Damage;
+
+    private bool isAvoiding;
+
+    [SerializeField]
+    private float m_DetectionDistance = 30f;
+    [SerializeField]
+    private float m_AvoidanceDistance = 2f;
+    [SerializeField]
+    private float m_RotationSpeed = 5f;
+    private float m_MoveSpeed = 5;
+    private float m_DestroyTime;
+
+    [SerializeField]
+    private GameObject m_DestroySE;
+    [SerializeField]
+    private GameObject m_DestroyEffect;
+
+    [SerializeField]
+    private Transform m_Player;
+    PlayerMove m_PlayerMove;
+
+    private Animator m_Animator;    
+    private Rigidbody m_Rigidbody;
+    void Start()
+    {
+        m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+        m_PlayerMove=m_Player.GetComponent<PlayerMove>();   
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Animator = GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+      Vector3 directionToPlayer = m_Player.position-transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
+
+        if (distanceToPlayer <= m_DetectionDistance)
+        {
+            if (!isAvoiding)
+            {
+             
+                m_Animator.SetBool("isBattle", true);
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
+
+                if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
+                {
+                    isAvoiding = true;
+                    StartCoroutine(AvoidObstacle());
+                }
+                else
+                {
+                    transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
+                }
+            }
+        }
+        else
+        {
+            isAvoiding = false;
+            m_Animator.SetBool("isBattle", false);
+       
+        }
+        if (m_Hp <= 0)
+        {
+            m_Animator.SetBool("isDie", true);
+            m_DestroyTime += Time.deltaTime;
+            m_DestroySE.SetActive(true);
+            if (m_DestroyTime >= 1.4)
+            {
+                Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+    
+                Destroy(gameObject);
+            }
+
+        }
+    }
+    private IEnumerator AvoidObstacle()
+    {
+        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
+        Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
+
+        float startTime = Time.time;
+        float duration = 1.0f;
+
+        while (Time.time - startTime < duration)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPosition, (Time.time - startTime) / duration);
+            yield return null;
+        }
+        isAvoiding = false;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+       //     AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
+        }
+    }
+}

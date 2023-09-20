@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6915981361711584222}
   m_Layer: 0
   m_Name: TFF_Birch_Tree_Dry_02A
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

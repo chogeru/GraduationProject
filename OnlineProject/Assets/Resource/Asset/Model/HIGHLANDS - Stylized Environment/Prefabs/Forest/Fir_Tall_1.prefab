@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 6932015977956241582}
   m_Layer: 0
   m_Name: Fir_Tall_1
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 16

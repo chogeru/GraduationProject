@@ -97953,7 +97953,7 @@ MonoBehaviour:
   m_BulletParticle: {fileID: 497040792954230349}
   m_BulletPrefab: {fileID: 6278394227828533635, guid: 5992e5d845449b74891790791936b138, type: 3}
   m_BulletSpeed: 30
-  m_DestroyTime: 15
+  m_DestroyTime: 30
   m_FireAudioSource: {fileID: 8300000, guid: 15cb1a06bd42a28408a4daddd77227a7, type: 3}
   m_WeponGetSE: {fileID: 8300000, guid: c756a4c6b9c83d04eab4907e8e214e84, type: 3}
   m_WeponDestroySE: {fileID: 8300000, guid: 8e39db8839f02c84f98a515e8290f670, type: 3}

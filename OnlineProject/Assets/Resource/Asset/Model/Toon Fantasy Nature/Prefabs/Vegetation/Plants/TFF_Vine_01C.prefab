@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5056374755202220255}
   - component: {fileID: 5056374755201221151}
   - component: {fileID: 3603548359836718870}
+  - component: {fileID: 5833395193841494070}
   m_Layer: 0
   m_Name: TFF_Vine_01C
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +109,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5168019231061150882}
   m_Enabled: 1
+--- !u!65 &5833395193841494070
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056374755203423455}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 9.835118, z: 4}
+  m_Center: {x: 0.19938147, y: 3.2826495, z: 0.0037651062}
 --- !u!1001 &5168019231063315650
 PrefabInstance:
   m_ObjectHideFlags: 0

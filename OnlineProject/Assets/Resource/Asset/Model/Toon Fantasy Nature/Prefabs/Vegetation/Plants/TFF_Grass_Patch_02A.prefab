@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 870801350375020668}
   m_Layer: 0
   m_Name: TFF_Grass_Patch_02A
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
