@@ -43,8 +43,15 @@ public class PlayerMove : MonoBehaviour
     public int m_Hp;
     [SerializeField]
     public int m_PlayerDamage;
+
+    [SerializeField]
+    private GameObject m_RecoveryEffect;
+    [SerializeField]
+    private GameObject m_RecoverySE;
     private void Start()
     {
+        m_RecoveryEffect.SetActive(false);
+        m_RecoverySE.SetActive(false);
         m_MoveParticle.SetActive(false);
         rb = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
@@ -71,12 +78,7 @@ public class PlayerMove : MonoBehaviour
         //現在の移動量との差分だけプレイヤーに力を加える
         rb.AddForce(move - current, ForceMode.VelocityChange);
         
-        // マウスの移動量を取得
-        float mouseX = Input.GetAxis("Mouse X");
-
-        // オブジェクトを回転させる
-        // Y軸を基準に水平方向に回転
-        transform.Rotate(Vector3.up, mouseX * m_Sensitivity, Space.World);
+    
         //ダッシュ処理
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -90,6 +92,18 @@ public class PlayerMove : MonoBehaviour
             m_MoveSpeed = m_Speed;
             m_Animator.SetBool("Run", false);
         }
+      
+       
+    }
+    private void Update()
+    {
+        m_Hp = Mathf.Clamp(m_Hp, m_MinHp, m_MaxHp);
+        // マウスの移動量を取得
+        float mouseX = Input.GetAxis("Mouse X");
+
+        // オブジェクトを回転させる
+        // Y軸を基準に水平方向に回転
+        transform.Rotate(Vector3.up, mouseX * m_Sensitivity, Space.World);
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {
@@ -110,11 +124,6 @@ public class PlayerMove : MonoBehaviour
                 isGrounded = true;
             }
         }
-       
-    }
-    private void Update()
-    {
-        m_Hp = Mathf.Clamp(m_Hp, m_MinHp, m_MaxHp);
     }
 
     private Vector3 CalcMoveDir(float moveX, float moveZ)
@@ -125,5 +134,21 @@ public class PlayerMove : MonoBehaviour
         Vector3 moveDir = transform.rotation * moveVec;
         moveDir.y = 0f;
         return moveDir.normalized;
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.CompareTag("RecoveryItem"))
+        {
+            m_RecoveryEffect.SetActive(true);
+            m_RecoverySE.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("RecoveryItem"))
+        {
+            m_RecoveryEffect.SetActive(false);
+            m_RecoverySE.SetActive(false);
+        }
     }
 }

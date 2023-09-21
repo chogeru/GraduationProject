@@ -18,6 +18,8 @@ TagManager:
   - StageWall
   - Plant
   - ItemBullet
+  - Interactive
+  - RecoveryItem
   layers:
   - Default
   - TransparentFX

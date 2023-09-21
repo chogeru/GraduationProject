@@ -1,6 +1,8 @@
+using MalbersAnimations.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossEnemy : MonoBehaviour
@@ -18,6 +20,7 @@ public class BossEnemy : MonoBehaviour
 
     [SerializeField]
     private float m_DetectionDistance = 30f;
+    
     [SerializeField]
     private float m_AvoidanceDistance = 2f;
     [SerializeField]
@@ -31,37 +34,44 @@ public class BossEnemy : MonoBehaviour
     private GameObject m_DestroyEffect;
 
     [SerializeField]
+    private GameObject m_ActiveFloer;
+
+    [SerializeField]
     private Transform m_Player;
     PlayerMove m_PlayerMove;
 
-    private Animator m_Animator;    
+    private Animator m_Animator;
     private Rigidbody m_Rigidbody;
     void Start()
     {
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
-        m_PlayerMove=m_Player.GetComponent<PlayerMove>();   
+        m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
+        m_ActiveFloer.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-      Vector3 directionToPlayer = m_Player.position-transform.position;
+        Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
         if (distanceToPlayer <= m_DetectionDistance)
         {
+          
             if (!isAvoiding)
             {
-             
+
                 m_Animator.SetBool("isBattle", true);
+                
                 Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
-
+                
                 if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
                 {
                     isAvoiding = true;
+
                     StartCoroutine(AvoidObstacle());
                 }
                 else
@@ -74,8 +84,9 @@ public class BossEnemy : MonoBehaviour
         {
             isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
-       
+
         }
+       
         if (m_Hp <= 0)
         {
             m_Animator.SetBool("isDie", true);
@@ -84,15 +95,16 @@ public class BossEnemy : MonoBehaviour
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-    
+
                 Destroy(gameObject);
+                m_ActiveFloer.SetActive(true);
             }
 
         }
     }
     private IEnumerator AvoidObstacle()
     {
-        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
+        Vector3 avoidanceDirection = Quaternion.Euler(0, 360, 0) * transform.forward;
         Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
 
         float startTime = Time.time;
@@ -109,7 +121,7 @@ public class BossEnemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-       //     AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            //     AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             m_Hp -= m_PlayerMove.m_PlayerDamage;
         }
     }
