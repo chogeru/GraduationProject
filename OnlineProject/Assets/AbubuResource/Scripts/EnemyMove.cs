@@ -108,7 +108,10 @@ public class EnemyMove : MonoBehaviour
             if(m_DestroyTime>=1.4)
             {
                 Instantiate(m_DestroyEffect,transform.position,Quaternion.identity);
-                m_stageWall.m_DieCount++;
+                if (m_stageWall != null)
+                {
+                    m_stageWall.m_DieCount++;
+                }
                 Destroy(gameObject);
             }
             
