@@ -47,6 +47,7 @@ public class BossEnemy : MonoBehaviour
     private float m_Timer;
     private float m_MaxVolume = 0.1f;
 
+    private bool isDie=false;
 
     [SerializeField]
     private Transform m_Player;
@@ -72,14 +73,16 @@ public class BossEnemy : MonoBehaviour
     {
         m_Timer += Time.deltaTime;
 
-        // 1つ目のBGMのボリュームをだんだん下げる
-        float fadeOutVolume = Mathf.Lerp(m_InitialVolumeIdle, 0f, m_Timer / m_FadeDuration);
-        IdleBGM.volume = Mathf.Max(0f, fadeOutVolume);
+        if (isDie==false)
+        {
+            // 1つ目のBGMのボリュームをだんだん下げる
+            float fadeOutVolume = Mathf.Lerp(m_InitialVolumeIdle, 0f, m_Timer / m_FadeDuration);
+            IdleBGM.volume = Mathf.Max(0f, fadeOutVolume);
 
-        // 2つ目のBGMのボリュームをだんだん上げる
-        float fadeInVolume = Mathf.Lerp(0f, m_InitialVolumeBoss, m_Timer / m_FadeDuration);
-        BossBGM.volume = Mathf.Min(m_MaxVolume, fadeInVolume);
-
+            // 2つ目のBGMのボリュームをだんだん上げる
+            float fadeInVolume = Mathf.Lerp(0f, m_InitialVolumeBoss, m_Timer / m_FadeDuration);
+            BossBGM.volume = Mathf.Min(m_MaxVolume, fadeInVolume);
+        }
         Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
@@ -118,6 +121,8 @@ public class BossEnemy : MonoBehaviour
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
+            isDie = true;
+            IdleBGM.volume = 0.1f;
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
