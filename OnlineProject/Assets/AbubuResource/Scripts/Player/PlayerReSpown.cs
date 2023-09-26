@@ -7,8 +7,7 @@ public class PlayerReSpown : MonoBehaviour
     [SerializeField]
     private GameObject m_ReSpownEffect;
     [SerializeField]
-    private AudioClip m_ReSpownSE;
-    private float m_Volume;
+    private GameObject m_ReSpownSE;
 
     [SerializeField]
     private GameObject m_FadeIN;
@@ -26,6 +25,7 @@ public class PlayerReSpown : MonoBehaviour
         m_LastChackPointPosition = transform.position;
         m_LastChackPointRotation = Quaternion.identity;
         m_FadeIN.SetActive(false);
+        m_ReSpownSE.SetActive(false);
     }
     private void Update()
     {
@@ -35,8 +35,7 @@ public class PlayerReSpown : MonoBehaviour
             m_Time += Time.deltaTime;
             if (m_Time >= 1)
             {  
-                Instantiate(m_ReSpownEffect, transform.position, Quaternion.identity);
-                AudioSource.PlayClipAtPoint(m_ReSpownSE, transform.position, m_Volume);
+                  
                 transform.position = m_LastChackPointPosition;
                 transform.rotation = m_LastChackPointRotation;
                 isHit = false;
@@ -61,6 +60,8 @@ public class PlayerReSpown : MonoBehaviour
         {
            isHit= true;
             m_FadeIN.SetActive(true);
+            m_ReSpownSE.SetActive(true);
+            Instantiate(m_ReSpownEffect, transform.position, Quaternion.identity);
         }
     }
 }

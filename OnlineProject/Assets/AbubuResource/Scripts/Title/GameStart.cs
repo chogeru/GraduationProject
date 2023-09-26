@@ -8,10 +8,14 @@ public class GameStart : MonoBehaviour
     private GameObject m_GameStartUI;
     [SerializeField]
     private GameObject m_ModeSelectUI;
+    [SerializeField]
+    private GameObject m_ButtonSE;
 
-
+    private Animator m_Animetor;
     private void Start()
     {
+        m_ButtonSE.SetActive(false);
+        m_Animetor=GetComponent<Animator>();
         m_GameStartUI.SetActive(true);
         m_ModeSelectUI.SetActive(false);
     }
@@ -20,6 +24,8 @@ public class GameStart : MonoBehaviour
     {
        if(Input.GetKey(KeyCode.Z))
         {
+            m_ButtonSE.SetActive(true);
+            m_Animetor.SetBool("isWater", true);
             m_GameStartUI.SetActive(false);
             m_ModeSelectUI.SetActive(true);
         } 
