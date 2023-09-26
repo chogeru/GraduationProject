@@ -77,13 +77,14 @@ public class BossEnemy : MonoBehaviour
         IdleBGM.volume = Mathf.Max(0f, fadeOutVolume);
 
         // 2つ目のBGMのボリュームをだんだん上げる
-        float fadeInVolume = Mathf.Lerp(0f, m_MaxVolume, m_Timer / m_FadeDuration);
+        float fadeInVolume = Mathf.Lerp(0f, m_InitialVolumeBoss, m_Timer / m_FadeDuration);
         BossBGM.volume = Mathf.Min(m_MaxVolume, fadeInVolume);
 
         // フェードが完了したらリセット
         if (m_Timer >= m_FadeDuration)
         {
             m_Timer = 0f;
+            
             // 1つ目のBGMを停止
             IdleBGM.Stop();
             // 2つ目のBGMを再生
