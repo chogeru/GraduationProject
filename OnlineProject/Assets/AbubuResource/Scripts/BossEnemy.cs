@@ -80,17 +80,6 @@ public class BossEnemy : MonoBehaviour
         float fadeInVolume = Mathf.Lerp(0f, m_InitialVolumeBoss, m_Timer / m_FadeDuration);
         BossBGM.volume = Mathf.Min(m_MaxVolume, fadeInVolume);
 
-        // フェードが完了したらリセット
-        if (m_Timer >= m_FadeDuration)
-        {
-            m_Timer = 0f;
-            
-            // 1つ目のBGMを停止
-            IdleBGM.Stop();
-            // 2つ目のBGMを再生
-            BossBGM.Play();
-       
-        }
         Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
