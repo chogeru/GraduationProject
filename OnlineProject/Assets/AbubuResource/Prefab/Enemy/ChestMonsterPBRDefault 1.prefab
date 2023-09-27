@@ -156,8 +156,8 @@ GameObject:
   - component: {fileID: 2219292830553816709}
   - component: {fileID: 2219292830544548193}
   - component: {fileID: -2030876455224473340}
-  - component: {fileID: 5219872779004831854}
   - component: {fileID: -468676806759668278}
+  - component: {fileID: 5655924124144182531}
   m_Layer: 0
   m_Name: ChestMonsterPBRDefault 1
   m_TagString: Enemy
@@ -219,19 +219,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &5219872779004831854
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2219292830553907877}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.4, z: 1}
-  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &-468676806759668278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +245,19 @@ MonoBehaviour:
   m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   m_DestroySE: {fileID: 42040420699044100, guid: 2ad0d74610a6d614881de423954df1d3, type: 3}
+--- !u!135 &5655924124144182531
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219292830553907877}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!1 &2219292830553907879
 GameObject:
   m_ObjectHideFlags: 0
