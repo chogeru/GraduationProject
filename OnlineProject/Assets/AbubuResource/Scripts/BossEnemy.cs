@@ -26,8 +26,14 @@ public class BossEnemy : MonoBehaviour
     [SerializeField]
     private float m_RotationSpeed = 5f;
     private float m_MoveSpeed = 5;
+    private float m_DefoltSpeed=5;
     private float m_DestroyTime;
-
+    [SerializeField, Header("攻撃距離")]
+    private float m_AttackRange = 4;
+    [SerializeField]
+    private float m_AttackTime;
+    [SerializeField]
+    private float m_ATCoolTime = 10f;
     [SerializeField]
     private GameObject m_DestroySE;
     [SerializeField]
@@ -55,6 +61,10 @@ public class BossEnemy : MonoBehaviour
 
     private Animator m_Animator;
     private Rigidbody m_Rigidbody;
+    [SerializeField]
+    private GameObject m_AttackSE;
+    [SerializeField]
+    private GameObject m_ATCol;
     void Start()
     {
         m_InitialVolumeIdle = IdleBGM.volume;
@@ -115,7 +125,19 @@ public class BossEnemy : MonoBehaviour
             m_Animator.SetBool("isBattle", false);
 
         }
-       
+        m_AttackTime += Time.deltaTime;
+        // プレイヤーが一定の距離内にいる場合
+        if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
+        {
+            AttackPlayer();
+        }
+        if (distanceToPlayer > m_AttackRange)
+        {
+            m_ATCol.SetActive(false);
+            m_AttackSE.SetActive(false);
+            m_AttackTime = 0;
+            m_Animator.SetBool("isAttack", false);
+        }
         if (m_Hp <= 0)
         {
             m_Animator.SetBool("isDie", true);
@@ -147,6 +169,21 @@ public class BossEnemy : MonoBehaviour
             yield return null;
         }
         isAvoiding = false;
+    }
+    private void AttackPlayer()
+    {
+        m_MoveSpeed = 0;
+        m_ATCol.SetActive(true);
+        m_Animator.SetBool("isAttack", true);
+        m_AttackTime = 0;
+    }
+    // アニメーションイベントから呼び出される関数
+    public void EndAttackAnimation()
+    {
+        m_MoveSpeed = m_DefoltSpeed;
+        m_Animator.SetBool("isAttack", false);
+        m_ATCol.SetActive(false);
+        m_AttackSE.SetActive(false);
     }
     private void OnCollisionEnter(Collision collision)
     {

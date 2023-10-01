@@ -1,7 +1,10 @@
 using MalbersAnimations;
+using MalbersAnimations.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -19,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     private float m_Sensitivity = 2.0f;
     private float m_HorizontalInput;
     private float m_VerticalInput;
+
     [SerializeField, Header("移動時のパーティクル")]
     private GameObject m_MoveParticle;
 
@@ -26,6 +30,7 @@ public class PlayerMove : MonoBehaviour
     private AudioClip m_JumpSound;
     //音量
     private float m_Volume = 0.5f;
+
     //アニメーター
     [SerializeField]
     private Animator m_Animator;
@@ -36,6 +41,10 @@ public class PlayerMove : MonoBehaviour
     //リジットボディ
     [SerializeField]
     private Rigidbody rb;
+    [SerializeField]
+    private Slider mHpSlider;
+    [SerializeField, Header("HP表示用テキスト")]
+    private TextMeshProUGUI m_HpText;
     //着地しているかどうか
     [SerializeField]
     private bool isGrounded = true;
@@ -48,7 +57,6 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     public int m_PlayerDamage;
 
-
     [SerializeField]
     private GameObject m_TPSCamera;
     [SerializeField]
@@ -59,6 +67,12 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_RecoverySE;
     private void Start()
     {
+        //Sliderを満タンにする。
+        mHpSlider.value = 1;
+        //現在のHPを最大HPと同じに。
+        m_Hp = m_MaxHp;
+        // m_HpText の初期化
+        m_HpText.text = m_Hp + "/" + m_MaxHp;
         m_RecoveryEffect.SetActive(false);
         m_RecoverySE.SetActive(false);
         m_MoveParticle.SetActive(false);
@@ -149,11 +163,14 @@ public class PlayerMove : MonoBehaviour
             m_TPSCameAnime.SetBool("isTPS", true);
         }
     }
+ 
     public void TakeDamage(int damageAmount)
     {
         // ダメージを受けた時の処理
         m_Hp -= damageAmount;
-
+        mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        // HP テキストを更新
+        m_HpText.text = m_Hp + "/" + m_MaxHp;
         // 体力が0以下になった場合の処理（例：プレイヤーを無効化する、ゲームオーバー画面を表示するなど）
         if (m_Hp <= 0)
         {
