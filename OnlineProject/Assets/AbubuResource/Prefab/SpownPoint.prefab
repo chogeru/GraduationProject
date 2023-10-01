@@ -56,6 +56,7 @@ MonoBehaviour:
   m_SpawnTimer: 0
   m_PlayerTransform: {fileID: 0}
   m_SpownAudio: {fileID: 8300000, guid: 44f06f87ace5d0f419cb69c4de612304, type: 3}
+  m_Collider: {fileID: 3812379210718709528}
 --- !u!136 &3812379210718709528
 CapsuleCollider:
   m_ObjectHideFlags: 0

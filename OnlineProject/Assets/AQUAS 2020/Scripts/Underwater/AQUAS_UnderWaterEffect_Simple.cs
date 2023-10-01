@@ -230,7 +230,7 @@ namespace AQUAS
                 fogDensity = waterPlane.GetComponent<AQUAS_UnderwaterParameters>().mainFogDensity / 10;
                 maxFogDepth = waterPlane.GetComponent<AQUAS_UnderwaterParameters>().maxFogDepth;
 
-                waterPlane.GetComponent<Renderer>().sharedMaterials[1].shader = Shader.Find("AQUAS/Desktop/Back/Transparent Back");
+             //   waterPlane.GetComponent<Renderer>().sharedMaterials[1].shader = Shader.Find("AQUAS/Desktop/Back/Transparent Back");
             }
             else
             {

@@ -45,6 +45,9 @@ public class PlayerMove : MonoBehaviour
     private Slider mHpSlider;
     [SerializeField, Header("HP表示用テキスト")]
     private TextMeshProUGUI m_HpText;
+
+    public PlayerReSpown playerReSpown;
+
     //着地しているかどうか
     [SerializeField]
     private bool isGrounded = true;
@@ -65,6 +68,8 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_RecoveryEffect;
     [SerializeField]
     private GameObject m_RecoverySE;
+    [SerializeField]
+    private GameObject m_FadInCanvas;
     private void Start()
     {
         //Sliderを満タンにする。
@@ -77,6 +82,7 @@ public class PlayerMove : MonoBehaviour
         m_RecoverySE.SetActive(false);
         m_MoveParticle.SetActive(false);
         rb = GetComponent<Rigidbody>();
+        playerReSpown = GetComponent<PlayerReSpown>();
         m_Animator = GetComponent<Animator>();
         m_CameraAnime = m_TPSZoomCamera.GetComponent<Animator>();
         m_TPSCameAnime= m_TPSCamera.GetComponent<Animator>();
@@ -183,7 +189,15 @@ public class PlayerMove : MonoBehaviour
     }
     private void Die()
     {
-
+        playerReSpown.isHit = true;
+        m_FadInCanvas.SetActive(true);
+        m_Animator.SetBool("isDie", true);
+    }
+    private void EndDie()
+    {
+        m_Hp = m_MaxHp;
+        m_FadInCanvas.SetActive(false);
+        m_Animator.SetBool("isDie", false);
     }
     private Vector3 CalcMoveDir(float moveX, float moveZ)
     {

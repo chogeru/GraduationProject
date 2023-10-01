@@ -19,7 +19,7 @@ public class PlayerReSpown : MonoBehaviour
     private Quaternion m_LastChackPointRotation;
 
     private float m_Time;
-    private bool isHit=false;
+    public bool isHit=false;
     void Start()
     {
         m_LastChackPointPosition = transform.position;
@@ -33,7 +33,7 @@ public class PlayerReSpown : MonoBehaviour
         if (isHit==true)
         {
             m_Time += Time.deltaTime;
-            if (m_Time >= 1)
+            if (m_Time >= 1.2)
             {  
                   
                 transform.position = m_LastChackPointPosition;
@@ -64,4 +64,5 @@ public class PlayerReSpown : MonoBehaviour
             Instantiate(m_ReSpownEffect, transform.position, Quaternion.identity);
         }
     }
+  
 }
