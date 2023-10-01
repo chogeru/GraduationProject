@@ -29,6 +29,10 @@ public class PlayerMove : MonoBehaviour
     //アニメーター
     [SerializeField]
     private Animator m_Animator;
+    [SerializeField]
+    private Animator m_CameraAnime;
+    [SerializeField]
+    private Animator m_TPSCameAnime;
     //リジットボディ
     [SerializeField]
     private Rigidbody rb;
@@ -44,6 +48,11 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     public int m_PlayerDamage;
 
+
+    [SerializeField]
+    private GameObject m_TPSCamera;
+    [SerializeField]
+    private GameObject m_TPSZoomCamera;
     [SerializeField]
     private GameObject m_RecoveryEffect;
     [SerializeField]
@@ -55,6 +64,8 @@ public class PlayerMove : MonoBehaviour
         m_MoveParticle.SetActive(false);
         rb = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
+        m_CameraAnime = m_TPSZoomCamera.GetComponent<Animator>();
+        m_TPSCameAnime= m_TPSCamera.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -124,8 +135,35 @@ public class PlayerMove : MonoBehaviour
                 isGrounded = true;
             }
         }
+        if(Input.GetMouseButton(1))
+        {
+            m_TPSCamera.SetActive(false);
+            m_TPSZoomCamera.SetActive(true);
+            m_CameraAnime.SetBool("isZoom", true);
+        }
+        else
+        {
+            m_TPSCamera.SetActive(true);
+            m_TPSZoomCamera.SetActive(false);
+            m_CameraAnime.SetBool("isZoom", false);
+            m_TPSCameAnime.SetBool("isTPS", true);
+        }
     }
+    public void TakeDamage(int damageAmount)
+    {
+        // ダメージを受けた時の処理
+        m_Hp -= damageAmount;
 
+        // 体力が0以下になった場合の処理（例：プレイヤーを無効化する、ゲームオーバー画面を表示するなど）
+        if (m_Hp <= 0)
+        {
+            Die();
+        }
+    }
+    private void Die()
+    {
+
+    }
     private Vector3 CalcMoveDir(float moveX, float moveZ)
     {
         //指定された移動力移動ベクトルを求める

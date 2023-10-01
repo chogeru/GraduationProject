@@ -14,8 +14,14 @@ public class EnemyMove : MonoBehaviour
     private float m_DetectionDistance = 30.0f;
     [SerializeField]
     private float m_AvoidanceDistance = 2.0f;
+    [SerializeField, Header("攻撃距離")]
+    private float m_AttackRange = 4;
     [SerializeField]
     private float m_RotationSpeed = 5.0f;
+    [SerializeField]
+    private float m_AttackTime;
+    [SerializeField]
+    private float m_ATCoolTime = 10f;
 
     private Transform m_Player;
     private bool isAvoiding = false;
@@ -27,9 +33,9 @@ public class EnemyMove : MonoBehaviour
 
     [SerializeField, Header("最大体力")]
     private int m_MaxHp;
-    [SerializeField,Header("現在の体力")]
-    private int m_Hp;
-    [SerializeField,Header("攻撃力")]
+    [SerializeField, Header("現在の体力")]
+    private int Hp;
+    [SerializeField, Header("攻撃力")]
     private int m_Damage;
 
     private List<StageWall> m_StageWall = new List<StageWall>();
@@ -44,6 +50,10 @@ public class EnemyMove : MonoBehaviour
     private GameObject m_DestroyEffect;
     [SerializeField]
     private GameObject m_DestroySE;
+    [SerializeField]
+    private GameObject m_AttackSE;
+    [SerializeField]
+    private GameObject m_ATCol;
     private float m_DestroyTime;
     private void Start()
     {
@@ -54,10 +64,11 @@ public class EnemyMove : MonoBehaviour
         m_IdleAicon.SetActive(true);
         m_BattleAicon.SetActive(false);
         m_DestroySE.SetActive(false);
-        foreach(GameObject stagewall in stagewalls)
+        m_ATCol.SetActive(false);
+        foreach (GameObject stagewall in stagewalls)
         {
             m_stageWall = stagewall.GetComponent<StageWall>();
-            if(m_stageWall!=null)
+            if (m_stageWall != null)
             {
                 m_StageWall.Add(m_stageWall);
             }
@@ -67,7 +78,7 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-  
+
         Vector3 directionToPlayer = m_Player.position - transform.position;
 
         float distanceToPlayer = directionToPlayer.magnitude;
@@ -100,31 +111,45 @@ public class EnemyMove : MonoBehaviour
             m_IdleAicon.SetActive(true);
             m_BattleAicon.SetActive(false);
         }
-        if(m_Hp<=0)
+        m_AttackTime += Time.deltaTime;
+
+        // プレイヤーが一定の距離内にいる場合
+        if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
+        {
+            AttackPlayer();
+        }
+        if (distanceToPlayer > m_AttackRange)
+        {
+            m_ATCol.SetActive(false);
+            m_AttackSE.SetActive(false);
+            m_AttackTime = 0;
+            m_Animator.SetBool("isAttack", false);
+        }
+        if (Hp <= 0)
         {
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
-            if(m_DestroyTime>=1.4)
+            if (m_DestroyTime >= 1.4)
             {
-                Instantiate(m_DestroyEffect,transform.position,Quaternion.identity);
+                Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
                 if (m_stageWall != null)
                 {
                     m_stageWall.m_DieCount++;
                 }
                 Destroy(gameObject);
             }
-            
+
         }
     }
 
     private IEnumerator AvoidObstacle()
     {
-        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward; 
+        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
         Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
 
         float startTime = Time.time;
-        float duration = 1.0f; 
+        float duration = 1.0f;
 
         while (Time.time - startTime < duration)
         {
@@ -133,18 +158,30 @@ public class EnemyMove : MonoBehaviour
         }
         isAvoiding = false;
     }
-
+    private void AttackPlayer()
+    {
+        m_ATCol.SetActive(true);
+        m_Animator.SetBool("isAttack", true);
+        m_AttackTime = 0;
+    }
+    // アニメーションイベントから呼び出される関数
+    public void EndAttackAnimation()
+    {
+        m_Animator.SetBool("isAttack", false);
+        m_ATCol.SetActive(false);
+        m_AttackSE.SetActive(false);
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet"))
         {
-           AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-           m_Hp -= m_PlayerMove.m_PlayerDamage;
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            Hp -= m_PlayerMove.m_PlayerDamage;
         }
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            m_Hp -= 40;
+            Hp -= 40;
         }
     }
 }

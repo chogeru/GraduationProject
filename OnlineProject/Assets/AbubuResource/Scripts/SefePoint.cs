@@ -32,7 +32,15 @@ public class SefePoint : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-           isHit = true;    
+           isHit = false;    
+        }
+    }
+   
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isHit = true;
         }
     }
 }
