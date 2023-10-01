@@ -171,11 +171,15 @@ public class PlayerMove : MonoBehaviour
         mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         // HP テキストを更新
         m_HpText.text = m_Hp + "/" + m_MaxHp;
-        // 体力が0以下になった場合の処理（例：プレイヤーを無効化する、ゲームオーバー画面を表示するなど）
+        m_Animator.SetBool("isHit", true);
         if (m_Hp <= 0)
         {
             Die();
         }
+    }
+    private void EndHit()
+    {
+        m_Animator.SetBool("isHit", false);
     }
     private void Die()
     {
@@ -194,6 +198,9 @@ public class PlayerMove : MonoBehaviour
     {
         if(other.gameObject.CompareTag("RecoveryItem"))
         {
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+            // HP テキストを更新
+            m_HpText.text = m_Hp + "/" + m_MaxHp;
             m_RecoveryEffect.SetActive(true);
             m_RecoverySE.SetActive(true);
         }
@@ -202,6 +209,9 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RecoveryItem"))
         {
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+            // HP テキストを更新
+            m_HpText.text = m_Hp + "/" + m_MaxHp;
             m_RecoveryEffect.SetActive(false);
             m_RecoverySE.SetActive(false);
         }
