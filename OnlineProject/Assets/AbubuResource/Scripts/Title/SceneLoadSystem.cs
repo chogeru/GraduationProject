@@ -11,9 +11,11 @@ public class SceneLoadSystem : MonoBehaviour
     private Animator m_Animator; // カメラのアニメーターコンポーネントへの参照を保持する変数
     [SerializeField]
     private GameObject m_SelectCanvas;
-
+    [SerializeField]
+    private GameObject m_FadeIn;
     private void Start()
     {
+        m_FadeIn.SetActive(false);
         m_Animator = m_MainCamera.GetComponent<Animator>(); // カメラのアニメーターコンポーネントを取得
     }
     // シーンの情報を格納するクラス
@@ -33,9 +35,10 @@ public class SceneLoadSystem : MonoBehaviour
         if (index >= 0 && index < m_SceneDataArray.Length) // インデックスが有効な範囲内である場合
         {
             m_SelectCanvas.SetActive(false);
+            m_FadeIn.SetActive(true);
             m_Animator.SetBool("isSelect", true); // カメラのアニメーターでisSelectパラメータをtrueに設定してアニメーション再生を開始
          //   SceneManager.LoadScene(m_SceneDataArray[index].sceneName); // 指定されたシーンをロードする
-            StartCoroutine(LoadSceneWithDelay(m_SceneDataArray[index].sceneName, 2f));
+            StartCoroutine(LoadSceneWithDelay(m_SceneDataArray[index].sceneName, 3f));
         }
         else
         {

@@ -51,6 +51,7 @@ public class PlayerMove : MonoBehaviour
     //着地しているかどうか
     [SerializeField]
     private bool isGrounded = true;
+    public bool isRecovery = false;
 
     [SerializeField]
     private int m_MaxHp;
@@ -167,6 +168,13 @@ public class PlayerMove : MonoBehaviour
             m_TPSZoomCamera.SetActive(false);
             m_CameraAnime.SetBool("isZoom", false);
             m_TPSCameAnime.SetBool("isTPS", true);
+        }
+        if(isRecovery)
+        {
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+            // HP テキストを更新
+            m_HpText.text = m_Hp + "/" + m_MaxHp;
+            isRecovery = false;
         }
     }
  

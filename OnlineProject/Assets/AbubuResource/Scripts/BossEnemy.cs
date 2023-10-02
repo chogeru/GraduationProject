@@ -192,5 +192,10 @@ public class BossEnemy : MonoBehaviour
             //     AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             m_Hp -= m_PlayerMove.m_PlayerDamage;
         }
+        if (collision.gameObject.CompareTag("ItemBullet"))
+        {
+            //AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            m_Hp -= 40;
+        }
     }
 }
