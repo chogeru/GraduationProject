@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: ca17eb9d328bd334c93af7d8e6e8842e, type: 3}
   m_ValidKeywords:
   - _FOGON_ON
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _NORMALMAP
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -22,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Albedo:
-        m_Texture: {fileID: 2800000, guid: d8e089e028ecd264c80df1b76560fdd8, type: 3}
+        m_Texture: {fileID: 2800000, guid: dbda6acb513c4f1458628cbc4ff63292, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -54,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
-        m_Texture: {fileID: 2800000, guid: 0a5674331dc3f41459ee804ba7cdf0c5, type: 3}
+        m_Texture: {fileID: 2800000, guid: a916cf9632ae6454a948a7113cdd549c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -98,5 +99,5 @@ Material:
     - _Color0: {r: 0, g: 0.5748037, b: 0.8018868, a: 0}
     - _Color1: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FogColor: {r: 0, g: 0.5588236, b: 0.75, a: 0}
+    - _FogColor: {r: 0.011569943, g: 0.14150941, b: 0.038350437, a: 0}
   m_BuildTextureStacks: []

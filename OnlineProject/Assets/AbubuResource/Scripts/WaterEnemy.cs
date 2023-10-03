@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class WaterEnemy : MonoBehaviour
 {
-
-
     [SerializeField]
     private int Damage;
     private bool isAvoiding;
     [SerializeField]
     private float m_DetectionDistance = 50f;
+
+    [SerializeField]
+    private float m_ShotCooldown = 10f;
+    private float m_CurrentCooldown = 0f;
+    [SerializeField]
+    private float projectileSpeed = 10f; 
 
     [SerializeField]
     private float m_AvoidanceDistance = 2f;
@@ -21,10 +25,7 @@ public class WaterEnemy : MonoBehaviour
     private float m_DestroyTime;
     [SerializeField, Header("攻撃距離")]
     private float m_AttackRange = 50;
-    [SerializeField]
-    private float m_AttackTime;
-    [SerializeField]
-    private float m_ATCoolTime = 10f;
+
     [SerializeField]
     private GameObject m_DestroySE;
     [SerializeField]
@@ -45,14 +46,21 @@ public class WaterEnemy : MonoBehaviour
 
     [SerializeField]
     private Transform m_Player;
+
     PlayerMove m_PlayerMove;
 
+    [SerializeField]
+    private Transform m_ShotPoint;
     private Animator m_Animator;
     private Rigidbody m_Rigidbody;
     [SerializeField]
     private GameObject m_AttackSE;
     [SerializeField]
     private GameObject m_ATCol;
+    [SerializeField]
+    private GameObject m_Shot;
+    [SerializeField]
+    private GameObject m_ChrgeShot;
     void Start()
     {
         m_InitialVolumeIdle = IdleBGM.volume;
@@ -62,8 +70,6 @@ public class WaterEnemy : MonoBehaviour
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
-     
-
     }
 
     // Update is called once per frame
@@ -88,37 +94,19 @@ public class WaterEnemy : MonoBehaviour
         {         
                 m_Animator.SetBool("isBattle", true);
 
-                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
-            if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
-            {
-                isAvoiding = true;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
+            // ゲームオブジェクト本体の回転は変更しない
+         //   transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-                StartCoroutine(AvoidObstacle());
-            }
-            else
-            {
-                transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
-            }
         }
         else
         {
             isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
         }
-        m_AttackTime += Time.deltaTime;
-        // プレイヤーが一定の距離内にいる場合
-        if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
-        {
-            AttackPlayer();
-        }
-        if (distanceToPlayer > m_AttackRange)
-        {
-            m_ATCol.SetActive(false);
-            m_AttackSE.SetActive(false);
-            m_AttackTime = 0;
-            m_Animator.SetBool("isAttack", false);
-        }
+      
+       
         if (isDie)
         {
             m_Animator.SetBool("isDie", true);
@@ -134,36 +122,70 @@ public class WaterEnemy : MonoBehaviour
             }
 
         }
-    }
-    private IEnumerator AvoidObstacle()
-    {
-        Vector3 avoidanceDirection = Quaternion.Euler(0, 360, 0) * transform.forward;
-        Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
-
-        float startTime = Time.time;
-        float duration = 1.0f;
-
-        while (Time.time - startTime < duration)
+        // プレイヤーが一定の距離内にいる場合
+        if (distanceToPlayer <= m_AttackRange)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, (Time.time - startTime) / duration);
-            yield return null;
+            if (m_CurrentCooldown <= 0f)
+            {
+                ShootRandomProjectile();
+                // クールダウンをリセット
+                m_CurrentCooldown = m_ShotCooldown;
+            }
+            else
+            {
+                // クールダウン時間を減らす
+                m_CurrentCooldown -= Time.deltaTime;
+            }
         }
-        isAvoiding = false;
+        if (distanceToPlayer > m_AttackRange)
+        {
+            m_ATCol.SetActive(false);
+            m_AttackSE.SetActive(false);
+            m_Animator.SetBool("isAttack", false);
+        }
     }
-    private void AttackPlayer()
+    private void ShootRandomProjectile()
     {
-        m_MoveSpeed = 0;
-        m_ATCol.SetActive(true);
-        m_Animator.SetBool("isAttack", true);
-        m_AttackTime = 0;
+        // 3つの弾のうちランダムに1つを選ぶ
+        int randomProjectileIndex = Random.Range(0, 2);
+       
+        // ランダムな弾を生成し、プレイヤーに向かって発射する処理を実装する
+        GameObject projectile = null;
+        switch (randomProjectileIndex)
+        {
+            case 0:
+                m_Animator.SetBool("isAttack", true);
+                projectile = Instantiate(m_Shot, m_ShotPoint.position, Quaternion.identity);
+                break;
+            case 1:
+                m_Animator.SetBool("isChrgeShot", true);
+                projectile = Instantiate(m_ChrgeShot, m_ShotPoint.position, Quaternion.identity);
+                break;
+        }
+
+        // プレイヤーの方向を向く
+        if (projectile != null)
+        {
+            Vector3 directionToPlayer = (m_Player.position - m_ShotPoint.position).normalized;
+            projectile.GetComponent<Rigidbody>().velocity = directionToPlayer * projectileSpeed;
+
+            // m_ShotPoint をプレイヤーの方向に向ける
+            Vector3 directionToPlayerWithoutY = new Vector3(directionToPlayer.x, 0f, directionToPlayer.z);
+            if (directionToPlayerWithoutY != Vector3.zero)
+            {
+                m_ShotPoint.rotation = Quaternion.LookRotation(directionToPlayerWithoutY);
+            }
+        }
     }
+ 
     // アニメーションイベントから呼び出される関数
     public void EndAttackAnimation()
     {
         m_MoveSpeed = m_DefoltSpeed;
+        m_Animator.SetBool("isChrgeShot", false);
         m_Animator.SetBool("isAttack", false);
         m_ATCol.SetActive(false);
         m_AttackSE.SetActive(false);
     }
-    
+  
 }

@@ -13,6 +13,8 @@ public class AttackObj : MonoBehaviour
     private int Hp;
 
     private float m_DestroyTime;
+    [SerializeField]
+    private GameObject[] m_Boss;
 
     [SerializeField]
     private GameObject m_DestroyEffect;
@@ -36,13 +38,22 @@ public class AttackObj : MonoBehaviour
     {
         if (Hp <= 0)
         {
+            
             m_DestroyTime += Time.deltaTime;
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
                 m_ActiveObj.SetBool("IsActive", true);
+                BossDestroy();
                 Destroy(gameObject);
             }
+        }
+    }
+    private void BossDestroy()
+    {
+        foreach(GameObject Boss in m_Boss)
+        {
+            Destroy(Boss);
         }
     }
     private void OnCollisionEnter(Collision collision)
