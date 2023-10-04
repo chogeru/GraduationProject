@@ -10,7 +10,7 @@ public class AttackObj : MonoBehaviour
     [SerializeField, Header("ç≈ëÂëÃóÕ")]
     private int m_MaxHp;
     [SerializeField, Header("åªç›ÇÃëÃóÕ")]
-    private int Hp;
+    private int m_Hp;
 
     private float m_DestroyTime;
     [SerializeField]
@@ -31,12 +31,23 @@ public class AttackObj : MonoBehaviour
         m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_ActiveObj=m_ActiveObject.GetComponent<Animator>();
+        foreach (GameObject Boss in m_Boss)
+        {
+            Boss.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Hp <= 0)
+        if(m_MaxHp>m_Hp)
+        {
+            foreach (GameObject Boss in m_Boss)
+            {
+                Boss.SetActive(true);
+            }
+        }
+        if (m_Hp <= 0)
         {
             
             m_DestroyTime += Time.deltaTime;
@@ -60,11 +71,11 @@ public class AttackObj : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Hp -= m_PlayerMove.m_PlayerDamage;
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
         }
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
-            Hp -= 40;
+            m_Hp -= 40;
         }
     }
 }

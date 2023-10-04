@@ -9,7 +9,7 @@ public class BossEnemy : MonoBehaviour
 {
     [SerializeField]
     private int m_MaxHp;
-    private int m_MinHp;
+   
     [SerializeField]
     private int m_Hp;
 
