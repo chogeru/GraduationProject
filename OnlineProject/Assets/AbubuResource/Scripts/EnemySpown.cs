@@ -32,37 +32,54 @@ public class EnemySpown : MonoBehaviour
 
     private void Update()
     {
-
-        // プレイヤーとの距離を計算
+        // スポーンポイントからプレイヤーまでの距離を計算します
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);
 
-        // プレイヤーが一定距離以内にいる場合
-        if (distanceToPlayer <= m_SpawnDistanceThreshold)
-        {
-            // カプセルコライダーが他のオブジェクトと接触していないかを確認
+        // スポーンポイントから5メートル以内に"Enemy"タグのオブジェクトが存在するかを確認します
+        bool isEnemyNearby = CheckForEnemiesNearby();
 
+        // プレイヤーが一定距離以内にいて、かつ5メートル以内に"Enemy"タグのオブジェクトがない場合
+        if (distanceToPlayer <= m_SpawnDistanceThreshold && !isEnemyNearby)
+        {
             m_SpawnTimer -= Time.deltaTime;
 
-            // スポーン間隔が経過した場合
+            // スポーンのタイマーが経過した場合
             if (m_SpawnTimer <= 0f)
             {
-                // ランダムなEnemyプレハブを選択
+                // ランダムなスポーン位置をX軸とZ軸で計算し、高さはスポーンポイントと同じにする
+                Vector3 randomSpawnPosition = new Vector3(
+                    transform.position.x + Random.onUnitSphere.x * Random.Range(0f, 10f),
+                    transform.position.y,  // 高さをスポーンポイントと同じにする
+                    transform.position.z + Random.onUnitSphere.z * Random.Range(0f, 10f)
+                );
+
+                // ランダムな敵プレハブを選択します
                 GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
 
-                // プレハブをスポーン
-                Instantiate(randomEnemyPrefab, transform.position, Quaternion.identity);
-                AudioSource.PlayClipAtPoint(m_SpownAudio, transform.position, m_Volume);
-                // パーティクルエフェクトを再生
+                // ランダムな位置に敵をスポーンさせます
+                Instantiate(randomEnemyPrefab, randomSpawnPosition, Quaternion.identity);
+                AudioSource.PlayClipAtPoint(m_SpownAudio, randomSpawnPosition, m_Volume);
+
+                // パーティクルエフェクトを再生します
                 if (m_ParticleEffectPrefab != null)
                 {
-                    Instantiate(m_ParticleEffectPrefab, transform.position, Quaternion.identity);
+                    Instantiate(m_ParticleEffectPrefab, randomSpawnPosition, Quaternion.identity);
                 }
 
-                // 新しいスポーン間隔をランダムに設定
+                // 新しいスポーン間隔をランダムに設定します
                 m_SpawnTimer = Random.Range(m_MinSpawnInterval, m_MaxSpawnInterval);
             }
         }
     }
 
+    bool CheckForEnemiesNearby()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.forward, out hit, 5f, LayerMask.GetMask("Enemy")))
+        {
+            return true;
+        }
+        return false;
+    }
 }
 

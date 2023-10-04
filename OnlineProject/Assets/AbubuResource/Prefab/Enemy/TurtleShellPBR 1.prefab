@@ -610,7 +610,7 @@ MonoBehaviour:
   m_PlayerTag: Player
   m_WallTag: Wall
   m_MoveSpeed: 5
-  m_DetectionDistance: 15
+  m_DetectionDistance: 30
   m_AvoidanceDistance: 2
   m_AttackRange: 4
   m_RotationSpeed: 5
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850f8cf6c1d5b9049a3359afa70c2c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 7
   m_AttackEffect: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   m_AttackSE: {fileID: 3626386734448996707}
 --- !u!1001 &199019346103001973

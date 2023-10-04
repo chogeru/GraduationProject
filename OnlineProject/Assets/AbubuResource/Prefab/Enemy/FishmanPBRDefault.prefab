@@ -1212,7 +1212,7 @@ MonoBehaviour:
   m_MaxHp: 500
   m_Hp: 500
   Damage: 0
-  m_DetectionDistance: 20
+  m_DetectionDistance: 25
   m_AvoidanceDistance: 2
   m_RotationSpeed: 5
   m_AttackRange: 4
@@ -2479,7 +2479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850f8cf6c1d5b9049a3359afa70c2c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 10
   m_AttackEffect: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   m_AttackSE: {fileID: 501198605290836019}
 --- !u!1 &8633085136043409027

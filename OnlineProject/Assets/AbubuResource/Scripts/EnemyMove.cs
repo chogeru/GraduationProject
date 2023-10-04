@@ -57,6 +57,7 @@ public class EnemyMove : MonoBehaviour
     private float m_DestroyTime;
     private void Start()
     {
+        Hp += m_MaxHp;
         GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
         m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();

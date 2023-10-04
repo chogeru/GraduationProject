@@ -12,12 +12,13 @@ public class MagicEnemy : MonoBehaviour
     private int m_MaxHP;
 
 
-    public float attackInterval = 5f;  // 攻撃間隔（秒）
+    public float m_AttackInterval = 3f;  // 攻撃間隔（秒）
+    private float m_RotationSpeed=300;
     private float m_DestroyTime;
-    public GameObject attackEffectPrefab;  // 攻撃エフェクトのプレハブ
-    public GameObject preAttackEffectPrefab;  // 事前エフェクトのプレハブ
+    public GameObject m_AttackEffectPrefab;  // 攻撃エフェクトのプレハブ
+    public GameObject m_PreAttackEffectPrefab;  // 事前エフェクトのプレハブ
 
-    private GameObject preAttackEffectInstance; // 事前エフェクトのインスタンスを格納する変数
+    private GameObject m_PreAttackEffectInstance; // 事前エフェクトのインスタンスを格納する変数
     private List<StageWall> m_StageWall = new List<StageWall>();
     private Transform m_Player;
     [SerializeField]
@@ -47,7 +48,7 @@ public class MagicEnemy : MonoBehaviour
             }
 
         }
-        InvokeRepeating("Attack", 0f, attackInterval);
+        InvokeRepeating("Attack", 0f, m_AttackInterval);
     }
 
     private void Update()
@@ -67,6 +68,30 @@ public class MagicEnemy : MonoBehaviour
                 Destroy(gameObject);
             }
 
+        }
+        // すべてのプレイヤーオブジェクトを取得
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        // 最も近いプレイヤーを見つける
+        GameObject closestPlayer = null;
+        float closestDistance = Mathf.Infinity;
+        foreach (GameObject player in players)
+        {
+            float distance = Vector3.Distance(transform.position, player.transform.position);
+            if (distance < closestDistance && distance <= 25f)
+            {
+                closestDistance = distance;
+                closestPlayer = player;
+                m_Animator.SetBool("isBattle", true);
+            }
+        }
+
+        // 最も近いプレイヤーが存在する場合、敵の方向をそのプレイヤーの方向に向ける
+        if (closestPlayer != null)
+        {
+            Vector3 targetDirection = closestPlayer.transform.position - transform.position;
+            targetDirection.y = 0; // Y軸の回転を無効にする（敵は水平方向に向く）
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), m_RotationSpeed * Time.deltaTime);
         }
     }
 
@@ -90,13 +115,13 @@ public class MagicEnemy : MonoBehaviour
         }
         // 最も近いプレイヤーの足元から少し上の位置に事前エフェクトを生成する
         if (closestPlayer != null)
-        {
+        { 
             m_Animator.SetBool("isAttack", true);
             Vector3 preSpawnPosition = closestPlayer.transform.position;
             preSpawnPosition.y += 1.5f; // プレイヤーの位置から0.5の高さに設定
 
             // 事前エフェクトを生成し、そのインスタンスを変数に保存する
-            preAttackEffectInstance = Instantiate(preAttackEffectPrefab, preSpawnPosition, Quaternion.identity);
+            m_PreAttackEffectInstance = Instantiate(m_PreAttackEffectPrefab, preSpawnPosition, Quaternion.identity);
 
             // 1秒後に攻撃エフェクトを生成する
             Invoke("SpawnAttackEffect", 1f);
@@ -106,17 +131,17 @@ public class MagicEnemy : MonoBehaviour
     private void SpawnAttackEffect()
     {
         // 事前エフェクトの位置を取得して攻撃エフェクトを生成する
-        if (preAttackEffectInstance != null)
+        if (m_PreAttackEffectInstance != null)
         {
-            Vector3 preEffectPosition = preAttackEffectInstance.transform.position;
+            Vector3 preEffectPosition = m_PreAttackEffectInstance.transform.position;
             preEffectPosition.y = transform.position.y;  // Y座標を敵の高さに合わせる
 
             // エフェクトを生成する際、X軸を270度回転させる
             Quaternion rotation = Quaternion.Euler(270f, 0f, 0f);
-            Instantiate(attackEffectPrefab, preEffectPosition, rotation);
+            Instantiate(m_AttackEffectPrefab, preEffectPosition, rotation);
 
             // 攻撃エフェクト生成後、事前エフェクトのインスタンスを破棄する
-            Destroy(preAttackEffectInstance);
+            Destroy(m_PreAttackEffectInstance);
         }
     }
     public void EndAttackAnimation()

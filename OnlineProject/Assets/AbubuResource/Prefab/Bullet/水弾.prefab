@@ -141,6 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad79c29397006964e94dd807c22a680b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 1
+  m_Damage: 5
   m_DestroyEffect: {fileID: 2441235758932010370, guid: 7de46a9a0a26eaa4599a2113dbc7ea38, type: 3}
   m_AttackEffect: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}

@@ -176,8 +176,8 @@ MonoBehaviour:
   m_ATCoolTime: 1
   m_IdleAicon: {fileID: 2917209318411430693}
   m_BattleAicon: {fileID: 5561765908407888494}
-  m_MaxHp: 50
-  Hp: 50
+  m_MaxHp: 40
+  Hp: 40
   m_Damage: 0
   m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850f8cf6c1d5b9049a3359afa70c2c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 6
   m_AttackEffect: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   m_AttackSE: {fileID: 7399209599171337538}
 --- !u!1 &7705993964377185779

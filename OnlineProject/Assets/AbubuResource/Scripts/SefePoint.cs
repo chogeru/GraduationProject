@@ -6,6 +6,7 @@ public class SefePoint : MonoBehaviour
 {
     private GameObject m_Player;
     PlayerMove playerMove;
+    private int m_Recovery = 10;
     private bool isHit;
     private float m_Time;
     private float CoolTime=1;
@@ -22,7 +23,7 @@ public class SefePoint : MonoBehaviour
             m_Time += Time.deltaTime;
             if(m_Time > CoolTime)
             {
-                playerMove.m_Hp++;
+                playerMove.m_Hp+=m_Recovery;
                 m_Time = 0;
             }
         }
