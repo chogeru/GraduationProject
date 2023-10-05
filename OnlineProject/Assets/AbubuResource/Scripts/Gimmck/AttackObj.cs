@@ -25,6 +25,10 @@ public class AttackObj : MonoBehaviour
     private Animator m_ActiveObj;
     [SerializeField]
     private GameObject m_ActiveObject;
+    [SerializeField]
+    private GameObject m_BossWall;
+    [SerializeField]
+    private GameObject m_StageWall;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +66,8 @@ public class AttackObj : MonoBehaviour
     }
     private void BossDestroy()
     {
+        Destroy(m_BossWall);
+        m_StageWall.SetActive(true);
         foreach(GameObject Boss in m_Boss)
         {
             Destroy(Boss);

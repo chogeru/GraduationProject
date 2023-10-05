@@ -134,7 +134,7 @@ public class MagicEnemy : MonoBehaviour
         if (m_PreAttackEffectInstance != null)
         {
             Vector3 preEffectPosition = m_PreAttackEffectInstance.transform.position;
-            preEffectPosition.y = transform.position.y;  // Y座標を敵の高さに合わせる
+            preEffectPosition.y = transform.position.y;  
 
             // エフェクトを生成する際、X軸を270度回転させる
             Quaternion rotation = Quaternion.Euler(270f, 0f, 0f);

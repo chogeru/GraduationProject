@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Unity.VisualScripting;
+using UnityEditor.Experimental;
 using UnityEngine;
 
 public class BossEnemy : MonoBehaviour
@@ -65,11 +66,13 @@ public class BossEnemy : MonoBehaviour
     private GameObject m_AttackSE;
     [SerializeField]
     private GameObject m_ATCol;
+    [SerializeField]
+    private GameObject m_Wall;
     void Start()
     {
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
-
+        m_Wall.SetActive(false);
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -100,13 +103,10 @@ public class BossEnemy : MonoBehaviour
         {
           
             if (!isAvoiding)
-            {
-
-                m_Animator.SetBool("isBattle", true);
-                
+            { 
+                m_Animator.SetBool("isBattle", true);  
                 Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
-                
                 if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
                 {
                     isAvoiding = true;
@@ -148,7 +148,7 @@ public class BossEnemy : MonoBehaviour
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-
+                m_Wall.SetActive(true);
                 Destroy(gameObject);
                 m_ActiveFloer.SetActive(true);
             }
