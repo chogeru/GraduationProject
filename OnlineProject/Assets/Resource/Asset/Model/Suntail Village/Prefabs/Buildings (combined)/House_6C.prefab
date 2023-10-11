@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 5872939846662969981}
   - component: {fileID: 5872939846662969980}
   - component: {fileID: 5872939846662969971}
+  - component: {fileID: 7001481759415739115}
   m_Layer: 9
   m_Name: Foundation
   m_TagString: Untagged
@@ -396,6 +397,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 5872939846428222018}
   m_Enabled: 1
+--- !u!65 &7001481759415739115
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5872939846662969968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6511917, y: 1.9546518, z: 2.2936249}
+  m_Center: {x: -1.8547935, y: -0.00000047683716, z: -3.0165634}
 --- !u!1 &5872939846835399418
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8234927183892730811}
   - component: {fileID: 7472974046998920005}
+  - component: {fileID: 3010691511926497043}
   m_Layer: 0
   m_Name: House_6C
   m_TagString: Ground
@@ -895,8 +910,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Size: {x: 6.8855247, y: 10, z: 4.8166275}
+  m_Center: {x: -0.00040626526, y: 5, z: -1.0160332}
+--- !u!65 &3010691511926497043
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8234927183892730808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.728676, y: 10, z: 6.755707}
+  m_Center: {x: -1.0788307, y: 5, z: -0.04649353}
 --- !u!1001 &4672114165445055181
 PrefabInstance:
   m_ObjectHideFlags: 0

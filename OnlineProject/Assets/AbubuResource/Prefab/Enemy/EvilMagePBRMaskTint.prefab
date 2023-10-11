@@ -2469,6 +2469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c0b36faf7095f40a815d6edcb35a53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxHp: 25
-  m_Hp: 25
+  m_MaxHp: 15
+  m_Hp: 15
   m_BreakEffect: {fileID: 1149073990277440, guid: 018425a5e75e2094eb0ca95d72327204, type: 3}

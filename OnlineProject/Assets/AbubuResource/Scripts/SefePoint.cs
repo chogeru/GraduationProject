@@ -6,7 +6,7 @@ public class SefePoint : MonoBehaviour
 {
     private GameObject m_Player;
     PlayerMove playerMove;
-    private int m_Recovery = 10;
+    private int m_Recovery = 40;
     private bool isHit;
     private float m_Time;
     private float CoolTime=1;

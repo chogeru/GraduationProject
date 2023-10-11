@@ -16,7 +16,10 @@ public class StageGimmckEffect : MonoBehaviour
         m_Time+=Time.deltaTime;
         if(m_Time >=3)
         {
-            m_Boss.SetActive(true);
+            if (m_Boss != null)
+            {
+                m_Boss.SetActive(true);
+            }
         }
     }
 }

@@ -522,6 +522,7 @@ MonoBehaviour:
   m_MoveSpeed: 5
   m_DetectionDistance: 30
   m_AvoidanceDistance: 2
+  m_DestroyDistance: 100
   m_AttackRange: 4
   m_RotationSpeed: 5
   m_AttackTime: 0
@@ -552,7 +553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9086891677222741815
 Transform:
   m_ObjectHideFlags: 0

@@ -13,7 +13,10 @@ public class StageAcitive : MonoBehaviour
         {
             foreach (GameObject Stage in m_Stage)
             {
-                Stage.SetActive(true);
+                if (Stage != null)
+                {
+                    Stage.SetActive(true);
+                }
             }
         }
     }

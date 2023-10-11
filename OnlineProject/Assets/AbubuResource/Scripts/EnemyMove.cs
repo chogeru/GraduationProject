@@ -14,6 +14,8 @@ public class EnemyMove : MonoBehaviour
     private float m_DetectionDistance = 30.0f;
     [SerializeField]
     private float m_AvoidanceDistance = 2.0f;
+    [SerializeField]
+    private float m_DestroyDistance = 100.0f;
     [SerializeField, Header("攻撃距離")]
     private float m_AttackRange = 4;
     [SerializeField]
@@ -25,6 +27,7 @@ public class EnemyMove : MonoBehaviour
 
     private Transform m_Player;
     private bool isAvoiding = false;
+
 
     [SerializeField, Header("通常時のアイコン")]
     private GameObject m_IdleAicon;
@@ -113,7 +116,12 @@ public class EnemyMove : MonoBehaviour
             m_BattleAicon.SetActive(false);
         }
         m_AttackTime += Time.deltaTime;
-
+        // プレイヤーとの距離が100メートル以上になったら自身を破壊
+        if (distanceToPlayer > m_DestroyDistance)
+        {
+            Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
         // プレイヤーが一定の距離内にいる場合
         if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
         {

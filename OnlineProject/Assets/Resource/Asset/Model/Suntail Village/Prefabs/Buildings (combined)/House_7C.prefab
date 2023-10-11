@@ -805,6 +805,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6274448445126310488}
+  - component: {fileID: 5709898930014243148}
   m_Layer: 0
   m_Name: Exterior
   m_TagString: Untagged
@@ -873,6 +874,19 @@ Transform:
   m_Father: {fileID: 6274448446361466582}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5709898930014243148
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274448445126310489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.0974464, y: 5.424135, z: 2.2310944}
+  m_Center: {x: -0.47449303, y: 2.2120676, z: -4.9753113}
 --- !u!1 &6274448446361466583
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,6 +897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6274448446361466582}
   - component: {fileID: 2647628153320079441}
+  - component: {fileID: 275132949082305922}
   m_Layer: 0
   m_Name: House_7C
   m_TagString: Ground
@@ -921,8 +936,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 14, y: 12, z: 12}
-  m_Center: {x: -2, y: 6, z: 0}
+  m_Size: {x: 10.781021, y: 12, z: 4.844681}
+  m_Center: {x: -2.0483513, y: 6, z: 0.009941101}
+--- !u!65 &275132949082305922
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274448446361466583}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.981552, y: 12, z: 8.744087}
+  m_Center: {x: -0.14861679, y: 6, z: 0.08110428}
 --- !u!1001 &4035035842212148412
 PrefabInstance:
   m_ObjectHideFlags: 0

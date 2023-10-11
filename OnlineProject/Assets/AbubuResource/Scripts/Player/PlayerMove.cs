@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private int m_MaxHp;
-    private int m_MinHp;
+    private int m_MinHp=0;
     [SerializeField]
     public int m_Hp;
     [SerializeField]
@@ -73,6 +73,7 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_FadInCanvas;
     private void Start()
     {
+        m_Hp=Mathf.Clamp(m_Hp,m_MinHp,m_MaxHp);
         //Slider‚ğ–ƒ^ƒ“‚É‚·‚éB
         mHpSlider.value = 1;
         //Œ»İ‚ÌHP‚ğÅ‘åHP‚Æ“¯‚¶‚ÉB

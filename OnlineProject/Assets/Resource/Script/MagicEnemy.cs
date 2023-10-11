@@ -31,6 +31,7 @@ public class MagicEnemy : MonoBehaviour
     private GameObject m_AttackSE;
     private Animator m_Animator;
     PlayerMove m_PlayerMove;
+
     StageWall m_stageWall;
 
     private void Start()
@@ -68,6 +69,12 @@ public class MagicEnemy : MonoBehaviour
                 Destroy(gameObject);
             }
 
+        }
+        float distanceToPlayer = Vector3.Distance(transform.position, m_Player.position);
+
+        if (distanceToPlayer >= 100f)
+        {
+            Destroy(gameObject);
         }
         // すべてのプレイヤーオブジェクトを取得
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");

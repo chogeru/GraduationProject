@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 603827242383416157}
   - component: {fileID: 4023008491469158629}
+  - component: {fileID: 4727059241855285638}
   m_Layer: 0
   m_Name: House_4C
   m_TagString: Ground
@@ -92,8 +93,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12, y: 10, z: 12}
-  m_Center: {x: 2, y: 5, z: 0}
+  m_Size: {x: 8.835026, y: 10, z: 4.693962}
+  m_Center: {x: 1.9505253, y: 5, z: 0.04932785}
+--- !u!65 &4727059241855285638
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603827242383416156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.658367, y: 12, z: 8.724892}
+  m_Center: {x: -0.056669235, y: 6, z: 0.037799835}
 --- !u!1 &7312895707631436715
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +495,7 @@ GameObject:
   - component: {fileID: 7312895708328440060}
   - component: {fileID: 7312895708328440061}
   - component: {fileID: 7312895708328440062}
+  - component: {fileID: 1178463847634399383}
   m_Layer: 9
   m_Name: Foundation
   m_TagString: Untagged
@@ -579,6 +594,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7312895708131708310}
   m_Enabled: 1
+--- !u!65 &1178463847634399383
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312895708328440057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4719124, y: 1.1447763, z: 2.236168}
+  m_Center: {x: -3.0169926, y: 0.00000047683716, z: -4.0132103}
 --- !u!1 &7312895708444664590
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +733,7 @@ GameObject:
   - component: {fileID: 7312895708902863331}
   - component: {fileID: 7312895708902863324}
   - component: {fileID: 7312895708902863325}
+  - component: {fileID: 5720573536026528950}
   m_Layer: 9
   m_Name: Ground Floor
   m_TagString: Untagged
@@ -805,6 +834,20 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7312895709126835809}
   m_Enabled: 1
+--- !u!64 &5720573536026528950
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7312895708902863327}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 169a1099ac7d32747a3f15d9d06aebed, type: 2}
 --- !u!1 &7312895709126835810
 GameObject:
   m_ObjectHideFlags: 0

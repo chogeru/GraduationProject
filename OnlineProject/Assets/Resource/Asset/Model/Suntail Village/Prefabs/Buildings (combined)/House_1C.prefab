@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 2552091819862097055}
   - component: {fileID: 2552091819862097052}
   - component: {fileID: 2552091819862097053}
+  - component: {fileID: 7152239300736251258}
   m_Layer: 9
   m_Name: Foundation
   m_TagString: Untagged
@@ -281,6 +282,19 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers: []
   m_Enabled: 1
+--- !u!65 &7152239300736251258
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2552091819862097059}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6549325, y: 1.1447763, z: 1.6601992}
+  m_Center: {x: 3.30955, y: 0.00000047683716, z: -0.989051}
 --- !u!1 &2552091820009901891
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,8 +853,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 8}
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Size: {x: 6.9036784, y: 10, z: 4.8948603}
+  m_Center: {x: 0.014115572, y: 5, z: 0.00029945374}
 --- !u!1 &6764512613290088325
 GameObject:
   m_ObjectHideFlags: 0
