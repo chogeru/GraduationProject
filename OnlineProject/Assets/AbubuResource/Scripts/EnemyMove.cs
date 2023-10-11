@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnemyMove : MonoBehaviour
 {
     [SerializeField]
@@ -27,7 +27,11 @@ public class EnemyMove : MonoBehaviour
 
     private Transform m_Player;
     private bool isAvoiding = false;
+    // HPが0でないことを示すフラグ
+    private bool isAlive = true;
 
+    [SerializeField]
+    private Slider mHpSlider;
 
     [SerializeField, Header("通常時のアイコン")]
     private GameObject m_IdleAicon;
@@ -57,10 +61,15 @@ public class EnemyMove : MonoBehaviour
     private GameObject m_AttackSE;
     [SerializeField]
     private GameObject m_ATCol;
+
+    [SerializeField, Header("ランダムに生成するプレハブ")]
+    private GameObject[] m_ItemPrefabs;
     private float m_DestroyTime;
     private void Start()
     {
-        Hp += m_MaxHp;
+        Hp = m_MaxHp;
+        //Sliderを満タンにする。
+        mHpSlider.value = 1;
         GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
         m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
@@ -82,66 +91,16 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-
-        Vector3 directionToPlayer = m_Player.position - transform.position;
-
-        float distanceToPlayer = directionToPlayer.magnitude;
-
-        if (distanceToPlayer <= m_DetectionDistance)
-        {
-            if (!isAvoiding)
-            {
-                m_BattleAicon.SetActive(true);
-                m_IdleAicon.SetActive(false);
-                m_Animator.SetBool("isBattle", true);
-                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
-
-                if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
-                {
-                    isAvoiding = true;
-                    StartCoroutine(AvoidObstacle());
-                }
-                else
-                {
-                    transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
-                }
-            }
-        }
-        else
-        {
-            isAvoiding = false;
-            m_Animator.SetBool("isBattle", false);
-            m_IdleAicon.SetActive(true);
-            m_BattleAicon.SetActive(false);
-        }
-        m_AttackTime += Time.deltaTime;
-        // プレイヤーとの距離が100メートル以上になったら自身を破壊
-        if (distanceToPlayer > m_DestroyDistance)
-        {
-            Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
-        }
-        // プレイヤーが一定の距離内にいる場合
-        if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
-        {
-            AttackPlayer();
-        }
-        if (distanceToPlayer > m_AttackRange)
-        {
-            m_ATCol.SetActive(false);
-            m_AttackSE.SetActive(false);
-            m_AttackTime = 0;
-            m_Animator.SetBool("isAttack", false);
-        }
         if (Hp <= 0)
         {
+            isAlive = false; // HPが0であることを示すフラグをfalseに設定
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+                ItemSpown();
                 if (m_stageWall != null)
                 {
                     m_stageWall.m_DieCount++;
@@ -150,6 +109,62 @@ public class EnemyMove : MonoBehaviour
             }
 
         }
+        Vector3 directionToPlayer = m_Player.position - transform.position;
+
+        float distanceToPlayer = directionToPlayer.magnitude;
+        // HPが0の場合は何もしない
+        if (!isAlive)
+        {
+            return;
+        }
+        if (distanceToPlayer <= m_DetectionDistance)
+            {
+                if (!isAvoiding)
+                {
+                    m_BattleAicon.SetActive(true);
+                    m_IdleAicon.SetActive(false);
+                    m_Animator.SetBool("isBattle", true);
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
+
+                    if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
+                    {
+                        isAvoiding = true;
+                        StartCoroutine(AvoidObstacle());
+                    }
+                    else
+                    {
+                        transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
+                    }
+                }
+            }
+            else
+            {
+                isAvoiding = false;
+                m_Animator.SetBool("isBattle", false);
+                m_IdleAicon.SetActive(true);
+                m_BattleAicon.SetActive(false);
+            }
+            m_AttackTime += Time.deltaTime;
+            // プレイヤーとの距離が100メートル以上になったら自身を破壊
+            if (distanceToPlayer > m_DestroyDistance)
+            {
+                Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            // プレイヤーが一定の距離内にいる場合
+            if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
+            {
+                AttackPlayer();
+            }
+            if (distanceToPlayer > m_AttackRange)
+            {
+                m_ATCol.SetActive(false);
+                m_AttackSE.SetActive(false);
+                m_AttackTime = 0;
+                m_Animator.SetBool("isAttack", false);
+            }
+    
     }
 
     private IEnumerator AvoidObstacle()
@@ -180,17 +195,31 @@ public class EnemyMove : MonoBehaviour
         m_ATCol.SetActive(false);
         m_AttackSE.SetActive(false);
     }
+    private void ItemSpown()
+    {
+        int randam = Random.Range(0, 100);
+        if(randam<10&& m_ItemPrefabs.Length>0)
+        {
+           Vector3 ItemPos=transform.position;
+            ItemPos.y += 1;
+            int randamIndex = Random.Range(0, m_ItemPrefabs.Length);
+            Instantiate(m_ItemPrefabs[randamIndex], ItemPos, Quaternion.identity);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             Hp -= m_PlayerMove.m_PlayerDamage;
+            mHpSlider.value = (float)Hp / (float)m_MaxHp;
         }
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             Hp -= 40;
+            mHpSlider.value = (float)Hp / (float)m_MaxHp;
         }
     }
 }

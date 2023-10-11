@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackItem : MonoBehaviour
 {
     [SerializeField,Header("プレイヤーオブジェクト")]
-    private Transform playerObject; 
+    private Transform m_Player; 
     [SerializeField, Header("発射位置")]
     private Transform m_FirePoint;
     [SerializeField, Header("武器が消えるときのパーティクル")]
@@ -34,6 +34,8 @@ public class AttackItem : MonoBehaviour
     private float m_FireTime;
     private void Start()
     {
+        m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+
         m_BulletParticle.SetActive(false);
         isPlayerGet = false;
         if (isFloating)
@@ -77,10 +79,10 @@ public class AttackItem : MonoBehaviour
             m_BulletParticle.SetActive(true);
             AudioSource.PlayClipAtPoint(m_WeponGetSE, transform.position,m_Volume);
             isFloating = false; // 浮かせる処理を停止
-            transform.SetParent(playerObject); // プレイヤーオブジェクトの子に設定
+            transform.SetParent(m_Player); // プレイヤーオブジェクトの子に設定
 
             // プレイヤーオブジェクトの方向をオブジェクトにコピー
-            transform.forward = playerObject.forward;
+            transform.forward = m_Player.forward;
 
             // プレイヤーオブジェクトの右上に位置を固定
             transform.localPosition = new Vector3(0f, 2.3f, 0f);
