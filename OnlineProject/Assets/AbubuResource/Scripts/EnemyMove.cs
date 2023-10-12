@@ -206,6 +206,12 @@ public class EnemyMove : MonoBehaviour
             Instantiate(m_ItemPrefabs[randamIndex], ItemPos, Quaternion.identity);
         }
     }
+    public void ParticleDamage()
+    {
+        Hp -= 500;
+        mHpSlider.value = (float)Hp / (float)m_MaxHp;
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {

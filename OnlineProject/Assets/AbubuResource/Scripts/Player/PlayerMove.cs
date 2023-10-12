@@ -55,6 +55,7 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private int m_MaxHp;
+    [SerializeField]
     private int m_MinHp=0;
     [SerializeField]
     public int m_Hp;
@@ -73,7 +74,7 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_FadInCanvas;
     private void Start()
     {
-        m_Hp=Mathf.Clamp(m_Hp,m_MinHp,m_MaxHp);
+        
         //Sliderを満タンにする。
         mHpSlider.value = 1;
         //現在のHPを最大HPと同じに。
@@ -92,6 +93,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+      
         // プレイヤーの移動
         m_HorizontalInput = Input.GetAxis("Horizontal");
         m_VerticalInput = Input.GetAxis("Vertical");
