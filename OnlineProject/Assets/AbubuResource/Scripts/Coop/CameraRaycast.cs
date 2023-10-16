@@ -16,7 +16,7 @@ public class CameraRaycast : MonoBehaviour
     [SerializeField, Header("オーディオソースコンポーネントを所得")]
     private AudioSource m_AudioSource;
 
-    public string lastHitObjectName; // 最後にヒットしたオブジェクトの名前を保持する変数
+    public string m_LastHitObjectName; // 最後にヒットしたオブジェクトの名前を保持する変数
     [SerializeField]
     public Vector3 m_SpownPoint;
     private void Update()
@@ -30,8 +30,10 @@ public class CameraRaycast : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Player"))
                 {
+                    //ボタンの表示切り替え
                     m_Button.SetActive(true);
-                    lastHitObjectName = hit.collider.gameObject.name; // ヒットしたオブジェクトの名前を保存
+                    // 当たったオブジェクトの名前を保存
+                    m_LastHitObjectName = hit.collider.gameObject.name; 
                     if (m_CurrentParticle != null)
                     {
                         // 前のパーティクルを破棄
@@ -53,11 +55,11 @@ public class CameraRaycast : MonoBehaviour
     }
     public void SpownPlayer()
     {
-        // lastHitObjectName に保存されたオブジェクトの名前を持つプレイヤープレハブを生成する処理
-        GameObject playerPrefabToSpawn = Resources.Load<GameObject>(lastHitObjectName);
+        // lastHitObjectName に保存された名前を持つプレイヤープレハブを生成
+        GameObject playerPrefabToSpawn = Resources.Load<GameObject>(m_LastHitObjectName);
         if (playerPrefabToSpawn != null)
         {
-            // スポーンポイントにプレイヤープレハブを生成
+            // スポーンポイントにプレイヤーを生成
             Instantiate(playerPrefabToSpawn, m_SpownPoint, Quaternion.identity);
         }
     }

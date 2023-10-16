@@ -22,9 +22,14 @@ public class CameraManager : MonoBehaviour
         {
             gameCamera.gameObject.SetActive(true);
         }
-        else
+    }
+    private void CameraActive()
+    {/*
+        Camera[] camera=FindObjectsOfType<Camera>();
+        foreach (Camera camera in cameras)
         {
-            Debug.LogError("GameƒJƒƒ‰‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB");
-        }
+            camera.gameObject.SetActive(false);
+        }*/
     }
 }
+
