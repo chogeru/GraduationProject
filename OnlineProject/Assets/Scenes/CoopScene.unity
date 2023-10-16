@@ -20086,6 +20086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DemonKingPBRDefault 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3347061273194974142, guid: 52424b9edc3659d41bf2e312678db9d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4195049147790412008, guid: 52424b9edc3659d41bf2e312678db9d9, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.013519713
@@ -50308,7 +50312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &929886724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50653,7 +50657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -72582,7 +72586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &1294556404
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -82965,7 +82969,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1668950383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83569,7 +83573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1767349234
 Transform:
   m_ObjectHideFlags: 0
@@ -105365,7 +105369,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2693190774005810514, guid: df0c30a410a394c45a592a3ef4c8d62a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3340766445180203522, guid: df0c30a410a394c45a592a3ef4c8d62a, type: 3}
       propertyPath: m_Name
@@ -105373,7 +105377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3340766445180203522, guid: df0c30a410a394c45a592a3ef4c8d62a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3340766445180203523, guid: df0c30a410a394c45a592a3ef4c8d62a, type: 3}
       propertyPath: m_RootOrder

@@ -7,7 +7,8 @@ public class TitleLogo : MonoBehaviour
     private Animator m_Animator;
     [SerializeField]
     private GameObject m_FadeIN;
-
+    [SerializeField]
+    private GameObject m_Title;
     private float m_Time;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class TitleLogo : MonoBehaviour
         if (m_Time > 5)
         {
             m_FadeIN.SetActive(true);
+            m_Title.SetActive(true);
             Destroy(gameObject);
         }
     }
