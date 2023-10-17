@@ -4,32 +4,16 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Camera gameCamera; // アクティブにしたいカメラをInspectorで設定します
-
-    void Start()
+    [SerializeField]
+    private GameObject m_Player;
+    public void StartTimeline()
     {
-        // シーン内のすべてのカメラを取得
-        Camera[] cameras = FindObjectsOfType<Camera>();
-
-        // 各カメラを非アクティブにする
-        foreach (Camera camera in cameras)
-        {
-            camera.gameObject.SetActive(false);
-        }
-
-        // Gameカメラをアクティブにする
-        if (gameCamera != null)
-        {
-            gameCamera.gameObject.SetActive(true);
-        }
+        m_Player = GameObject.FindGameObjectWithTag("Player");
+        m_Player.SetActive(false);
     }
-    private void CameraActive()
-    {/*
-        Camera[] camera=FindObjectsOfType<Camera>();
-        foreach (Camera camera in cameras)
-        {
-            camera.gameObject.SetActive(false);
-        }*/
+    public void AvtivePlayer()
+    {
+        m_Player.SetActive(true);
     }
 }
 

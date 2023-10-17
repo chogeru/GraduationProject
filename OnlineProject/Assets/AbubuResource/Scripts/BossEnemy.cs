@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Unity.VisualScripting;
 using UnityEditor.Experimental;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
     [SerializeField]
@@ -44,6 +44,11 @@ public class BossEnemy : MonoBehaviour
     private GameObject m_ActiveFloer;
 
     [SerializeField]
+    private GameObject m_BossHoGage;
+    [SerializeField]
+    private Slider mHpSlider;
+
+    [SerializeField]
     private AudioSource IdleBGM;
     [SerializeField]
     private AudioSource BossBGM;
@@ -70,6 +75,7 @@ public class BossEnemy : MonoBehaviour
     private GameObject m_Wall;
     void Start()
     {
+    
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
         m_Wall.SetActive(false);
@@ -101,7 +107,7 @@ public class BossEnemy : MonoBehaviour
 
         if (distanceToPlayer <= m_DetectionDistance)
         {
-          
+            m_BossHoGage.SetActive(true);
             if (!isAvoiding)
             { 
                 m_Animator.SetBool("isBattle", true);  
@@ -147,6 +153,7 @@ public class BossEnemy : MonoBehaviour
             IdleBGM.volume = 0.1f;
             if (m_DestroyTime >= 1.4)
             {
+                m_BossHoGage.SetActive(false);
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
                 m_Wall.SetActive(true);
                 Destroy(gameObject);
@@ -191,11 +198,13 @@ public class BossEnemy : MonoBehaviour
         {
             //     AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             m_Hp -= m_PlayerMove.m_PlayerDamage;
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
             //AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             m_Hp -= 40;
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
     }
 }
