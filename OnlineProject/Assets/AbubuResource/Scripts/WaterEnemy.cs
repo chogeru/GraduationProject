@@ -76,12 +76,12 @@ public class WaterEnemy : MonoBehaviour
     {
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
+        BossBGM.gameObject.SetActive(false);
         m_Hp = m_MaxHp;
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -95,10 +95,12 @@ public class WaterEnemy : MonoBehaviour
 
         if (distanceToPlayer <= m_DetectionDistance)
         {
+            
             m_BossHoGage.SetActive(true);
             m_Animator.SetBool("isBattle", true);
             if (m_Hp<=0)
             {
+                BossBGM.gameObject.SetActive(true);
                 // 1‚Â–Ú‚ÌBGM‚Ìƒ{ƒŠƒ…[ƒ€‚ð‚¾‚ñ‚¾‚ñ‰º‚°‚é
                 float fadeOutVolume = Mathf.Lerp(m_InitialVolumeIdle, 0f, m_Timer / m_FadeDuration);
                 IdleBGM.volume = Mathf.Max(0f, fadeOutVolume);

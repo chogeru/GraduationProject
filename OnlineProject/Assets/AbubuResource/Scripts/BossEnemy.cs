@@ -26,6 +26,7 @@ public class BossEnemy : MonoBehaviour
     private float m_AvoidanceDistance = 2f;
     [SerializeField]
     private float m_RotationSpeed = 5f;
+    [SerializeField]
     private float m_MoveSpeed = 5;
     private float m_DefoltSpeed=5;
     private float m_DestroyTime;
@@ -84,7 +85,7 @@ public class BossEnemy : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         m_ActiveFloer.SetActive(false);
-        
+        BossBGM.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -94,6 +95,16 @@ public class BossEnemy : MonoBehaviour
 
         if (isDie==false)
         {
+          
+        }
+        Vector3 directionToPlayer = m_Player.position - transform.position;
+        float distanceToPlayer = directionToPlayer.magnitude;
+
+        if (distanceToPlayer <= m_DetectionDistance)
+        {
+            BossBGM.gameObject.SetActive(true);
+            m_BossHoGage.SetActive(true);
+
             // 1つ目のBGMのボリュームをだんだん下げる
             float fadeOutVolume = Mathf.Lerp(m_InitialVolumeIdle, 0f, m_Timer / m_FadeDuration);
             IdleBGM.volume = Mathf.Max(0f, fadeOutVolume);
@@ -101,13 +112,6 @@ public class BossEnemy : MonoBehaviour
             // 2つ目のBGMのボリュームをだんだん上げる
             float fadeInVolume = Mathf.Lerp(0f, m_InitialVolumeBoss, m_Timer / m_FadeDuration);
             BossBGM.volume = Mathf.Min(m_MaxVolume, fadeInVolume);
-        }
-        Vector3 directionToPlayer = m_Player.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
-
-        if (distanceToPlayer <= m_DetectionDistance)
-        {
-            m_BossHoGage.SetActive(true);
             if (!isAvoiding)
             { 
                 m_Animator.SetBool("isBattle", true);  
@@ -155,9 +159,15 @@ public class BossEnemy : MonoBehaviour
             {
                 m_BossHoGage.SetActive(false);
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-                m_Wall.SetActive(true);
+                if (m_Wall != null)
+                {
+                    m_Wall.SetActive(true);
+                }
                 Destroy(gameObject);
-                m_ActiveFloer.SetActive(true);
+                if (m_ActiveFloer != null)
+                {
+                    m_ActiveFloer.SetActive(true);
+                }
             }
 
         }
