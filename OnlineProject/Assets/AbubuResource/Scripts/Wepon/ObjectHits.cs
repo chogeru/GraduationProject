@@ -18,11 +18,6 @@ public class ObjectHits : MonoBehaviour
             HitParticleWall();
             Destroy(gameObject); // 自身のオブジェクトを破壊
         }
-        if (collision.gameObject.CompareTag("Plant"))
-        {
-            HitParticlePlant();
-            Destroy(gameObject); // 自身のオブジェクトを破壊
-        }
         if (collision.gameObject.CompareTag("Enemy"))
         {
             HitParticleEnemy();
@@ -34,7 +29,14 @@ public class ObjectHits : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Plant"))
+        {
+            HitParticlePlant();
+            Destroy(gameObject); // 自身のオブジェクトを破壊
+        }
+    }
     private void HitParticleWall()
     {
         GameObject particles = Instantiate(m_ParticleWallHit, transform.position, Quaternion.identity);

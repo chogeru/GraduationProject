@@ -16,6 +16,7 @@ public class EnemyBullet : MonoBehaviour
         Instantiate(m_DestroyEffect,transform.position,Quaternion.identity);
         Destroy(gameObject);
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -28,5 +29,10 @@ public class EnemyBullet : MonoBehaviour
                 playermove.TakeDamage(m_Damage);
             }
         }
+        if (other.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
