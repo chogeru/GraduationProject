@@ -985,6 +985,7 @@ GameObject:
   - component: {fileID: 7949337461434074393}
   - component: {fileID: 7949337461434074394}
   - component: {fileID: 7949337461434074395}
+  - component: {fileID: -1873145624055928713}
   m_Layer: 0
   m_Name: DemonKingPBRDefault 1
   m_TagString: Enemy
@@ -1077,7 +1078,7 @@ MonoBehaviour:
   m_Hp: 5000
   Damage: 0
   m_DetectionDistance: 50
-  m_AvoidanceDistance: 2
+  m_AvoidanceDistance: 0
   m_RotationSpeed: 5
   m_MoveSpeed: 10
   m_AttackRange: 15
@@ -1094,6 +1095,19 @@ MonoBehaviour:
   m_AttackSE: {fileID: 7949337460632067665}
   m_ATCol: {fileID: 7949337461594397820}
   m_Wall: {fileID: 0}
+--- !u!114 &-1873145624055928713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621430109629084662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &4624027355932259612
 GameObject:
   m_ObjectHideFlags: 0

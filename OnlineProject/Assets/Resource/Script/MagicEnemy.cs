@@ -10,7 +10,8 @@ public class MagicEnemy : MonoBehaviour
     private int m_Hp;
     [SerializeField]
     private int m_MaxHP;
-
+    [SerializeField]
+    private string m_WallTag = "Wall";
 
     public float m_AttackInterval = 3f;  // UŒ‚ŠÔŠui•bj
     private float m_RotationSpeed=300;

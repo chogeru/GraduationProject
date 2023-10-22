@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 4558294615626959408}
   - component: {fileID: 4558294615626959567}
   - component: {fileID: 4558294615626959409}
+  - component: {fileID: -3328401245331048629}
   m_Layer: 0
   m_Name: GolemPBRDefault
   m_TagString: Enemy
@@ -844,7 +845,7 @@ MonoBehaviour:
   m_WallTag: Wall
   m_MoveSpeed: 5
   m_DetectionDistance: 45
-  m_AvoidanceDistance: 2
+  m_AvoidanceDistance: 0
   m_DestroyDistance: 100
   m_AttackRange: 4
   m_RotationSpeed: 5
@@ -862,6 +863,19 @@ MonoBehaviour:
   m_AttackSE: {fileID: 4558294615832761775}
   m_ATCol: {fileID: 4558294615903981588}
   m_ItemPrefabs: []
+--- !u!114 &-3328401245331048629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558839672930324103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &4558846077746678131
 GameObject:
   m_ObjectHideFlags: 0

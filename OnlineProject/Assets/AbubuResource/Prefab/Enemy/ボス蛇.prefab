@@ -635,6 +635,7 @@ GameObject:
   - component: {fileID: 6796531928922158716}
   - component: {fileID: 6796531928931998174}
   - component: {fileID: 3991649011828184425}
+  - component: {fileID: -4712529497104931330}
   m_Layer: 0
   m_Name: "\u30DC\u30B9\u86C7"
   m_TagString: Untagged
@@ -693,20 +694,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
+  m_Hp: 0
+  m_MaxHp: 0
+  m_KillCount: 0
   m_DetectionDistance: 30
+  m_ShotCooldown: 10
+  projectileSpeed: 10
   m_AvoidanceDistance: 2
   m_RotationSpeed: 5
   m_AttackRange: 4
-  m_AttackTime: 0
-  m_ATCoolTime: 10
   m_DestroySE: {fileID: 0}
   m_DestroyEffect: {fileID: 0}
-  m_ActiveFloer: {fileID: 0}
+  m_BossHoGage: {fileID: 0}
+  mHpSlider: {fileID: 0}
   IdleBGM: {fileID: 0}
   BossBGM: {fileID: 0}
   m_Player: {fileID: 0}
+  m_AttackObj: {fileID: 0}
+  m_ShotPoint: {fileID: 0}
   m_AttackSE: {fileID: 0}
   m_ATCol: {fileID: 0}
+  m_Shot: {fileID: 0}
+  m_ChrgeShot: {fileID: 0}
+--- !u!114 &-4712529497104931330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6796531928922516060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &6796531928922516062
 GameObject:
   m_ObjectHideFlags: 0

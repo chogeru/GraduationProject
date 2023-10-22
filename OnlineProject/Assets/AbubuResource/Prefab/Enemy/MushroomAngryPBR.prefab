@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: -1359452684451753974}
   - component: {fileID: 3215964426775807236}
   - component: {fileID: -7856033231505691453}
+  - component: {fileID: 7423092695111694486}
   m_Layer: 0
   m_Name: MushroomAngryPBR
   m_TagString: Enemy
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_WallTag: Wall
   m_MoveSpeed: 10
   m_DetectionDistance: 30
-  m_AvoidanceDistance: 2
+  m_AvoidanceDistance: 0
   m_DestroyDistance: 100
   m_AttackRange: 4
   m_RotationSpeed: 5
@@ -187,6 +188,19 @@ MonoBehaviour:
   m_AttackSE: {fileID: 7399209599171337538}
   m_ATCol: {fileID: 7624869324055320461}
   m_ItemPrefabs: []
+--- !u!114 &7423092695111694486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875073071404757921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &1326775223490303571
 GameObject:
   m_ObjectHideFlags: 0

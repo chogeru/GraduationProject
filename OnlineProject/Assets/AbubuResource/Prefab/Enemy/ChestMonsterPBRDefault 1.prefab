@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: -2030876455224473340}
   - component: {fileID: -468676806759668278}
   - component: {fileID: 5655924124144182531}
+  - component: {fileID: 5572790638993565856}
   m_Layer: 0
   m_Name: ChestMonsterPBRDefault 1
   m_TagString: Enemy
@@ -441,7 +442,7 @@ MonoBehaviour:
   m_WallTag: Wall
   m_MoveSpeed: 8
   m_DetectionDistance: 30
-  m_AvoidanceDistance: 2
+  m_AvoidanceDistance: 0
   m_DestroyDistance: 100
   m_AttackRange: 4
   m_RotationSpeed: 5
@@ -472,6 +473,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.7
   m_Center: {x: 0, y: 0.65, z: 0}
+--- !u!114 &5572790638993565856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219292830553907877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &2219292830553907879
 GameObject:
   m_ObjectHideFlags: 0

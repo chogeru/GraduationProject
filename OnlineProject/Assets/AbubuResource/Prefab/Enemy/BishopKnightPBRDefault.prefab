@@ -1147,6 +1147,7 @@ GameObject:
   - component: {fileID: 7862936233855820384}
   - component: {fileID: 7862936233855820387}
   - component: {fileID: 7862936233855820390}
+  - component: {fileID: -4523412553998069649}
   m_Layer: 0
   m_Name: BishopKnightPBRDefault
   m_TagString: Enemy
@@ -1241,7 +1242,7 @@ MonoBehaviour:
   m_WallTag: Wall
   m_MoveSpeed: 12
   m_DetectionDistance: 60
-  m_AvoidanceDistance: 2
+  m_AvoidanceDistance: 0
   m_DestroyDistance: 100
   m_AttackRange: 5
   m_RotationSpeed: 5
@@ -1259,6 +1260,19 @@ MonoBehaviour:
   m_AttackSE: {fileID: 7862936233556434759}
   m_ATCol: {fileID: 7862936233998601636}
   m_ItemPrefabs: []
+--- !u!114 &-4523412553998069649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4830321358342369600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &4848652947311955408
 GameObject:
   m_ObjectHideFlags: 0

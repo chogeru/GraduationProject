@@ -9,40 +9,39 @@ using TMPro;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField, Header("移動速度")]
-    private float m_MoveSpeed = 5f;
+    public float m_MoveSpeed = 10f;
     [SerializeField, Header("ジャンプ力")]
     private float m_JumpForce = 10f;
     [SerializeField, Header("通常移動速度")]
-    private float m_Speed = 5f;
+    public float m_Speed = 10;
     [SerializeField, Header("ダッシュ")]
     private float m_RunSpeed = 2f;
     [SerializeField, Header("加速力")]
     private float m_AccelerationAmount = 2f;
     [SerializeField, Header("回転力")]
     private float m_Sensitivity = 2.0f;
+
     private float m_HorizontalInput;
     private float m_VerticalInput;
 
     [SerializeField, Header("移動時のパーティクル")]
     private GameObject m_MoveParticle;
-
     [SerializeField, Header("ジャンプ時のSE")]
     private AudioClip m_JumpSound;
-    //音量
     private float m_Volume = 0.5f;
 
     //アニメーター
     [SerializeField]
-    private Animator m_Animator;
+    private Animator m_PlayerAnimator;
     [SerializeField]
-    private Animator m_CameraAnime;
+    private Animator m_CameraAnimator;
     [SerializeField]
-    private Animator m_TPSCameAnime;
+    private Animator m_TPSCameAnimator;
     //リジットボディ
     [SerializeField]
-    private Rigidbody rb;
+    private Rigidbody m_Rigidbody;
     [SerializeField]
-    private Slider mHpSlider;
+    private Slider m_HpSlider;
     [SerializeField, Header("HP表示用テキスト")]
     private TextMeshProUGUI m_HpText;
 
@@ -76,7 +75,7 @@ public class PlayerMove : MonoBehaviour
     {
         
         //Sliderを満タンにする。
-        mHpSlider.value = 1;
+        m_HpSlider.value = 1;
         //現在のHPを最大HPと同じに。
         m_Hp = m_MaxHp;
         // m_HpText の初期化
@@ -84,48 +83,45 @@ public class PlayerMove : MonoBehaviour
         m_RecoveryEffect.SetActive(false);
         m_RecoverySE.SetActive(false);
         m_MoveParticle.SetActive(false);
-        rb = GetComponent<Rigidbody>();
-        playerReSpown = GetComponent<PlayerReSpown>();
-        m_Animator = GetComponent<Animator>();
-        m_CameraAnime = m_TPSZoomCamera.GetComponent<Animator>();
-        m_TPSCameAnime= m_TPSCamera.GetComponent<Animator>();
+        m_CameraAnimator = m_TPSZoomCamera.GetComponent<Animator>();
+        m_TPSCameAnimator= m_TPSCamera.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-      
+        m_Speed = Mathf.Clamp(m_Speed,0,20);
         // プレイヤーの移動
         m_HorizontalInput = Input.GetAxis("Horizontal");
         m_VerticalInput = Input.GetAxis("Vertical");
 
         //アニメーターにキー入力分の数値を代入
-        m_Animator.SetFloat("左右", Input.GetAxis("Horizontal"));
-        m_Animator.SetFloat("前後", Input.GetAxis("Vertical"));
-        m_Animator.SetFloat("強左右", Input.GetAxis("Horizontal"));
-        m_Animator.SetFloat("強前後", Input.GetAxis("Vertical"));
+        m_PlayerAnimator.SetFloat("左右", Input.GetAxis("Horizontal"));
+        m_PlayerAnimator.SetFloat("前後", Input.GetAxis("Vertical"));
+        m_PlayerAnimator.SetFloat("強左右", Input.GetAxis("Horizontal"));
+        m_PlayerAnimator.SetFloat("強前後", Input.GetAxis("Vertical"));
        
         //キー入力による移動量を求める
         Vector3 move = CalcMoveDir(m_HorizontalInput, m_VerticalInput) * m_Speed;
         //現在の移動量を所得
-        Vector3 current = rb.velocity;
+        Vector3 current = m_Rigidbody.velocity;
         current.y = 0f;
 
         //現在の移動量との差分だけプレイヤーに力を加える
-        rb.AddForce(move - current, ForceMode.VelocityChange);
+        m_Rigidbody.AddForce(move - current, ForceMode.VelocityChange);
         
     
         //ダッシュ処理
         if (Input.GetKey(KeyCode.LeftShift))
         {
             m_MoveParticle.SetActive(true);
-            m_MoveSpeed = m_RunSpeed;
-            m_Animator.SetBool("Run", true);
+            m_Speed = m_RunSpeed;
+            m_PlayerAnimator.SetBool("Run", true);
         }
         else
         {
             m_MoveParticle.SetActive(false);
-            m_MoveSpeed = m_Speed;
-            m_Animator.SetBool("Run", false);
+            m_Speed = m_MoveSpeed;
+            m_PlayerAnimator.SetBool("Run", false);
         }
       
        
@@ -148,14 +144,14 @@ public class PlayerMove : MonoBehaviour
                 if (isGrounded && Input.GetKeyDown(KeyCode.Space))
                 {
                     AudioSource.PlayClipAtPoint(m_JumpSound, transform.position, m_Volume);
-                    m_Animator.SetBool("Jump", true);
-                    rb.AddForce(Vector3.up * m_JumpForce, ForceMode.Impulse);
+                    m_PlayerAnimator.SetBool("Jump", true);
+                    m_Rigidbody.AddForce(Vector3.up * m_JumpForce, ForceMode.Impulse);
                     isGrounded = false;
                 }
             }
             else
             {
-                m_Animator.SetBool("Jump", false);
+                m_PlayerAnimator.SetBool("Jump", false);
                 isGrounded = true;
             }
         }
@@ -163,20 +159,18 @@ public class PlayerMove : MonoBehaviour
         {
             m_TPSCamera.SetActive(false);
             m_TPSZoomCamera.SetActive(true);
-            m_CameraAnime.SetBool("isZoom", true);
+            m_CameraAnimator.SetBool("isZoom", true);
         }
         else
         {
             m_TPSCamera.SetActive(true);
             m_TPSZoomCamera.SetActive(false);
-            m_CameraAnime.SetBool("isZoom", false);
-            m_TPSCameAnime.SetBool("isTPS", true);
+            m_CameraAnimator.SetBool("isZoom", false);
+            m_TPSCameAnimator.SetBool("isTPS", true);
         }
         if(isRecovery)
         {
-            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
-            // HP テキストを更新
-            m_HpText.text = m_Hp + "/" + m_MaxHp;
+            HpUpdate();
             isRecovery = false;
         }
     }
@@ -185,10 +179,10 @@ public class PlayerMove : MonoBehaviour
     {
         // ダメージを受けた時の処理
         m_Hp -= damageAmount;
-        mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        m_HpSlider.value = (float)m_Hp / (float)m_MaxHp;
         // HP テキストを更新
         m_HpText.text = m_Hp + "/" + m_MaxHp;
-        m_Animator.SetBool("isHit", true);
+        m_PlayerAnimator.SetBool("isHit", true);
         if (m_Hp <= 0)
         {
             Die();
@@ -196,19 +190,19 @@ public class PlayerMove : MonoBehaviour
     }
     private void EndHit()
     {
-        m_Animator.SetBool("isHit", false);
+        m_PlayerAnimator.SetBool("isHit", false);
     }
     private void Die()
     {
         playerReSpown.isHit = true;
         m_FadInCanvas.SetActive(true);
-        m_Animator.SetBool("isDie", true);
+        m_PlayerAnimator.SetBool("isDie", true);
     }
     private void EndDie()
     {
         m_Hp = m_MaxHp;
         m_FadInCanvas.SetActive(false);
-        m_Animator.SetBool("isDie", false);
+        m_PlayerAnimator.SetBool("isDie", false);
     }
     private Vector3 CalcMoveDir(float moveX, float moveZ)
     {
@@ -223,9 +217,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(other.gameObject.CompareTag("RecoveryItem"))
         {
-            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
-            // HP テキストを更新
-            m_HpText.text = m_Hp + "/" + m_MaxHp;
+            HpUpdate();
             m_RecoveryEffect.SetActive(true);
             m_RecoverySE.SetActive(true);
         }
@@ -234,11 +226,16 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("RecoveryItem"))
         {
-            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
-            // HP テキストを更新
-            m_HpText.text = m_Hp + "/" + m_MaxHp;
+            HpUpdate();
             m_RecoveryEffect.SetActive(false);
             m_RecoverySE.SetActive(false);
         }
+    }
+    private void HpUpdate()
+    {
+        //HPバーの更新
+        m_HpSlider.value=(float)m_Hp/(float)m_MaxHp;
+        //HPテキストの更新
+        m_HpText.text=m_Hp + "/" + m_MaxHp;
     }
 }

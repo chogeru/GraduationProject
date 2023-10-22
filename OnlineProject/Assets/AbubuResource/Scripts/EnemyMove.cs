@@ -13,7 +13,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private float m_DetectionDistance = 30.0f;
     [SerializeField]
-    private float m_AvoidanceDistance = 2.0f;
+    private float m_AvoidanceDistance = 0f;
     [SerializeField]
     private float m_DestroyDistance = 100.0f;
     [SerializeField, Header("攻撃距離")]
@@ -68,7 +68,6 @@ public class EnemyMove : MonoBehaviour
     private void Start()
     {
         Hp = m_MaxHp;
-        //Sliderを満タンにする。
         mHpSlider.value = 1;
         GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
         m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
@@ -171,13 +170,13 @@ public class EnemyMove : MonoBehaviour
     {
         Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
         Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
+        Vector3 currentVelocity = Vector3.zero;
 
-        float startTime = Time.time;
-        float duration = 1.0f;
+        float smoothTime = 0.3f; // スムーズさを調整するためのパラメータ
 
-        while (Time.time - startTime < duration)
+        while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, (Time.time - startTime) / duration);
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
             yield return null;
         }
         isAvoiding = false;
@@ -209,7 +208,7 @@ public class EnemyMove : MonoBehaviour
     public void ParticleDamage()
     {
         Hp -= 500;
-        mHpSlider.value = (float)Hp / (float)m_MaxHp;
+        HpSliderUpdate();
 
     }
 
@@ -219,13 +218,17 @@ public class EnemyMove : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             Hp -= m_PlayerMove.m_PlayerDamage;
-            mHpSlider.value = (float)Hp / (float)m_MaxHp;
+            HpSliderUpdate();
         }
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             Hp -= 40;
-            mHpSlider.value = (float)Hp / (float)m_MaxHp;
+            HpSliderUpdate();
         }
+    }
+    private void HpSliderUpdate()
+    {
+        mHpSlider.value=(float)Hp/(float)m_MaxHp;
     }
 }

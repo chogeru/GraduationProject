@@ -1268,6 +1268,7 @@ GameObject:
   - component: {fileID: 3720830499339979977}
   - component: {fileID: 3720830499339979978}
   - component: {fileID: 3720830499339979976}
+  - component: {fileID: 6908228939736031105}
   m_Layer: 0
   m_Name: WerewolfPBRDefault
   m_TagString: Enemy
@@ -1381,6 +1382,19 @@ MonoBehaviour:
   m_AttackSE: {fileID: 3720830500508968274}
   m_ATCol: {fileID: 3720830500661650835}
   m_ItemPrefabs: []
+--- !u!114 &6908228939736031105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199351705341234732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &7199351705341234734
 GameObject:
   m_ObjectHideFlags: 0

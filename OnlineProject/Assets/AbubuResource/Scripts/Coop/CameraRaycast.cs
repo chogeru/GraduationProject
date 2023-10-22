@@ -6,16 +6,13 @@ public class CameraRaycast : MonoBehaviour
 {
     [SerializeField, Header("パーティクルプレハブ")]
     public GameObject m_ParticlePrefab; // パーティクルのプレハブをインスペクタから割り当てる
-
     [SerializeField, Header("確定ボタン")]
     private GameObject m_Button;
-
     private GameObject m_CurrentParticle; // 現在のパーティクルを保持する変数
     [SerializeField, Header("プレイヤーの高さのオフセット")]
     private float m_PlayerOffset = 2.5f;
     [SerializeField, Header("オーディオソースコンポーネントを所得")]
     private AudioSource m_AudioSource;
-
     public string m_LastHitObjectName; // 最後にヒットしたオブジェクトの名前を保持する変数
     [SerializeField]
     public Vector3 m_SpownPoint;

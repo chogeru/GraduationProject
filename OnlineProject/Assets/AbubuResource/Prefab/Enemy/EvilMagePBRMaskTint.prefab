@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 3633590936227188088}
   - component: {fileID: 3633590936227188089}
   - component: {fileID: 3633590936227188092}
+  - component: {fileID: 5649797956392930600}
   m_Layer: 0
   m_Name: EvilMagePBRMaskTint
   m_TagString: Enemy
@@ -766,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Hp: 30
   m_MaxHP: 30
+  m_WallTag: Wall
   m_AttackInterval: 3
   m_AttackEffectPrefab: {fileID: 7226888052703040409, guid: 7ec363c8df426644ea85f8d6d570561c, type: 3}
   m_PreAttackEffectPrefab: {fileID: 5985634496115995773, guid: 463cf9f7af4680240898f6aeba3fe3e6, type: 3}
@@ -773,6 +775,19 @@ MonoBehaviour:
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   m_DestroySE: {fileID: 931343430}
   m_AttackSE: {fileID: 931343430}
+--- !u!114 &5649797956392930600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8650899749086275491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 5381423509904839459, guid: 0e9ab952a237a17468bee327efe9d4d5, type: 3}
 --- !u!1 &8650899749086275493
 GameObject:
   m_ObjectHideFlags: 0
