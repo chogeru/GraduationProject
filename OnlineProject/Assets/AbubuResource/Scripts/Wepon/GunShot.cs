@@ -21,6 +21,8 @@ public class GunShot : MonoBehaviour
     private Transform m_MuzzleTransform;
     [SerializeField, Header("弾速")]
     private float m_BulletSpeed = 10f;
+    [SerializeField, Header("ダウンスピード")]
+    private float m_BulletDownSpeed;
     [SerializeField, Header("クールタイム")]
     private float m_CoolTime = 0.1f;
     private float m_Time;
@@ -206,6 +208,20 @@ public class GunShot : MonoBehaviour
             UpdateBulletSlider();
             m_Animator.SetBool("リロード", false);
             playerMove.m_Speed = playerMove.m_MoveSpeed;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Water"))
+        {
+            m_BulletSpeed -= m_BulletDownSpeed;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
+            m_BulletSpeed += m_BulletDownSpeed;
         }
     }
 }

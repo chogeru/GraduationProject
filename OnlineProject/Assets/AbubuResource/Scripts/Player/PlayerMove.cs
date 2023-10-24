@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour
     public float m_Speed = 10;
     [SerializeField, Header("ダッシュ")]
     private float m_RunSpeed = 2f;
+    [SerializeField, Header("ダウンスピード")]
+    private float m_DownSpeed;
     [SerializeField, Header("加速力")]
     private float m_AccelerationAmount = 2f;
     [SerializeField, Header("回転力")]
@@ -71,6 +73,11 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_RecoverySE;
     [SerializeField]
     private GameObject m_FadInCanvas;
+
+    [SerializeField]
+    private AudioSource m_WaterSE;
+    [SerializeField]
+    private ParticleSystem m_WaterMoveEffect;
     private void Start()
     {
         
@@ -213,6 +220,15 @@ public class PlayerMove : MonoBehaviour
         moveDir.y = 0f;
         return moveDir.normalized;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Water"))
+        {
+            InWater();
+            m_MoveSpeed -= m_DownSpeed;
+            m_RunSpeed -= m_DownSpeed;
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.CompareTag("RecoveryItem"))
@@ -230,6 +246,13 @@ public class PlayerMove : MonoBehaviour
             m_RecoveryEffect.SetActive(false);
             m_RecoverySE.SetActive(false);
         }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            OutWater();
+            m_MoveSpeed += m_DownSpeed;
+            m_RunSpeed += m_DownSpeed;
+        }
+
     }
     private void HpUpdate()
     {
@@ -237,5 +260,15 @@ public class PlayerMove : MonoBehaviour
         m_HpSlider.value=(float)m_Hp/(float)m_MaxHp;
         //HPテキストの更新
         m_HpText.text=m_Hp + "/" + m_MaxHp;
+    }
+    private void InWater()
+    {
+        m_WaterMoveEffect.Play();
+        m_WaterSE.Play();
+    }
+    private void OutWater()
+    {
+        m_WaterMoveEffect.Stop();
+        m_WaterSE.Stop();
     }
 }
