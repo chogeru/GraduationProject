@@ -62,6 +62,8 @@ public class PlayerMove : MonoBehaviour
     public int m_Hp;
     [SerializeField]
     public int m_PlayerDamage;
+    [SerializeField]
+    private int m_DownDamage;
 
     [SerializeField]
     private GameObject m_TPSCamera;
@@ -227,6 +229,7 @@ public class PlayerMove : MonoBehaviour
             InWater();
             m_MoveSpeed -= m_DownSpeed;
             m_RunSpeed -= m_DownSpeed;
+            m_PlayerDamage -= m_DownDamage;
         }
     }
     private void OnTriggerStay(Collider other)
@@ -251,6 +254,7 @@ public class PlayerMove : MonoBehaviour
             OutWater();
             m_MoveSpeed += m_DownSpeed;
             m_RunSpeed += m_DownSpeed;
+            m_PlayerDamage += m_DownDamage;
         }
 
     }

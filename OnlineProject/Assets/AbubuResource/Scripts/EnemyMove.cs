@@ -11,6 +11,8 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private float m_MoveSpeed = 5.0f;
     [SerializeField]
+    private float m_DownSpeed;
+    [SerializeField]
     private float m_DetectionDistance = 30.0f;
     [SerializeField]
     private float m_AvoidanceDistance = 0f;
@@ -227,8 +229,30 @@ public class EnemyMove : MonoBehaviour
             HpSliderUpdate();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Water"))
+        {
+            InWater();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("Water"))
+        {
+            OutWater();
+        }
+    }
     private void HpSliderUpdate()
     {
         mHpSlider.value=(float)Hp/(float)m_MaxHp;
+    }
+    private void InWater()
+    {
+        m_MoveSpeed -= m_DownSpeed;
+    }
+    private void OutWater()
+    {
+        m_MoveSpeed += m_DownSpeed;
     }
 }

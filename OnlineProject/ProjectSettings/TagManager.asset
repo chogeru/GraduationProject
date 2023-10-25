@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Stair
-  - Climb
   - WallRun
+  - Climb
   - Fly
   - Water
   - Ground
@@ -18,9 +18,9 @@ TagManager:
   - StageWall
   - Plant
   - ItemBullet
-  - Interactive
   - RecoveryItem
   - CheckPoint
+  - Interactive
   layers:
   - Default
   - TransparentFX

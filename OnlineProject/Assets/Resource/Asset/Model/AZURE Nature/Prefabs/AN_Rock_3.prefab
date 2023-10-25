@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1353103947276081287}
   - component: {fileID: 6322354658166207385}
-  - component: {fileID: 8153670960104262041}
   m_Layer: 0
   m_Name: AN_Rock_3
   m_TagString: Untagged
@@ -58,20 +57,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 726156214948003026}
   m_Enabled: 1
---- !u!64 &8153670960104262041
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2638098956592556692}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1633821710574564935, guid: 4f9d77f232c7ddf4395f6d992df0cd3a, type: 3}
 --- !u!1 &7848758697074569136
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +68,8 @@ GameObject:
   - component: {fileID: 7456075745562667459}
   - component: {fileID: 5288907384871876157}
   - component: {fileID: 726156214948003026}
+  - component: {fileID: 2875065378386925892}
+  - component: {fileID: 1067494112591586283}
   m_Layer: 0
   m_Name: LOD1
   m_TagString: Untagged
@@ -155,6 +142,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2875065378386925892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848758697074569136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 134375348301183555, guid: f6d7eb08957874e46b5a5133b0b25cfb, type: 3}
+--- !u!64 &1067494112591586283
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848758697074569136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -179393741545503174, guid: 4f9d77f232c7ddf4395f6d992df0cd3a, type: 3}
 --- !u!1 &8722786493879057618
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +180,8 @@ GameObject:
   - component: {fileID: 3157092831134844526}
   - component: {fileID: 6810273572611194994}
   - component: {fileID: 2535676325591025839}
+  - component: {fileID: 4029491026930129560}
+  - component: {fileID: 2202561672099592163}
   m_Layer: 0
   m_Name: LOD0
   m_TagString: Untagged
@@ -238,3 +254,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4029491026930129560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722786493879057618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4639d5c535d494788b31a92449774c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 134375348301183555, guid: f6d7eb08957874e46b5a5133b0b25cfb, type: 3}
+--- !u!64 &2202561672099592163
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8722786493879057618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1633821710574564935, guid: 4f9d77f232c7ddf4395f6d992df0cd3a, type: 3}
