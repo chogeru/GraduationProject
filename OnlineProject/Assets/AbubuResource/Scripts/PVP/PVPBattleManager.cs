@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class PVPBattleManager : MonoBehaviour
 {
     [SerializeField,Header("åªç›ÇÃéûä‘")]
@@ -24,6 +25,7 @@ public class PVPBattleManager : MonoBehaviour
         m_CurrentTime -= Time.deltaTime;
         if(m_CurrentTime < 0)
         {
+            SceneManager.LoadScene("Title");
             m_CurrentTime = 0;
         }
         M_CountDownText.text=m_Text+ m_CurrentTime.ToString("F2");//F2Ç≈è¨êîì_2åÖÇ‹Ç≈ï\é¶
