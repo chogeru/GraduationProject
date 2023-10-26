@@ -156,10 +156,16 @@ public class BossEnemy : MonoBehaviour
             m_DestroySE.SetActive(true);
             isDie = true;
             IdleBGM.volume = 0.1f;
-            m_CoopGameManager.GameClear();
+            if (m_CoopGameManager != null)
+            {
+                m_CoopGameManager.GameClear();
+            }
             if (m_DestroyTime >= 1.4)
             {
-                m_CoopGameManager.isClear = true;
+                if (m_CoopGameManager != null)
+                {
+                    m_CoopGameManager.isClear = true;
+                }
                 m_BossHoGage.SetActive(false);
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
                 if (m_Wall != null)
