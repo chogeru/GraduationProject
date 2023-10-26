@@ -20902,8 +20902,8 @@ MonoBehaviour:
   m_MaxHp: 100
   m_MinHp: 0
   m_Hp: 100
-  m_PlayerDamage: 3
-  m_DownDamage: 2
+  m_PlayerDamage: 15
+  m_DownDamage: 12
   m_TPSCamera: {fileID: 6139423185681305339}
   m_TPSZoomCamera: {fileID: 6139423185139389807}
   m_RecoveryEffect: {fileID: 6140643515454878623}
@@ -20936,7 +20936,7 @@ MonoBehaviour:
   m_BulletSlider: {fileID: 5404956796867331928}
   ChargeEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
-  m_MaxAmmo: 60
+  m_MaxAmmo: 120
   m_CurrentAmmo: 0
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6

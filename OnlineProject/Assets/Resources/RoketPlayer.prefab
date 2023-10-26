@@ -17027,6 +17027,7 @@ GameObject:
   - component: {fileID: 8894745987395910588}
   - component: {fileID: 8894745987395910584}
   - component: {fileID: 8642169514895894006}
+  - component: {fileID: -322566177294698402}
   m_Layer: 0
   m_Name: RoketPlayer
   m_TagString: Player
@@ -17162,6 +17163,7 @@ MonoBehaviour:
   m_JumpForce: 50
   m_Speed: 10
   m_RunSpeed: 20
+  m_DownSpeed: 0
   m_AccelerationAmount: 2
   m_Sensitivity: 2
   m_MoveParticle: {fileID: 5441192068320524638}
@@ -17179,11 +17181,14 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 65
+  m_DownDamage: 0
   m_TPSCamera: {fileID: 8642169515583326109}
   m_TPSZoomCamera: {fileID: 8642169515051768841}
   m_RecoveryEffect: {fileID: 8641080605454859001}
   m_RecoverySE: {fileID: 8642169515152338374}
   m_FadInCanvas: {fileID: 0}
+  m_WaterSE: {fileID: 0}
+  m_WaterMoveEffect: {fileID: 0}
 --- !u!114 &8894745987395910588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17199,6 +17204,7 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 1010106222350519036, guid: 0cbff1e3a3d06224da25532b416e295c, type: 3}
   m_MuzzleTransform: {fileID: 8642169514286432068}
   m_BulletSpeed: 25
+  m_BulletDownSpeed: 0
   m_CoolTime: 1
   m_Animator: {fileID: 0}
   m_ReloadTime: 1
@@ -17237,7 +17243,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7003596281386303801}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 942428776a16a864a8b3f42282a09a38, type: 3}
   m_Name: 
@@ -17248,6 +17254,19 @@ MonoBehaviour:
   m_LastChackPointPosition: {x: 0, y: 0, z: 0}
   m_LastChackPointRotation: {x: 0, y: 0, z: 0, w: 0}
   isHit: 0
+--- !u!114 &-322566177294698402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003596281386303801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498543f5da7891f4a95c72266b224901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WaterEffect: {fileID: 0}
 --- !u!1 &7003596281426358652
 GameObject:
   m_ObjectHideFlags: 0
