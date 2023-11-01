@@ -13,7 +13,10 @@ public class ButtonSystem : MonoBehaviour
     private GameObject m_ServerScreenMap;
     [SerializeField,Header("キャラクター選択モード")]
     private GameObject m_CaractorSelectMode;
-
+    [SerializeField, Header("通信画面")]
+    private GameObject m_CommunicationScreen;
+    [SerializeField, Header("ステージ選択画面")]
+    private GameObject m_StageSelectScreen;
 
 
     private void Start()
@@ -25,5 +28,16 @@ public class ButtonSystem : MonoBehaviour
     {
         m_PlayerNameSettingScreen.SetActive(false);
         m_ServerSettingScreen.SetActive(true);
+    }
+
+    public void CommunicationScreenAcctive()
+    {
+        m_CaractorSelectMode.SetActive(false);
+        m_CommunicationScreen.SetActive(true);
+    }
+    public void StageSelect()
+    {
+        m_CommunicationScreen.SetActive(false);
+        m_StageSelectScreen.SetActive(true);
     }
 }
