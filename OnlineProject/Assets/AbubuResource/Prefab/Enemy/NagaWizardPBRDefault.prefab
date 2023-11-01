@@ -1826,9 +1826,11 @@ MonoBehaviour:
   m_PlayerTag: Player
   m_WallTag: Wall
   m_MoveSpeed: 10
+  m_DownSpeed: 0
   m_DetectionDistance: 60
   m_AvoidanceDistance: 0
   m_DestroyDistance: 100
+  m_HpBarAnimeDistance: 23
   m_AttackRange: 4
   m_RotationSpeed: 5
   m_AttackTime: 0
@@ -1840,6 +1842,7 @@ MonoBehaviour:
   Hp: 180
   m_Damage: 0
   m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
+  m_HpBarAnimator: {fileID: 6505399182709185072}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   m_DestroySE: {fileID: 3569630708795365443}
   m_AttackSE: {fileID: 3569630708982068019}
@@ -3431,7 +3434,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8734676442121042126, guid: 4a548293fc7474fe89ef6a4cfabf7031, type: 3}
   m_PrefabInstance: {fileID: 3037448167189995649}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5985533433611130993}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
@@ -3442,6 +3445,31 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8734676442121042161, guid: 4a548293fc7474fe89ef6a4cfabf7031, type: 3}
   m_PrefabInstance: {fileID: 3037448167189995649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5985533433611130993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8734676442121042160, guid: 4a548293fc7474fe89ef6a4cfabf7031, type: 3}
+  m_PrefabInstance: {fileID: 3037448167189995649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6505399182709185072
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985533433611130993}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b28c6747e9c6c145a51543075ded6dc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &3820607871712317732
 PrefabInstance:
   m_ObjectHideFlags: 0

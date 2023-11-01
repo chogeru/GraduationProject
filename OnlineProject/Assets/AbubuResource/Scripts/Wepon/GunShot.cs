@@ -1,4 +1,3 @@
-using MalbersAnimations.Controller;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +8,8 @@ public enum GunType
     Assault,
     Shotgun,
     RailGun,
+    FlameThrower,
+    Grenade,
 }
 
 public class GunShot : MonoBehaviour
@@ -32,16 +33,22 @@ public class GunShot : MonoBehaviour
     private float m_ReloadTime;
     [SerializeField]
     private float m_ReloadCoolTime;
+
     [SerializeField, Header("発射SE")]
     private AudioClip m_AudioGunSE;
     private float m_Volume = 0.6f;
     [SerializeField, Header("弾発射SE")]
     private GameObject m_ParticleGun;
     [SerializeField]
+    private GameObject m_FlameCol;
+
+    [SerializeField]
     private Slider m_BulletSlider;
 
     [SerializeField]
-    private ParticleSystem ChargeEffect; // ParticleSystem型の変数ChargeEffectをシリアライズフィールドとして宣言
+    private ParticleSystem ChargeEffect;
+    [SerializeField]
+    private ParticleSystem m_FlameEffect;
 
     [SerializeField]
     private Slider ChargeBar; // Slider型の
@@ -60,7 +67,7 @@ public class GunShot : MonoBehaviour
     private bool isReload;
     [SerializeField]
     private GunType currentGunType = GunType.Assault;
-  
+
     private void Start()
     {
         m_BulletSlider.value = 1;
@@ -152,10 +159,32 @@ public class GunShot : MonoBehaviour
         if (chargeTime > 0f && !isCharging)
         {
             isCharging = true;
-          
+
             // ChargeEffect.Play();
             // ChargeBar.Show();
         }
+    }
+    private void FlameFire()
+    {
+        m_FlameEffect.Play();
+        m_FlameCol.SetActive(true);
+    }
+    private void GrenadeThrow()
+    {
+        AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
+        // 球のプレハブから新しい球を生成
+        GameObject bullet = Instantiate(m_BulletPrefab, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
+        GameObject particle = Instantiate(m_ParticleGun, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
+        // 球の Rigidbody コンポーネントを取得
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
+        if (bulletRigidbody != null)
+        {
+            // 球をまっすぐ前に発射する力を加える
+            bulletRigidbody.velocity = m_MuzzleTransform.forward * m_BulletSpeed;
+        }
+        m_CurrentAmmo--;
+        UpdateBulletSlider();
     }
     private void Update()
     {
@@ -177,9 +206,25 @@ public class GunShot : MonoBehaviour
                     case GunType.RailGun:
                         ChargeShot();
                         break;
+                    case GunType.FlameThrower:
+                        FlameFire();
+                        break;
+                    case GunType.Grenade:
+                        GrenadeThrow();
+                        m_Time = 0;
+                        break;
+                        
 
                 }
-            }       
+            }
+        }
+        if(currentGunType== GunType.FlameThrower)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                m_FlameCol.SetActive(false);
+                m_FlameEffect.Stop();
+            }
         }
         if (m_CurrentAmmo <= 0)
         {
@@ -212,7 +257,7 @@ public class GunShot : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water"))
         {
             m_BulletSpeed -= m_BulletDownSpeed;
         }

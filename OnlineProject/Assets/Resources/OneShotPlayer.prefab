@@ -3802,6 +3802,82 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3691672658241475856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9156842383038080004}
+  - component: {fileID: 707023526195967962}
+  - component: {fileID: 5489191990909883213}
+  m_Layer: 5
+  m_Name: "\u5F3E\u753B\u50CF"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9156842383038080004
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691672658241475856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00023651129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6008842082766422155}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -100, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0}
+--- !u!222 &707023526195967962
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691672658241475856}
+  m_CullTransparentMesh: 1
+--- !u!114 &5489191990909883213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691672658241475856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 94468eecf4ad3496d980bc5d30d107aa, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3973473820498522781
 GameObject:
   m_ObjectHideFlags: 0
@@ -16741,6 +16817,7 @@ MonoBehaviour:
   m_JumpForce: 50
   m_Speed: 10
   m_RunSpeed: 20
+  m_DownSpeed: 0
   m_AccelerationAmount: 2
   m_Sensitivity: 2
   m_MoveParticle: {fileID: 8002450346201292203}
@@ -16758,11 +16835,14 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 30
+  m_DownDamage: 0
   m_TPSCamera: {fileID: 6008842081880023912}
   m_TPSZoomCamera: {fileID: 6008842082413951228}
   m_RecoveryEffect: {fileID: 6010014585561161228}
   m_RecoverySE: {fileID: 6008842082514372915}
-  m_FadInCanvas: {fileID: 0}
+  m_FadInCanvas: {fileID: 6008842083582811527}
+  m_WaterSE: {fileID: 0}
+  m_WaterMoveEffect: {fileID: 0}
 --- !u!114 &6916659528876236617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16778,14 +16858,17 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 8979071704063216447, guid: a961ab1926a0292428c9a1f4d0f9b616, type: 3}
   m_MuzzleTransform: {fileID: 6008842083780910001}
   m_BulletSpeed: 150
+  m_BulletDownSpeed: 0
   m_CoolTime: 1
   m_Animator: {fileID: 0}
   m_ReloadTime: 2
   m_ReloadCoolTime: 0
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
+  m_FlameCol: {fileID: 0}
   m_BulletSlider: {fileID: 5450730313868927947}
   ChargeEffect: {fileID: 0}
+  m_FlameEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
   m_MaxAmmo: 10
   m_CurrentAmmo: 0
@@ -16823,7 +16906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ReSpownEffect: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   m_ReSpownSE: {fileID: 6008842083736910572}
-  m_FadeIN: {fileID: 0}
+  m_FadeIN: {fileID: 6008842083582811527}
   m_LastChackPointPosition: {x: 0, y: 0, z: 0}
   m_LastChackPointRotation: {x: 0, y: 0, z: 0, w: 0}
   isHit: 0
@@ -20162,6 +20245,7 @@ RectTransform:
   - {fileID: 6008842082975125261}
   - {fileID: 6008842083336896382}
   - {fileID: 1327949228298344125}
+  - {fileID: 9156842383038080004}
   m_Father: {fileID: 5025261671458432466}
   m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
