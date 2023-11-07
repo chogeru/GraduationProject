@@ -13,9 +13,17 @@ public class PVPBattleManager : MonoBehaviour
     private TextMeshProUGUI M_CountDownText;
     [SerializeField]
     private string m_Text;
+
+    [SerializeField]
+    private GameObject m_ScoreCanvas;
+    [SerializeField]
+    private GameObject m_GameEndScreen;
+    private bool isEnd;
+    
     // Start is called before the first frame update
     void Start()
     {
+        isEnd = false;
         m_CurrentTime=m_CountDownTime;
     }
 
@@ -25,9 +33,23 @@ public class PVPBattleManager : MonoBehaviour
         m_CurrentTime -= Time.deltaTime;
         if(m_CurrentTime < 0)
         {
-            SceneManager.LoadScene("Title");
+          m_ScoreCanvas.SetActive(true);
+            isEnd = true;
             m_CurrentTime = 0;
         }
         M_CountDownText.text=m_Text+ m_CurrentTime.ToString("F2");//F2‚Å¬”“_2Œ…‚Ü‚Å•\Ž¦
+
+        if(isEnd)
+        {
+            Invoke("GameEnd", 5);
+        }
+    }
+    public void ClerScreen()
+    {
+        m_GameEndScreen.SetActive(true);
+    }
+    private void GameEnd()
+    {
+        SceneManager.LoadScene("Title");
     }
 }

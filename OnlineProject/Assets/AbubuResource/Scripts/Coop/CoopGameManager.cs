@@ -8,6 +8,8 @@ public class CoopGameManager : MonoBehaviour
     private GameObject m_SubjugationTarget;
     [SerializeField, Header("クリア画面")]
     private GameObject m_ClearCanvas;
+    [SerializeField, Header("スコア画面")]
+    private GameObject m_ScoreScreen;
     [SerializeField]
     public bool isClear=false;
     private float m_GameEndTime;
@@ -23,7 +25,7 @@ public class CoopGameManager : MonoBehaviour
         }
         if(m_GameEndTime>5)
         {
-            SceneManager.LoadScene("Title");
+          m_ScoreScreen.SetActive(true);
         }
     }
     public void GameClear()
