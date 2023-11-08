@@ -11,6 +11,8 @@ public class PlayerReSpown : MonoBehaviour
 
     [SerializeField]
     private GameObject m_FadeIN;
+    private PlayerMove playerMove;
+
     //最後に通過したチェックポイントの座標
     [SerializeField]
     private Vector3 m_LastChackPointPosition;
@@ -22,6 +24,7 @@ public class PlayerReSpown : MonoBehaviour
     public bool isHit=false;
     void Start()
     {
+        playerMove = GetComponent<PlayerMove>();
         m_LastChackPointPosition = transform.position;
         m_LastChackPointRotation = Quaternion.identity;
         m_FadeIN.SetActive(false);
@@ -33,17 +36,20 @@ public class PlayerReSpown : MonoBehaviour
         if (isHit==true)
         {
             m_Time += Time.deltaTime;
-            if (m_Time >= 1.2)
-            {  
-                  
+            if (m_Time >= 1)
+            {
                 transform.position = m_LastChackPointPosition;
                 transform.rotation = m_LastChackPointRotation;
+             
                 isHit = false;
+                playerMove.m_Hp = 100;
                 m_Time = 0;
+
             }
         }
         if(isHit==false)
         {
+          
             m_FadeIN.SetActive(false);
         }
     }

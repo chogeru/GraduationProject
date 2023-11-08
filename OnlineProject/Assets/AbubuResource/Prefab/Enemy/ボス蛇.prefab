@@ -696,6 +696,7 @@ MonoBehaviour:
   Damage: 0
   m_Hp: 0
   m_MaxHp: 0
+  m_Point: 5000
   m_KillCount: 0
   m_DetectionDistance: 30
   m_ShotCooldown: 10

@@ -23,6 +23,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField, Header("回転力")]
     private float m_Sensitivity = 2.0f;
 
+    private float m_DieinvincibilityTime;
     private float m_HorizontalInput;
     private float m_VerticalInput;
 
@@ -53,11 +54,12 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     private bool isGrounded = true;
     public bool isRecovery = false;
+    private bool isinvincibility = false;
 
     [SerializeField]
-    private int m_MaxHp;
+    public int m_MaxHp;
     [SerializeField]
-    private int m_MinHp=0;
+    public int m_MinHp = 0;
     [SerializeField]
     public int m_Hp;
     [SerializeField]
@@ -82,7 +84,7 @@ public class PlayerMove : MonoBehaviour
     private ParticleSystem m_WaterMoveEffect;
     private void Start()
     {
-        
+
         //Sliderを満タンにする。
         m_HpSlider.value = 1;
         //現在のHPを最大HPと同じに。
@@ -93,12 +95,12 @@ public class PlayerMove : MonoBehaviour
         m_RecoverySE.SetActive(false);
         m_MoveParticle.SetActive(false);
         m_CameraAnimator = m_TPSZoomCamera.GetComponent<Animator>();
-        m_TPSCameAnimator= m_TPSCamera.GetComponent<Animator>();
+        m_TPSCameAnimator = m_TPSCamera.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
-        m_Speed = Mathf.Clamp(m_Speed,0,20);
+        m_Speed = Mathf.Clamp(m_Speed, 0, 20);
         // プレイヤーの移動
         m_HorizontalInput = Input.GetAxis("Horizontal");
         m_VerticalInput = Input.GetAxis("Vertical");
@@ -108,7 +110,7 @@ public class PlayerMove : MonoBehaviour
         m_PlayerAnimator.SetFloat("前後", Input.GetAxis("Vertical"));
         m_PlayerAnimator.SetFloat("強左右", Input.GetAxis("Horizontal"));
         m_PlayerAnimator.SetFloat("強前後", Input.GetAxis("Vertical"));
-       
+
         //キー入力による移動量を求める
         Vector3 move = CalcMoveDir(m_HorizontalInput, m_VerticalInput) * m_Speed;
         //現在の移動量を所得
@@ -117,8 +119,8 @@ public class PlayerMove : MonoBehaviour
 
         //現在の移動量との差分だけプレイヤーに力を加える
         m_Rigidbody.AddForce(move - current, ForceMode.VelocityChange);
-        
-    
+
+
         //ダッシュ処理
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -132,12 +134,19 @@ public class PlayerMove : MonoBehaviour
             m_Speed = m_MoveSpeed;
             m_PlayerAnimator.SetBool("Run", false);
         }
-      
-       
+        if(isinvincibility)
+        {
+            m_DieinvincibilityTime += Time.deltaTime;
+            if(m_DieinvincibilityTime>=2)
+            {
+                isinvincibility = false;
+            }
+        }
+
     }
     private void Update()
     {
-        m_Hp = Mathf.Clamp(m_Hp, m_MinHp, m_MaxHp);
+        m_Hp = Mathf.Min(m_Hp, m_MaxHp);
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Mouse X");
 
@@ -164,7 +173,7 @@ public class PlayerMove : MonoBehaviour
                 isGrounded = true;
             }
         }
-        if(Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             m_TPSCamera.SetActive(false);
             m_TPSZoomCamera.SetActive(true);
@@ -177,41 +186,51 @@ public class PlayerMove : MonoBehaviour
             m_CameraAnimator.SetBool("isZoom", false);
             m_TPSCameAnimator.SetBool("isTPS", true);
         }
-        if(isRecovery)
+        if (isRecovery)
         {
             HpUpdate();
             isRecovery = false;
         }
     }
- 
+
     public void TakeDamage(int damageAmount)
     {
-        // ダメージを受けた時の処理
-        m_Hp -= damageAmount;
-        m_HpSlider.value = (float)m_Hp / (float)m_MaxHp;
-        // HP テキストを更新
-        m_HpText.text = m_Hp + "/" + m_MaxHp;
-        m_PlayerAnimator.SetBool("isHit", true);
-        if (m_Hp <= 0)
+        if (isinvincibility==false)
         {
-            Die();
+            // ダメージを受けた時の処理
+            m_Hp -= damageAmount;
+            m_Hp = Mathf.Max(m_Hp, m_MinHp);
+            m_HpSlider.value = (float)m_Hp / (float)m_MaxHp;
+            // HP テキストを更新
+            m_HpText.text = m_Hp + "/" + m_MaxHp;
+            m_PlayerAnimator.SetBool("isHit", true);
+            if (m_Hp <= 0)
+            {
+                Die();
+            }
         }
     }
     private void EndHit()
     {
+
         m_PlayerAnimator.SetBool("isHit", false);
     }
     private void Die()
     {
+        isinvincibility = true;
         playerReSpown.isHit = true;
         m_FadInCanvas.SetActive(true);
         m_PlayerAnimator.SetBool("isDie", true);
     }
+
     private void EndDie()
     {
-        m_Hp = m_MaxHp;
         m_FadInCanvas.SetActive(false);
         m_PlayerAnimator.SetBool("isDie", false);
+        m_Hp = m_MaxHp;
+        // HP テキストを更新
+        m_HpText.text = m_Hp + "/" + m_MaxHp;
+        m_HpSlider.value = (float)m_Hp / (float)m_MaxHp;
     }
     private Vector3 CalcMoveDir(float moveX, float moveZ)
     {
@@ -224,7 +243,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water"))
         {
             InWater();
             m_MoveSpeed -= m_DownSpeed;
@@ -234,7 +253,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("RecoveryItem"))
+        if (other.gameObject.CompareTag("RecoveryItem"))
         {
             HpUpdate();
             m_RecoveryEffect.SetActive(true);
@@ -261,9 +280,9 @@ public class PlayerMove : MonoBehaviour
     private void HpUpdate()
     {
         //HPバーの更新
-        m_HpSlider.value=(float)m_Hp/(float)m_MaxHp;
+        m_HpSlider.value = (float)m_Hp / (float)m_MaxHp;
         //HPテキストの更新
-        m_HpText.text=m_Hp + "/" + m_MaxHp;
+        m_HpText.text = m_Hp + "/" + m_MaxHp;
     }
     private void InWater()
     {

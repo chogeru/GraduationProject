@@ -859,13 +859,15 @@ MonoBehaviour:
   m_MaxHp: 130
   Hp: 130
   m_Damage: 0
+  m_Point: 650
   m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
   m_HpBarAnimator: {fileID: 5953580914000261745}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   m_DestroySE: {fileID: 4558294616285554844}
   m_AttackSE: {fileID: 4558294615832761775}
   m_ATCol: {fileID: 4558294615903981588}
-  m_ItemPrefabs: []
+  m_ItemPrefabs:
+  - {fileID: 2718248972148250848, guid: b1571b13e888c8e44bf03179033a5692, type: 3}
 --- !u!114 &-3328401245331048629
 MonoBehaviour:
   m_ObjectHideFlags: 0

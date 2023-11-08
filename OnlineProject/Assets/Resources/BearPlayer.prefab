@@ -522,7 +522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286824858}
-  m_LocalRotation: {x: 0.6672181, y: -0.000000021073415, z: 0.000000021073415, w: 0.7448625}
+  m_LocalRotation: {x: 0.6805576, y: -0.003867542, z: 0.009868492, w: 0.732618}
   m_LocalPosition: {x: -0, y: -1.308, z: -0.414}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -530,7 +530,7 @@ Transform:
   - {fileID: 8021630206444356611}
   m_Father: {fileID: 4659905480389519899}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 83.706, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 85.753, y: 6.019, z: 7.132}
 --- !u!1 &314259654
 GameObject:
   m_ObjectHideFlags: 0
@@ -5532,7 +5532,7 @@ MonoBehaviour:
   m_BulletDownSpeed: 0
   m_CoolTime: 0.1
   m_Animator: {fileID: 0}
-  m_ReloadTime: 4
+  m_ReloadTime: 2
   m_ReloadCoolTime: 0
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}

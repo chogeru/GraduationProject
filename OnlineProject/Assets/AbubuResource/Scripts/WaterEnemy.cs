@@ -12,6 +12,9 @@ public class WaterEnemy : MonoBehaviour
     [SerializeField]
     private int m_MaxHp;
 
+    [SerializeField]
+    private int m_Point;
+
     public int m_KillCount;
     private bool isAvoiding;
     [SerializeField]
@@ -128,11 +131,13 @@ public class WaterEnemy : MonoBehaviour
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
             IdleBGM.volume = 0.1f;
+    
             if (m_DestroyTime >= 1.4)
             {          
                 m_BossHoGage.SetActive(false);
                 m_AttackObj.m_KillCount++;
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+                ScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
             }
 

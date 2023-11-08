@@ -11,6 +11,8 @@ public class CoopGameManager : MonoBehaviour
     [SerializeField, Header("ÉXÉRÉAâÊñ ")]
     private GameObject m_ScoreScreen;
     [SerializeField]
+    private ScoreManager scoreManager;
+    [SerializeField]
     public bool isClear=false;
     private float m_GameEndTime;
     private void Start()
@@ -30,6 +32,7 @@ public class CoopGameManager : MonoBehaviour
     }
     public void GameClear()
     {
+        scoreManager.isCountStop = true;
         m_ClearCanvas.SetActive(true);
     }
 }

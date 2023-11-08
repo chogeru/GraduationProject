@@ -12,7 +12,8 @@ public class AttackObj : MonoBehaviour
     private List<WaterEnemy> m_Boss = new List<WaterEnemy>();
     [SerializeField]
     private GameObject m_BossWall;
-
+    [SerializeField]
+    private GameObject m_SpownWall;
     private void Start()
     {
      
@@ -22,7 +23,7 @@ public class AttackObj : MonoBehaviour
     {
         if (m_KillCount>=2)
         {
-          
+          m_SpownWall.SetActive(true);
             m_ActiveObj.SetBool("IsActive", true);
             Destroy(m_BossWall);
         }

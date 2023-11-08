@@ -1077,6 +1077,7 @@ MonoBehaviour:
   m_MaxHp: 5000
   m_Hp: 5000
   Damage: 0
+  m_Point: 17500
   m_DetectionDistance: 50
   m_AvoidanceDistance: 0
   m_RotationSpeed: 5
@@ -1092,6 +1093,7 @@ MonoBehaviour:
   IdleBGM: {fileID: 0}
   BossBGM: {fileID: 7949337461809813984}
   m_Player: {fileID: 0}
+  m_CoopGameManager: {fileID: 0}
   m_AttackSE: {fileID: 7949337460632067665}
   m_ATCol: {fileID: 7949337461594397820}
   m_Wall: {fileID: 0}

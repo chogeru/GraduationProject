@@ -6,6 +6,8 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_Player;
+    [SerializeField]
+    private GameObject m_CameraObj;
     public void StartTimeline()
     {
         m_Player = GameObject.FindGameObjectWithTag("Player");
@@ -14,6 +16,7 @@ public class CameraManager : MonoBehaviour
     public void AvtivePlayer()
     {
         m_Player.SetActive(true);
+        Destroy(m_CameraObj);
     }
 }
 

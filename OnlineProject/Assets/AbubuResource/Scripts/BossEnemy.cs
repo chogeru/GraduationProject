@@ -17,6 +17,9 @@ public class BossEnemy : MonoBehaviour
     [SerializeField]
     private int Damage;
 
+    [SerializeField]
+    private int m_Point;
+
     private bool isAvoiding;
 
     [SerializeField]
@@ -154,6 +157,7 @@ public class BossEnemy : MonoBehaviour
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
+          
             isDie = true;
             IdleBGM.volume = 0.1f;
             if (m_CoopGameManager != null)
@@ -172,6 +176,7 @@ public class BossEnemy : MonoBehaviour
                 {
                     m_Wall.SetActive(true);
                 }
+                ScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
                 if (m_ActiveFloer != null)
                 {

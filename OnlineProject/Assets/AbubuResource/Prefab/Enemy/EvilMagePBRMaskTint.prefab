@@ -767,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Hp: 30
   m_MaxHP: 30
+  m_Point: 450
   m_WallTag: Wall
   m_AttackInterval: 3
   m_AttackEffectPrefab: {fileID: 7226888052703040409, guid: 7ec363c8df426644ea85f8d6d570561c, type: 3}

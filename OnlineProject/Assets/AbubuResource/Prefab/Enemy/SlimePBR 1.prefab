@@ -536,6 +536,7 @@ MonoBehaviour:
   m_MaxHp: 50
   Hp: 30
   m_Damage: 0
+  m_Point: 120
   m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
   m_HpBarAnimator: {fileID: 6798027776663024475}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}

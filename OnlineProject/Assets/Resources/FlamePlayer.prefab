@@ -10714,7 +10714,7 @@ MonoBehaviour:
   m_TPSZoomCamera: {fileID: 6706790714073466091}
   m_RecoveryEffect: {fileID: 6707866433302651419}
   m_RecoverySE: {fileID: 6706790713972978980}
-  m_FadInCanvas: {fileID: 0}
+  m_FadInCanvas: {fileID: 6706790712908734864}
   m_WaterSE: {fileID: 0}
   m_WaterMoveEffect: {fileID: 0}
 --- !u!114 &5876095414044877662
@@ -10780,7 +10780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ReSpownEffect: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
   m_ReSpownSE: {fileID: 6706790713247467259}
-  m_FadeIN: {fileID: 0}
+  m_FadeIN: {fileID: 6706790712908734864}
   m_LastChackPointPosition: {x: 0, y: 0, z: 0}
   m_LastChackPointRotation: {x: 0, y: 0, z: 0, w: 0}
   isHit: 0

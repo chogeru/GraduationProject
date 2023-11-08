@@ -39356,7 +39356,7 @@ MonoBehaviour:
   ChargeEffect: {fileID: 0}
   m_FlameEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
-  m_MaxAmmo: 3
+  m_MaxAmmo: 5
   m_CurrentAmmo: 0
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class EnemyMove : MonoBehaviour
 {
@@ -49,7 +50,10 @@ public class EnemyMove : MonoBehaviour
     [SerializeField, Header("çUåÇóÕ")]
     private int m_Damage;
 
+    [SerializeField]
+    private int m_Point;
     private List<StageWall> m_StageWall = new List<StageWall>();
+
     [SerializeField]
     private AudioClip m_HitAudio;
 
@@ -58,6 +62,7 @@ public class EnemyMove : MonoBehaviour
     Animator m_Animator;
     [SerializeField]
     Animator m_HpBarAnimator;
+
     [SerializeField]
     private GameObject m_DestroyEffect;
     [SerializeField]
@@ -97,10 +102,11 @@ public class EnemyMove : MonoBehaviour
     {
         if (Hp <= 0)
         {
-            isAlive = false; // HPÇ™0Ç≈Ç†ÇÈÇ±Ç∆Çé¶Ç∑ÉtÉâÉOÇfalseÇ…ê›íË
+            isAlive = false; 
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
+    
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
@@ -109,6 +115,7 @@ public class EnemyMove : MonoBehaviour
                 {
                     m_stageWall.m_DieCount++;
                 }
+                ScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
             }
 

@@ -10,6 +10,9 @@ public class MagicEnemy : MonoBehaviour
     private int m_Hp;
     [SerializeField]
     private int m_MaxHP;
+
+    [SerializeField]
+    private int m_Point;
     [SerializeField]
     private string m_WallTag = "Wall";
 
@@ -60,6 +63,7 @@ public class MagicEnemy : MonoBehaviour
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
+
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
@@ -67,6 +71,7 @@ public class MagicEnemy : MonoBehaviour
                 {
                     m_stageWall.m_DieCount++;
                 }
+                ScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
             }
 
