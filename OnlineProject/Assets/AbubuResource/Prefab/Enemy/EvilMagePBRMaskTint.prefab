@@ -765,8 +765,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d9b68cc2838494ea24376e9ce12890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Hp: 30
-  m_MaxHP: 30
+  m_Hp: 65
+  m_MaxHP: 65
   m_Point: 450
   m_WallTag: Wall
   m_AttackInterval: 3
@@ -776,6 +776,10 @@ MonoBehaviour:
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   m_DestroySE: {fileID: 931343430}
   m_AttackSE: {fileID: 931343430}
+  m_ItemPrefabs:
+  - {fileID: 2718248972148250848, guid: b1571b13e888c8e44bf03179033a5692, type: 3}
+  - {fileID: 1411970768344658, guid: 2b077f22d5e15e74aaeadc0fcf712397, type: 3}
+  - {fileID: 497040793771230054, guid: 7c92a99726fc8454486685eb82beca76, type: 3}
 --- !u!114 &5649797956392930600
 MonoBehaviour:
   m_ObjectHideFlags: 0

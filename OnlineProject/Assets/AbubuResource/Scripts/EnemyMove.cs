@@ -216,7 +216,7 @@ public class EnemyMove : MonoBehaviour
     private void ItemSpown()
     {
         int randam = Random.Range(0, 100);
-        if(randam<10&& m_ItemPrefabs.Length>0)
+        if(randam<15&& m_ItemPrefabs.Length>0)
         {
            Vector3 ItemPos=transform.position;
             ItemPos.y += 1;

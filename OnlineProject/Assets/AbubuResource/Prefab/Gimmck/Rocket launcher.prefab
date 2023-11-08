@@ -97947,7 +97947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fdfc430b7c5a04494e910a3165fff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  m_Player: {fileID: 0}
   m_FirePoint: {fileID: 9188378926501013227}
   m_WeponDestroyParticle: {fileID: 100002, guid: b915ea55954041f40a3fd40ee1840dda, type: 3}
   m_BulletParticle: {fileID: 497040792954230349}
@@ -97957,7 +97957,7 @@ MonoBehaviour:
   m_FireAudioSource: {fileID: 8300000, guid: 15cb1a06bd42a28408a4daddd77227a7, type: 3}
   m_WeponGetSE: {fileID: 8300000, guid: c756a4c6b9c83d04eab4907e8e214e84, type: 3}
   m_WeponDestroySE: {fileID: 8300000, guid: 8e39db8839f02c84f98a515e8290f670, type: 3}
-  m_Volume: 0.6
+  m_Volume: 0.8
   m_BulletCoolTime: 3
 --- !u!1 &497040793779050494
 GameObject:

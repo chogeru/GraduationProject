@@ -10709,6 +10709,7 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 3
+  m_PlayerMaxDamage: 25
   m_DownDamage: 0
   m_TPSCamera: {fileID: 6706790714613686143}
   m_TPSZoomCamera: {fileID: 6706790714073466091}

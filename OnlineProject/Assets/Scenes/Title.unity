@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3656311, g: 0.59102786, b: 0.8744076, a: 1}
+  m_IndirectSpecularColor: {r: 0.36540642, g: 0.5909517, b: 0.87433994, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9533,7 +9533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab51f3cade653944d972c2c7f7cce131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FadeIN: {fileID: 0}
+  m_FadeIN: {fileID: 2102260201}
   m_Title: {fileID: 0}
 --- !u!1 &1865164694
 GameObject:
@@ -10790,6 +10790,10 @@ PrefabInstance:
     - target: {fileID: 2635722035323582657, guid: 41344c14735aacb429df78645ba1be30, type: 3}
       propertyPath: m_Name
       value: "\u8A2D\u5B9A\u753B\u9762"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2635722035323582657, guid: 41344c14735aacb429df78645ba1be30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2635722035323582718, guid: 41344c14735aacb429df78645ba1be30, type: 3}
       propertyPath: m_Pivot.x

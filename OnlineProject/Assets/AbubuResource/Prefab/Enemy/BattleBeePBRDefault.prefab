@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerTag: Player
   m_WallTag: Wall
-  m_MoveSpeed: 10
+  m_MoveSpeed: 7
   m_DownSpeed: 0
   m_DetectionDistance: 30
   m_AvoidanceDistance: 0
@@ -1423,10 +1423,10 @@ MonoBehaviour:
   mHpSlider: {fileID: 2458103761592483827}
   m_IdleAicon: {fileID: 3682881888748928280}
   m_BattleAicon: {fileID: 6219303253667069011}
-  m_MaxHp: 50
-  Hp: 30
+  m_MaxHp: 20
+  Hp: 20
   m_Damage: 0
-  m_Point: 0
+  m_Point: 500
   m_HitAudio: {fileID: 8300000, guid: f3a2bd62725f80942a8a86c8766ca87b, type: 3}
   m_HpBarAnimator: {fileID: 2311848855200290309}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
@@ -1435,6 +1435,8 @@ MonoBehaviour:
   m_ATCol: {fileID: 7094515334714548790}
   m_ItemPrefabs:
   - {fileID: 2718248972148250848, guid: b1571b13e888c8e44bf03179033a5692, type: 3}
+  - {fileID: 1411970768344658, guid: 2b077f22d5e15e74aaeadc0fcf712397, type: 3}
+  - {fileID: 497040793771230054, guid: 7c92a99726fc8454486685eb82beca76, type: 3}
 --- !u!114 &-386559916051170358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,7 +1686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850f8cf6c1d5b9049a3359afa70c2c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 12
+  damageAmount: 6
   m_AttackEffect: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   m_AttackSE: {fileID: 1589099352821960565}
 --- !u!1 &7662276596818461325

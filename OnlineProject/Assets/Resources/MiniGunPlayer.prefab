@@ -16635,6 +16635,7 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 1
+  m_PlayerMaxDamage: 3
   m_DownDamage: 0
   m_TPSCamera: {fileID: 8748820453753893712}
   m_TPSZoomCamera: {fileID: 8748820453222459588}
@@ -16661,7 +16662,7 @@ MonoBehaviour:
   m_BulletDownSpeed: 0
   m_CoolTime: 0.0001
   m_Animator: {fileID: 0}
-  m_ReloadTime: 10
+  m_ReloadTime: 5
   m_ReloadCoolTime: 0
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}

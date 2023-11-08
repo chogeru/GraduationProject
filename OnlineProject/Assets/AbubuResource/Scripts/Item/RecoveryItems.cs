@@ -1,9 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class RecoveryItems : MonoBehaviour
 {
+    enum ItemType
+    {
+        RecoverryItem,
+        PowerUpItem,
+    }
+    [SerializeField]
+    ItemType m_CurrentType;
+
     PlayerMove player;
     private GameObject m_Player;
     [SerializeField]
@@ -14,7 +23,8 @@ public class RecoveryItems : MonoBehaviour
     private AudioClip m_ItemGetSE;
     private float m_SEVolume = 1;
     private float m_DestroyTime;
-    
+    [SerializeField,Header("çUåÇóÕè„è∏íl")]
+    private int m_AttackBoost;
     private void Start()
     {
         m_Player = GameObject.FindGameObjectWithTag("Player");
@@ -31,11 +41,26 @@ public class RecoveryItems : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            player.m_Hp += m_Recovery;
-            player.isRecovery = true;
-            AudioSource.PlayClipAtPoint(m_ItemGetSE, transform.position, m_SEVolume);
-            Instantiate(m_ItemHitEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            switch (m_CurrentType)
+            {
+                case ItemType.RecoverryItem:
+                    player.m_Hp += m_Recovery;
+                    player.isRecovery = true;
+                    GetItem();
+                    break;
+                case ItemType.PowerUpItem:
+                    player.m_PlayerDamage += m_AttackBoost;
+                    GetItem();
+                    break;
+            }
+
+         
         }
+    }
+    private void GetItem()
+    {
+        AudioSource.PlayClipAtPoint(m_ItemGetSE, transform.position, m_SEVolume);
+        Instantiate(m_ItemHitEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

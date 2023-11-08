@@ -14,6 +14,7 @@ public class GameStart : MonoBehaviour
     private Animator m_Animetor;
 
     private float m_Time;
+    private bool isStart=true;
     private void Start()
     {
         m_ButtonSE.SetActive(false);
@@ -27,12 +28,16 @@ public class GameStart : MonoBehaviour
         m_Time += Time.deltaTime;
         if (m_Time > 5.5)
         {
-            if (Input.GetButtonDown("Fire1") || Input.anyKeyDown)
+            if (isStart)
             {
-                m_ButtonSE.SetActive(true);
-                m_Animetor.SetBool("isWater", true);
-                m_GameStartUI.SetActive(false);
-                m_ModeSelectUI.SetActive(true);
+                if (Input.GetButtonDown("Fire1") || Input.anyKeyDown)
+                {
+                    isStart = false;
+                    m_ButtonSE.SetActive(true);
+                    m_Animetor.SetBool("isWater", true);
+                    m_GameStartUI.SetActive(false);
+                    m_ModeSelectUI.SetActive(true);
+                }
             }
         }
     }

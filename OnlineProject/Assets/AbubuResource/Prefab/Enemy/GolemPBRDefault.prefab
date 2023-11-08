@@ -868,6 +868,8 @@ MonoBehaviour:
   m_ATCol: {fileID: 4558294615903981588}
   m_ItemPrefabs:
   - {fileID: 2718248972148250848, guid: b1571b13e888c8e44bf03179033a5692, type: 3}
+  - {fileID: 1411970768344658, guid: 2b077f22d5e15e74aaeadc0fcf712397, type: 3}
+  - {fileID: 497040793771230054, guid: 7c92a99726fc8454486685eb82beca76, type: 3}
 --- !u!114 &-3328401245331048629
 MonoBehaviour:
   m_ObjectHideFlags: 0

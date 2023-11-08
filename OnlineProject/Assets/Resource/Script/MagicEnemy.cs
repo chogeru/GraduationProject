@@ -33,6 +33,8 @@ public class MagicEnemy : MonoBehaviour
     private GameObject m_DestroySE;
     [SerializeField]
     private GameObject m_AttackSE;
+    [SerializeField]
+    private GameObject[] m_ItemPrefabs;
     private Animator m_Animator;
     PlayerMove m_PlayerMove;
 
@@ -67,6 +69,7 @@ public class MagicEnemy : MonoBehaviour
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+                ItemSpown();
                 if (m_stageWall != null)
                 {
                     m_stageWall.m_DieCount++;
@@ -107,7 +110,17 @@ public class MagicEnemy : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), m_RotationSpeed * Time.deltaTime);
         }
     }
-
+    private void ItemSpown()
+    {
+        int randam = Random.Range(0, 100);
+        if (randam < 10 && m_ItemPrefabs.Length > 0)
+        {
+            Vector3 ItemPos = transform.position;
+            ItemPos.y += 1;
+            int randamIndex = Random.Range(0, m_ItemPrefabs.Length);
+            Instantiate(m_ItemPrefabs[randamIndex], ItemPos, Quaternion.identity);
+        }
+    }
     private void Attack()
     {
         // すべてのプレイヤーオブジェクトを取得

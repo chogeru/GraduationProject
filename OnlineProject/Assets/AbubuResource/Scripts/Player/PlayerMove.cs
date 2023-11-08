@@ -65,6 +65,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     public int m_PlayerDamage;
     [SerializeField]
+    private int m_PlayerMaxDamage;
+    [SerializeField]
     private int m_DownDamage;
 
     [SerializeField]
@@ -147,6 +149,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         m_Hp = Mathf.Min(m_Hp, m_MaxHp);
+        m_PlayerDamage=Mathf.Min(m_PlayerDamage,m_PlayerMaxDamage);
         // ƒ}ƒEƒX‚ÌˆÚ“®—Ê‚ðŽæ“¾
         float mouseX = Input.GetAxis("Mouse X");
 
