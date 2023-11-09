@@ -37,7 +37,7 @@ public class SceneLoadSystem : MonoBehaviour
             m_SelectCanvas.SetActive(false);
             m_FadeIn.SetActive(true);
             m_Animator.SetBool("isSelect", true); // カメラのアニメーターでisSelectパラメータをtrueに設定してアニメーション再生を開始
-         //   SceneManager.LoadScene(m_SceneDataArray[index].sceneName); // 指定されたシーンをロードする
+
             StartCoroutine(LoadSceneWithDelay(m_SceneDataArray[index].sceneName, 3f));
         }
         else
