@@ -78,6 +78,7 @@ public class GunShot : MonoBehaviour
     }
     private void Fire()
     {
+    
         AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
         // 球のプレハブから新しい球を生成
         GameObject bullet = Instantiate(m_BulletPrefab, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
@@ -95,6 +96,7 @@ public class GunShot : MonoBehaviour
     }
     private void FireShotgun()
     {
+
         AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
 
         for (int i = 0; i < m_NumBulletsInShotgun; i++)

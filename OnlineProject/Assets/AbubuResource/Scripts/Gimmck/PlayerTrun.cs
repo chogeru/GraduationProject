@@ -7,6 +7,10 @@ public class PlayerTrun : MonoBehaviour
     [SerializeField, Header("プレイヤーオブジェクト")]
     private GameObject m_Player;
 
+    private void Start()
+    {
+        m_Player = GameObject.FindGameObjectWithTag("Player");
+    }
     // Update is called once per frame
     void Update()
     {

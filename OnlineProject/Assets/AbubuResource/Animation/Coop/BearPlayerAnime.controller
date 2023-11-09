@@ -598,61 +598,67 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: "\u5DE6\u53F3"
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: "\u524D\u5F8C"
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: "\u5F37\u5DE6\u53F3"
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: "\u5F37\u524D\u5F8C"
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Jump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: "\u653B\u6483"
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isHit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isDie
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: "\u30EA\u30ED\u30FC\u30C9"
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
+  - m_Name: isShot
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -923,7 +929,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 26e2514a04017f248b8a2e474c1d09f6, type: 3}
+  m_Motion: {fileID: 7400000, guid: 2e144c02958c4544d89c5d9c5deae644, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1561,7 +1567,7 @@ AnimatorStateMachine:
     m_Position: {x: 132, y: -168, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102011740149183394}
-    m_Position: {x: -540, y: 490, z: 0}
+    m_Position: {x: -530, y: 490, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102522817894090850}
     m_Position: {x: 350, y: -250, z: 0}
@@ -1603,7 +1609,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: 72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102625597282902592}
-    m_Position: {x: -250, y: 490, z: 0}
+    m_Position: {x: -200, y: 600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102570751679186064}
     m_Position: {x: 600, y: 192, z: 0}
@@ -1636,7 +1642,7 @@ AnimatorStateMachine:
     m_Position: {x: 120, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1515679684112352967}
-    m_Position: {x: 100, y: 430, z: 0}
+    m_Position: {x: 290, y: 450, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1618241341026179345}
     m_Position: {x: -550, y: 100, z: 0}
