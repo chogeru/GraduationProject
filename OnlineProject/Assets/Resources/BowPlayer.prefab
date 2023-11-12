@@ -39347,7 +39347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BulletPrefab: {fileID: 429543989968508660, guid: 7be22d72e3c3c044ab52f3ce7d9615ee, type: 3}
-  m_MuzzleTransform: {fileID: 3181088963003359171}
+  m_MuzzleTransforms:
+  - {fileID: 3181088963003359171}
   m_BulletSpeed: 150
   m_BulletDownSpeed: 0
   m_CoolTime: 1.5

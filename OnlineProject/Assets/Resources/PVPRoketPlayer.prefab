@@ -52391,6 +52391,7 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 120
+  m_PlayerMaxDamage: 0
   m_DownDamage: 100
   m_TPSCamera: {fileID: 4861080799080903133}
   m_TPSZoomCamera: {fileID: 4861080799621114441}
@@ -52412,7 +52413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BulletPrefab: {fileID: 1010106222350519036, guid: 0cbff1e3a3d06224da25532b416e295c, type: 3}
-  m_MuzzleTransform: {fileID: 4861080798842652932}
+  m_MuzzleTransforms:
+  - {fileID: 4861080798842652932}
   m_BulletSpeed: 25
   m_BulletDownSpeed: 20
   m_CoolTime: 1

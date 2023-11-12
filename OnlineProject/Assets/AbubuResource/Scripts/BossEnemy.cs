@@ -176,7 +176,7 @@ public class BossEnemy : MonoBehaviour
                 {
                     m_Wall.SetActive(true);
                 }
-                ScoreManager.AddScore(m_Point);
+                CoopScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
                 if (m_ActiveFloer != null)
                 {

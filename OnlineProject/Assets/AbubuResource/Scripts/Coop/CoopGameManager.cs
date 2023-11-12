@@ -13,7 +13,7 @@ public class CoopGameManager : MonoBehaviour
     [SerializeField]
     private GameObject m_BGM;
     [SerializeField]
-    private ScoreManager scoreManager;
+    private CoopScoreManager scoreManager;
     [SerializeField]
     public bool isClear=false;
     private float m_GameEndTime;

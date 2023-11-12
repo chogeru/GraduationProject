@@ -42,7 +42,7 @@ public class SceneLoadSystem : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Invalid scene index"); // インデックスが無効な場合、エラーメッセージをログに出力
+            Debug.LogError("indexエラー"); // インデックスが無効な場合、エラーメッセージをログに出力
         }
     }
     private IEnumerator LoadSceneWithDelay(string sceneName, float delay)

@@ -72,6 +72,7 @@ public class EnemyMove : MonoBehaviour
     [SerializeField]
     private GameObject m_ATCol;
 
+    private float m_HitCoolTime;
     [SerializeField, Header("ランダムに生成するプレハブ")]
     private GameObject[] m_ItemPrefabs;
     private float m_DestroyTime;
@@ -115,7 +116,7 @@ public class EnemyMove : MonoBehaviour
                 {
                     m_stageWall.m_DieCount++;
                 }
-                ScoreManager.AddScore(m_Point);
+                CoopScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
             }
 
@@ -258,11 +259,29 @@ public class EnemyMove : MonoBehaviour
             InWater();
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            IsHit();
+            HpSliderUpdate();
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.CompareTag("Water"))
         {
             OutWater();
+        }
+    }
+    private void IsHit()
+    {
+        m_HitCoolTime += Time.deltaTime;
+        if(m_HitCoolTime >0.05)
+        {
+            Hp -= m_PlayerMove.m_PlayerDamage;
+            m_HitCoolTime = 0;
         }
     }
     private void HpSliderUpdate()

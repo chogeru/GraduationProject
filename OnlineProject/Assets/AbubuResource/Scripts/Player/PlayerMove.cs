@@ -220,7 +220,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Die()
     {
-        ScoreManager.AddScore(-250);
+        CoopScoreManager.AddScore(-250);
         isinvincibility = true;
         playerReSpown.isHit = true;
         m_FadInCanvas.SetActive(true);

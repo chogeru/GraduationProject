@@ -137,7 +137,7 @@ public class WaterEnemy : MonoBehaviour
                 m_BossHoGage.SetActive(false);
                 m_AttackObj.m_KillCount++;
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-                ScoreManager.AddScore(m_Point);
+                CoopScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
             }
 

@@ -74,7 +74,7 @@ public class MagicEnemy : MonoBehaviour
                 {
                     m_stageWall.m_DieCount++;
                 }
-                ScoreManager.AddScore(m_Point);
+                CoopScoreManager.AddScore(m_Point);
                 Destroy(gameObject);
             }
 

@@ -19,7 +19,7 @@ public class GunShot : MonoBehaviour
     [SerializeField, Header("球のプレハブ")]
     private GameObject m_BulletPrefab;
     [SerializeField, Header("銃口オブジェクトのTransform")]
-    private Transform m_MuzzleTransform;
+    private Transform[] m_MuzzleTransforms;
     [SerializeField, Header("弾速")]
     private float m_BulletSpeed = 10f;
     [SerializeField, Header("ダウンスピード")]
@@ -72,25 +72,32 @@ public class GunShot : MonoBehaviour
     {
         m_BulletSlider.value = 1;
         m_CurrentAmmo = m_MaxAmmo;
-
+        if (currentGunType == GunType.FlameThrower)
+        {
+            m_FlameCol.SetActive(false);
+            m_FlameEffect.Stop();
+        }
         m_Animator = GetComponent<Animator>();
         playerMove = GetComponent<PlayerMove>();
     }
     private void Fire()
     {
-    
         AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
-        // 球のプレハブから新しい球を生成
-        GameObject bullet = Instantiate(m_BulletPrefab, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
-        GameObject particle = Instantiate(m_ParticleGun, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
-        // 球の Rigidbody コンポーネントを取得
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
-        if (bulletRigidbody != null)
+        // 各銃口から球を発射する
+        foreach (Transform muzzleTransform in m_MuzzleTransforms)
         {
-            // 球をまっすぐ前に発射する力を加える
-            bulletRigidbody.velocity = m_MuzzleTransform.forward * m_BulletSpeed;
+            GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
+            GameObject particle = Instantiate(m_ParticleGun, muzzleTransform.position, muzzleTransform.rotation);
+
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
+            if (bulletRigidbody != null)
+            {
+                bulletRigidbody.velocity = muzzleTransform.forward * m_BulletSpeed;
+            }
         }
+
         m_CurrentAmmo--;
         UpdateBulletSlider();
     }
@@ -101,21 +108,24 @@ public class GunShot : MonoBehaviour
 
         for (int i = 0; i < m_NumBulletsInShotgun; i++)
         {
-            // ショットガンの発射方向を計算する
-            Vector3 shotgunDirection = m_MuzzleTransform.forward;
-            shotgunDirection = Quaternion.Euler(0, Random.Range(-m_ShotgunSpreadAngle, m_ShotgunSpreadAngle), 0) * shotgunDirection;
-
-            // 球のプレハブから新しい球を生成
-            GameObject bullet = Instantiate(m_BulletPrefab, m_MuzzleTransform.position, Quaternion.LookRotation(shotgunDirection));
-            GameObject particle = Instantiate(m_ParticleGun, m_MuzzleTransform.position, Quaternion.LookRotation(shotgunDirection));
-
-            // 球の Rigidbody コンポーネントを取得
-            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-
-            if (bulletRigidbody != null)
+            foreach (Transform muzzleTransform in m_MuzzleTransforms)
             {
-                // ショットガンの弾速を適用する
-                bulletRigidbody.velocity = shotgunDirection * m_BulletSpeed;
+                // ショットガンの発射方向を計算する
+                Vector3 shotgunDirection = muzzleTransform.forward;
+                shotgunDirection = Quaternion.Euler(0, Random.Range(-m_ShotgunSpreadAngle, m_ShotgunSpreadAngle), 0) * shotgunDirection;
+
+                // 球のプレハブから新しい球を生成
+                GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, Quaternion.LookRotation(shotgunDirection));
+                GameObject particle = Instantiate(m_ParticleGun, muzzleTransform.position, Quaternion.LookRotation(shotgunDirection));
+
+                // 球の Rigidbody コンポーネントを取得
+                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
+                if (bulletRigidbody != null)
+                {
+                    // ショットガンの弾速を適用する
+                    bulletRigidbody.velocity = shotgunDirection * m_BulletSpeed;
+                }
             }
         }
 
@@ -133,21 +143,23 @@ public class GunShot : MonoBehaviour
         // マウスを離したらチャージショットを発射
         if (Input.GetMouseButtonUp(2) && isCharging)
         {
-            // チャージの強度に応じて弾の速度や威力を調整
-            float bulletSpeed = m_BulletSpeed + chargeTime * 10f; // チャージ時間に応じて速度を増加
-            float bulletDamage = 10f + chargeTime * 5f; // チャージ時間に応じて威力を増加
-
-            // 球のプレハブから新しい球を生成
-            GameObject bullet = Instantiate(m_BulletPrefab, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
-            // 球の Rigidbody コンポーネントを取得
-            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-
-            if (bulletRigidbody != null)
+            foreach (Transform muzzleTransform in m_MuzzleTransforms)
             {
-                // チャージの強度に応じた速度を加える
-                bulletRigidbody.velocity = m_MuzzleTransform.forward * bulletSpeed;
-            }
+                // チャージの強度に応じて弾の速度や威力を調整
+                float bulletSpeed = m_BulletSpeed + chargeTime * 10f; // チャージ時間に応じて速度を増加
+                float bulletDamage = 10f + chargeTime * 5f; // チャージ時間に応じて威力を増加
 
+                // 球のプレハブから新しい球を生成
+                GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
+                // 球の Rigidbody コンポーネントを取得
+                Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
+                if (bulletRigidbody != null)
+                {
+                    // チャージの強度に応じた速度を加える
+                    bulletRigidbody.velocity = muzzleTransform.forward * bulletSpeed;
+                }
+            }
             // チャージ関連の変数をリセット
             chargeTime = 0f;
             isCharging = false;
@@ -173,17 +185,20 @@ public class GunShot : MonoBehaviour
     }
     private void GrenadeThrow()
     {
-        AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
-        // 球のプレハブから新しい球を生成
-        GameObject bullet = Instantiate(m_BulletPrefab, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
-        GameObject particle = Instantiate(m_ParticleGun, m_MuzzleTransform.position, m_MuzzleTransform.rotation);
-        // 球の Rigidbody コンポーネントを取得
-        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-
-        if (bulletRigidbody != null)
+        foreach (Transform muzzleTransform in m_MuzzleTransforms)
         {
-            // 球をまっすぐ前に発射する力を加える
-            bulletRigidbody.velocity = m_MuzzleTransform.forward * m_BulletSpeed;
+            AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
+            // 球のプレハブから新しい球を生成
+            GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
+            GameObject particle = Instantiate(m_ParticleGun, muzzleTransform.position, muzzleTransform.rotation);
+            // 球の Rigidbody コンポーネントを取得
+            Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
+            if (bulletRigidbody != null)
+            {
+                // 球をまっすぐ前に発射する力を加える
+                bulletRigidbody.velocity = muzzleTransform.forward * m_BulletSpeed;
+            }
         }
         m_CurrentAmmo--;
         UpdateBulletSlider();
@@ -215,12 +230,12 @@ public class GunShot : MonoBehaviour
                         GrenadeThrow();
                         m_Time = 0;
                         break;
-                        
+
 
                 }
             }
         }
-        if(currentGunType== GunType.FlameThrower)
+        if (currentGunType == GunType.FlameThrower)
         {
             if (Input.GetMouseButtonUp(0))
             {
