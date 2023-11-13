@@ -11,6 +11,8 @@ public class ButtonSystem : MonoBehaviour
     private GameObject m_ServerSettingScreen;
     [SerializeField,Header("プレイヤー名＆サーバー設定画面のマップオブジェクト")]
     private GameObject m_ServerScreenMap;
+    [SerializeField, Header("プレイヤー選択画面のCanvas")]
+    private GameObject m_PlayerSelectCanvas;
     [SerializeField,Header("キャラクター選択モード")]
     private GameObject m_CaractorSelectMode;
     [SerializeField, Header("通信画面")]
@@ -32,6 +34,7 @@ public class ButtonSystem : MonoBehaviour
 
     public void CommunicationScreenAcctive()
     {
+        m_PlayerSelectCanvas.SetActive(false);
         m_CaractorSelectMode.SetActive(false);
         m_CommunicationScreen.SetActive(true);
     }

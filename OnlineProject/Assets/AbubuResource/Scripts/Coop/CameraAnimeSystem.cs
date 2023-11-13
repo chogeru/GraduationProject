@@ -19,7 +19,8 @@ public class CameraAnimeSystem : MonoBehaviour
     private GameObject m_CharactorSelectRight;
     [SerializeField, Header("キャラクター選択画面隠し")]
     private GameObject m_CharactorSelectHidden;
-    
+    [SerializeField, Header("キャラクターアニメーション用オブジェクト")]
+    private GameObject m_CharactorAnimetionObj;
     #endregion
  
     #region//キャラクター選択画面のボタン
@@ -33,6 +34,7 @@ public class CameraAnimeSystem : MonoBehaviour
 
     private void Start()
     {
+        m_CharactorAnimetionObj.SetActive(false);
         m_CharaSlectCanvas.SetActive(false);
         //キャラクターオブジェクトの初期表示設定
         m_CharactorSelectHidden.SetActive(false);
@@ -157,4 +159,10 @@ public class CameraAnimeSystem : MonoBehaviour
         yield return new WaitForSeconds(1);
         m_SelectCanvasRight.SetActive(true);
     }
+    public void RecruitingPlaye()
+    {
+        m_CharactorAnimetionObj.SetActive(true);
+        m_CameraAnimator.SetBool("isRecruitingPlayer", true);
+    }
+
 }
