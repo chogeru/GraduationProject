@@ -195,9 +195,17 @@ public class PlayerMove : MonoBehaviour
         }
         if(Input.GetMouseButton(0))
         {
-            m_PlayerAnimator.SetBool("UŒ‚", true);
+            if (Mathf.Approximately(m_HorizontalInput, 0f) && Mathf.Approximately(m_VerticalInput, 0f))
+            {
+                // isAttack ŠÖ”‚ğŒÄ‚Ño‚·
+                isAttack();
+            }
         }
         else
+        {
+            m_PlayerAnimator.SetBool("UŒ‚", false);
+        }
+        if (!Mathf.Approximately(m_HorizontalInput, 0f) || !Mathf.Approximately(m_VerticalInput, 0f))
         {
             m_PlayerAnimator.SetBool("UŒ‚", false);
         }
@@ -206,6 +214,10 @@ public class PlayerMove : MonoBehaviour
             HpUpdate();
             isRecovery = false;
         }
+    }
+    private void isAttack()
+    {
+        m_PlayerAnimator.SetBool("UŒ‚", true);
     }
     private void JumpEnd()
     {

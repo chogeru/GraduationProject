@@ -27,6 +27,8 @@ public class BossEnemy : MonoBehaviour
     [SerializeField]
     private float m_AvoidanceDistance = 2f;
     [SerializeField]
+    private float m_PlayerMinDistance=8.0f;
+    [SerializeField]
     private float m_RotationSpeed = 5f;
     [SerializeField]
     private float m_MoveSpeed = 5;
@@ -119,7 +121,10 @@ public class BossEnemy : MonoBehaviour
                 }
                 else
                 {
-                    transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
+                    if (distanceToPlayer >= m_PlayerMinDistance)
+                    {
+                        transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
+                    }
                 }
             }
         }
@@ -146,15 +151,15 @@ public class BossEnemy : MonoBehaviour
     }
     private IEnumerator AvoidObstacle()
     {
-        Vector3 avoidanceDirection = Quaternion.Euler(0, 360, 0) * transform.forward;
+        Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
         Vector3 targetPosition = transform.position + avoidanceDirection * m_AvoidanceDistance;
+        Vector3 currentVelocity = Vector3.zero;
 
-        float startTime = Time.time;
-        float duration = 1.0f;
+        float smoothTime = 0.3f; // スムーズさを調整するためのパラメータ
 
-        while (Time.time - startTime < duration)
+        while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
         {
-            transform.position = Vector3.Lerp(transform.position, targetPosition, (Time.time - startTime) / duration);
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
             yield return null;
         }
         isAvoiding = false;
@@ -166,7 +171,7 @@ public class BossEnemy : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        m_MoveSpeed = 0;
+      
         m_ATCol.SetActive(true);
         m_Animator.SetBool("isAttack", true);
         m_AttackTime = 0;
