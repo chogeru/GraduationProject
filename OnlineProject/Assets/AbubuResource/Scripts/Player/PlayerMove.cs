@@ -102,6 +102,10 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (m_PlayerAnimator.GetBool("isDie"))
+        {
+            return;
+        }
         m_Speed = Mathf.Clamp(m_Speed, 0, 20);
         // ƒvƒŒƒCƒ„[‚ÌˆÚ“®
         m_HorizontalInput = Input.GetAxis("Horizontal");

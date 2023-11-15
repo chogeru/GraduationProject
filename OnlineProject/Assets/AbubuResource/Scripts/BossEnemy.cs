@@ -64,6 +64,9 @@ public class BossEnemy : MonoBehaviour
     private float m_MaxVolume = 0.1f;
 
     private bool isDie=false;
+    [SerializeField,Header("ç≈å„ÇÃÉ{ÉXÇ©Ç«Ç§Ç©")]
+    private bool isLastBoss = false;
+    private bool isPoint = false;
 
     [SerializeField]
     private Transform m_Player;
@@ -97,10 +100,6 @@ public class BossEnemy : MonoBehaviour
     {
         m_Timer += Time.deltaTime;
 
-        if (isDie==false)
-        {
-          
-        }
         Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
@@ -170,14 +169,27 @@ public class BossEnemy : MonoBehaviour
                 {
                     m_CoopGameManager.isClear = true;
                 }
-                m_BossHoGage.SetActive(false);
-                Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+
+                m_MoveSpeed = 0;
+                m_RotationSpeed = 0;
                 if (m_Wall != null)
                 {
                     m_Wall.SetActive(true);
                 }
-                CoopScoreManager.AddScore(m_Point);
-                Destroy(gameObject);
+               
+                if(isLastBoss&&isPoint==false)
+                {
+                    CoopScoreManager.AddScore(m_Point);
+                    isPoint = true;
+                }
+                if(isLastBoss==false)
+                {
+                    m_BossHoGage.SetActive(false);
+                    Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+                    CoopScoreManager.AddScore(m_Point);
+                    Destroy(gameObject);
+              
+                }
                 if (m_ActiveFloer != null)
                 {
                     m_ActiveFloer.SetActive(true);

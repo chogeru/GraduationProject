@@ -107,7 +107,8 @@ public class EnemyMove : MonoBehaviour
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
-    
+            m_MoveSpeed = 0;
+            m_RotationSpeed = 0;
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);

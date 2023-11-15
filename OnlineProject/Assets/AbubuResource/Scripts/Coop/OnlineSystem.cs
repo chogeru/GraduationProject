@@ -29,28 +29,39 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     [SerializeField, Header("Player出現位置")]
     private Transform[] m_PlayerPos;
     [SerializeField, Header("プレイヤースポーンチェック")]
-    private bool m_PlayerSpownCheck=false;
-    [SerializeField,Header("ルーム名")]
-    private string m_RoomName="";
-    [SerializeField,Header("マッチルームの最大人数")]
+    private bool m_PlayerSpownCheck = false;
+    [SerializeField, Header("ルーム名")]
+    private string m_RoomName = "";
+    [SerializeField, Header("マッチルームの最大人数")]
     private byte m_MaxPlayers = 8;
-    [SerializeField,Header("自身のオブジェクトが生成されたかどうか")]
+    [SerializeField, Header("自身のオブジェクトが生成されたかどうか")]
     private bool m_IsSpownMyChara = false;
-    
+
     public void Awake()
     {
         MonobitNetwork.autoJoinLobby = false;
         MonobitNetwork.ConnectServer("OnlineSarver");
     }
+    private void Update()
+    {
+        SarverConnect();
+    }
     private void SarverConnect()
     {
-        if(!MonobitNetwork.isConnect)
+        if (!MonobitNetwork.isConnect)
         {
-            return;
+            if(MonobitNetwork.inRoom)
+            {
+                Debug.Log("ルーム接続済み");
+            }
+            else
+            {
+                Debug.Log("ロビーにいる");
+            }
         }
-        else if (!MonobitNetwork.inRoom)
+        else
         {
-          //  MonobitNetworkCoreJson
+            Debug.Log("未接続");
         }
     }
 }

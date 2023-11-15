@@ -8,6 +8,8 @@ public class AttackObj : MonoBehaviour
     [SerializeField]
     private Animator m_ActiveObj;
     [SerializeField]
+    private Animator m_BossWallAnimator;
+    [SerializeField]
     private GameObject m_AvtiveOBjct;
     private List<WaterEnemy> m_Boss = new List<WaterEnemy>();
     [SerializeField]
@@ -25,7 +27,7 @@ public class AttackObj : MonoBehaviour
         {
           m_SpownWall.SetActive(true);
             m_ActiveObj.SetBool("IsActive", true);
-            Destroy(m_BossWall);
+            m_BossWallAnimator.SetBool("isBossDie", true);
         }
     }
 }
