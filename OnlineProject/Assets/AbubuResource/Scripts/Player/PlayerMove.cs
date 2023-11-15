@@ -156,7 +156,7 @@ public class PlayerMove : MonoBehaviour
         m_PlayerDamage=Mathf.Min(m_PlayerDamage,m_PlayerMaxDamage);
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Mouse X");
-
+        
         // オブジェクトを回転させる
         // Y軸を基準に水平方向に回転
         transform.Rotate(Vector3.up, mouseX * m_Sensitivity, Space.World);
@@ -193,13 +193,24 @@ public class PlayerMove : MonoBehaviour
             m_CameraAnimator.SetBool("isZoom", false);
             m_TPSCameAnimator.SetBool("isTPS", true);
         }
+        if(Input.GetMouseButton(0))
+        {
+            m_PlayerAnimator.SetBool("攻撃", true);
+        }
+        else
+        {
+            m_PlayerAnimator.SetBool("攻撃", false);
+        }
         if (isRecovery)
         {
             HpUpdate();
             isRecovery = false;
         }
     }
-
+    private void JumpEnd()
+    {
+        m_PlayerAnimator.SetBool("Jump", false);
+    }
     public void TakeDamage(int damageAmount)
     {
         if (isinvincibility==false)

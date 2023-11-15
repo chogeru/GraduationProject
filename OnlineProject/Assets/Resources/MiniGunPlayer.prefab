@@ -22941,7 +22941,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4133a0437b70d3d45961249cfb0d0239, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -22991,7 +22991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MoveSpeed: 5
-  m_JumpForce: 50
+  m_JumpForce: 3000
   m_Speed: 10
   m_RunSpeed: 20
   m_DownSpeed: 0

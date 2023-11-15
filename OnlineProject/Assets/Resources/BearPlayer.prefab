@@ -5489,7 +5489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MoveSpeed: 15
-  m_JumpForce: 50
+  m_JumpForce: 3000
   m_Speed: 10
   m_RunSpeed: 20
   m_DownSpeed: 0
