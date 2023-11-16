@@ -522,8 +522,9 @@ MonoBehaviour:
   m_WallTag: Wall
   m_MoveSpeed: 5
   m_DownSpeed: 3
-  m_DetectionDistance: 30
+  m_DetectionDistance: 45
   m_AvoidanceDistance: 0
+  m_PlayerMinDistance: 2.2
   m_DestroyDistance: 100
   m_HpBarAnimeDistance: 23
   m_AttackRange: 4

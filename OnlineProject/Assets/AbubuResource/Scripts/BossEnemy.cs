@@ -87,6 +87,7 @@ public class BossEnemy : MonoBehaviour
     void Start()
     {
         m_Hp = m_MaxHp;
+        mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
         m_Wall.SetActive(false);
@@ -132,6 +133,7 @@ public class BossEnemy : MonoBehaviour
         {
             isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
+            m_BossHoGage.SetActive(false);
 
         }
         m_AttackTime += Time.deltaTime;
@@ -186,7 +188,6 @@ public class BossEnemy : MonoBehaviour
     // アニメーションイベントから呼び出される関数
     public void EndAttackAnimation()
     {
-        m_MoveSpeed = m_DefoltSpeed;
         m_Animator.SetBool("isAttack", false);
         m_ATCol.SetActive(false);
         m_AttackSE.SetActive(false);

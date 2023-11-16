@@ -1341,18 +1341,27 @@ MonoBehaviour:
   m_MaxHp: 500
   m_Hp: 500
   Damage: 0
-  m_DetectionDistance: 25
+  m_Point: 0
+  m_DetectionDistance: 30
   m_AvoidanceDistance: 2
+  m_PlayerMinDistance: 0
   m_RotationSpeed: 5
+  m_MoveSpeed: 5
   m_AttackRange: 5
   m_AttackTime: 0
   m_ATCoolTime: 1
   m_DestroySE: {fileID: 0}
   m_DestroyEffect: {fileID: 4593184484909914552, guid: 2e1e9506f5904a64b81744324fb7cd50, type: 3}
   m_ActiveFloer: {fileID: 0}
+  m_BossHoGage: {fileID: 0}
+  mHpSlider: {fileID: 0}
   IdleBGM: {fileID: 0}
   BossBGM: {fileID: 1356973441}
+  isLastBoss: 0
   m_Player: {fileID: 0}
+  m_CoopGameManager: {fileID: 0}
+  m_Animator: {fileID: 0}
+  m_Rigidbody: {fileID: 0}
   m_AttackSE: {fileID: 501198605290836019}
   m_ATCol: {fileID: 8587163275400764404}
   m_Wall: {fileID: 0}

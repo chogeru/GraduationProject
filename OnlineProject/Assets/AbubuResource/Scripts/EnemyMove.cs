@@ -17,10 +17,12 @@ public class EnemyMove : MonoBehaviour
     private float m_DetectionDistance = 30.0f;
     [SerializeField]
     private float m_AvoidanceDistance = 0f;
+    [SerializeField, Header("Playerとの最小距離間隔")]
+    private float m_PlayerMinDistance;
     [SerializeField]
     private float m_DestroyDistance = 100.0f;
     [SerializeField]
-    private float m_HpBarAnimeDistance=10f;
+    private float m_HpBarAnimeDistance = 10f;
     [SerializeField, Header("攻撃距離")]
     private float m_AttackRange = 4;
     [SerializeField]
@@ -103,7 +105,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (Hp <= 0)
         {
-            isAlive = false; 
+            isAlive = false;
             m_Animator.SetBool("isDie", true);
             m_DestroyTime += Time.deltaTime;
             m_DestroySE.SetActive(true);
@@ -131,33 +133,36 @@ public class EnemyMove : MonoBehaviour
             return;
         }
         if (distanceToPlayer <= m_DetectionDistance)
+        {
+            if (!isAvoiding)
             {
-                if (!isAvoiding)
-                {
-                  
-                    m_IdleAicon.SetActive(false);
-                    m_Animator.SetBool("isBattle", true);
-                    Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
 
-                    if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
-                    {
-                        isAvoiding = true;
-                        StartCoroutine(AvoidObstacle());
-                    }
-                    else
+                m_IdleAicon.SetActive(false);
+                m_Animator.SetBool("isBattle", true);
+                Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
+
+                if (Physics.Raycast(transform.position, transform.forward, m_AvoidanceDistance))
+                {
+                    isAvoiding = true;
+                    StartCoroutine(AvoidObstacle());
+                }
+                else
+                {
+                    if (distanceToPlayer >= m_PlayerMinDistance)
                     {
                         transform.Translate(Vector3.forward * m_MoveSpeed * Time.deltaTime);
                     }
                 }
             }
-            else
-            {
-                isAvoiding = false;
-                m_Animator.SetBool("isBattle", false);
-                m_IdleAicon.SetActive(true);
-            }
-        if(distanceToPlayer<=m_HpBarAnimeDistance)
+        }
+        else
+        {
+            isAvoiding = false;
+            m_Animator.SetBool("isBattle", false);
+            m_IdleAicon.SetActive(true);
+        }
+        if (distanceToPlayer <= m_HpBarAnimeDistance)
         {
             m_HpBarAnimator.SetBool("isActiveBar", true);
         }
@@ -165,26 +170,26 @@ public class EnemyMove : MonoBehaviour
         {
             m_HpBarAnimator.SetBool("isActiveBar", false);
         }
-            m_AttackTime += Time.deltaTime;
-            // プレイヤーとの距離が100メートル以上になったら自身を破壊
-            if (distanceToPlayer > m_DestroyDistance)
-            {
-                Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
-            // プレイヤーが一定の距離内にいる場合
-            if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
-            {
-                AttackPlayer();
-            }
-            if (distanceToPlayer > m_AttackRange)
-            {
-                m_ATCol.SetActive(false);
-                m_AttackSE.SetActive(false);
-                m_AttackTime = 0;
-                m_Animator.SetBool("isAttack", false);
-            }
-    
+        m_AttackTime += Time.deltaTime;
+        // プレイヤーとの距離が100メートル以上になったら自身を破壊
+        if (distanceToPlayer > m_DestroyDistance)
+        {
+            Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+        // プレイヤーが一定の距離内にいる場合
+        if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
+        {
+            AttackPlayer();
+        }
+        if (distanceToPlayer > m_AttackRange)
+        {
+            m_ATCol.SetActive(false);
+            m_AttackSE.SetActive(false);
+            m_AttackTime = 0;
+            m_Animator.SetBool("isAttack", false);
+        }
+
     }
 
     private IEnumerator AvoidObstacle()
@@ -218,9 +223,9 @@ public class EnemyMove : MonoBehaviour
     private void ItemSpown()
     {
         int randam = Random.Range(0, 100);
-        if(randam<15&& m_ItemPrefabs.Length>0)
+        if (randam < 15 && m_ItemPrefabs.Length > 0)
         {
-           Vector3 ItemPos=transform.position;
+            Vector3 ItemPos = transform.position;
             ItemPos.y += 1;
             int randamIndex = Random.Range(0, m_ItemPrefabs.Length);
             Instantiate(m_ItemPrefabs[randamIndex], ItemPos, Quaternion.identity);
@@ -255,7 +260,7 @@ public class EnemyMove : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water"))
         {
             InWater();
         }
@@ -266,12 +271,13 @@ public class EnemyMove : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             IsHit();
+            m_Animator.SetBool("isHit", true);
             HpSliderUpdate();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water"))
         {
             OutWater();
         }
@@ -279,7 +285,7 @@ public class EnemyMove : MonoBehaviour
     private void IsHit()
     {
         m_HitCoolTime += Time.deltaTime;
-        if(m_HitCoolTime >0.05)
+        if (m_HitCoolTime > 0.05)
         {
             Hp -= m_PlayerMove.m_PlayerDamage;
             m_HitCoolTime = 0;
@@ -287,7 +293,7 @@ public class EnemyMove : MonoBehaviour
     }
     private void HpSliderUpdate()
     {
-        mHpSlider.value=(float)Hp/(float)m_MaxHp;
+        mHpSlider.value = (float)Hp / (float)m_MaxHp;
     }
     private void InWater()
     {

@@ -444,6 +444,7 @@ MonoBehaviour:
   m_DownSpeed: 0
   m_DetectionDistance: 30
   m_AvoidanceDistance: 0
+  m_PlayerMinDistance: 2.3
   m_DestroyDistance: 100
   m_HpBarAnimeDistance: 23
   m_AttackRange: 4

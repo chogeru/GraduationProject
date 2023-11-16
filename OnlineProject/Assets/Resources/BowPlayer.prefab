@@ -39351,7 +39351,7 @@ MonoBehaviour:
   - {fileID: 3181088963003359171}
   m_BulletSpeed: 150
   m_BulletDownSpeed: 0
-  m_CoolTime: 1.5
+  m_CoolTime: 1
   m_Animator: {fileID: 0}
   m_ReloadTime: 3
   m_ReloadCoolTime: 0
@@ -39362,7 +39362,7 @@ MonoBehaviour:
   ChargeEffect: {fileID: 0}
   m_FlameEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
-  m_MaxAmmo: 5
+  m_MaxAmmo: 8
   m_CurrentAmmo: 0
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6
