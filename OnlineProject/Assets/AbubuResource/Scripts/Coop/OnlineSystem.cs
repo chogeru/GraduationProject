@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class OnlineSystem : MonobitEngine.MonoBehaviour
 {
     [SerializeField, Header("チャット用テキスト")]
     private Text m_ChatText;
+    [SerializeField,Header("ルーム作成用テキスト")]
+    private Text m_RoomNameText;
     [SerializeField, Header("チャットメッセージリスト")]
     private List<string> m_Chat = new List<string>();
     [SerializeField, Header("ログイン情報")]
@@ -39,8 +41,9 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
 
     public void Awake()
     {
-        MonobitNetwork.autoJoinLobby = false;
-        MonobitNetwork.ConnectServer("OnlineSarver");
+        //最初に自動でロビー作成
+        MonobitEngine.MonobitNetwork.autoJoinLobby = true;
+        MonobitNetwork.ConnectServer("OnlineServer_v1.0");
     }
     private void Update()
     {
@@ -48,20 +51,25 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     }
     private void SarverConnect()
     {
-        if (!MonobitNetwork.isConnect)
+        if (MonobitNetwork.isConnect)
         {
-            if(MonobitNetwork.inRoom)
+            if(!MonobitNetwork.inRoom)
             {
-                Debug.Log("ルーム接続済み");
-            }
-            else
-            {
-                Debug.Log("ロビーにいる");
+                if (Input.GetKey(KeyCode.I))
+                {
+                    MonobitEngine.MonobitNetwork.CreateRoom(m_RoomName);
+                    Debug.Log("ルーム作成");
+                }
+                if(Input.GetKey(KeyCode.R))
+                {
+                    MonobitEngine.MonobitNetwork.JoinRoom(m_RoomName);
+
+                }
             }
         }
-        else
-        {
-            Debug.Log("未接続");
-        }
+    }
+    private void CreateRoom()
+    {
+        m_RoomNameText = GetComponent<Text>();
     }
 }

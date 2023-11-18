@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7008369480471645858}
   - component: {fileID: 7008369480471645857}
   - component: {fileID: 3812379210718709528}
+  - component: {fileID: 842100927504030941}
   m_Layer: 0
   m_Name: SpownPoint
   m_TagString: Untagged
@@ -56,7 +57,6 @@ MonoBehaviour:
   m_SpawnTimer: 0
   m_PlayerTransform: {fileID: 0}
   m_SpownAudio: {fileID: 8300000, guid: 44f06f87ace5d0f419cb69c4de612304, type: 3}
-  m_Collider: {fileID: 3812379210718709528}
 --- !u!136 &3812379210718709528
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -71,6 +71,31 @@ CapsuleCollider:
   m_Height: 3.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &842100927504030941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7008369480471645859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277584237ad31144584195f79af03cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewIdField: 0
+  m_IsDontDestroyOnRoom: 0
+  m_IsInstantiated: 0
+  m_ObjectStreamCheckTime: 0
+  m_ObjectStreamSendBytes: 
+  m_IsEncrypt: 1
+  InternalObservedComponents: []
+  ObservedComponents: []
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  ownershipTransfer: 0
+  compressedStream: 0
 --- !u!1 &7008369480936105886
 GameObject:
   m_ObjectHideFlags: 0

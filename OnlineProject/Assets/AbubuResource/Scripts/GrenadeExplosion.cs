@@ -12,15 +12,16 @@ public class GrenadeExplosion : MonoBehaviour
     private GameObject m_ExplosionEffect;
     private void Start()
     {
-        m_ExplosionCol.SetActive(false);
+       
     }
     private void Update()
     {
         m_ExplosionTime += Time.deltaTime;
         if(m_ExplosionTime>2)
         {
-            m_ExplosionCol.SetActive(true);
+           
             Instantiate(m_ExplosionEffect, transform.position, Quaternion.identity);
+            Instantiate(m_ExplosionCol, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

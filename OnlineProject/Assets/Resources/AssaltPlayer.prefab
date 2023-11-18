@@ -11905,6 +11905,9 @@ GameObject:
   - component: {fileID: 5876095414044877658}
   - component: {fileID: 6706790713657818388}
   - component: {fileID: 4887098505907573854}
+  - component: {fileID: 8682403666562453813}
+  - component: {fileID: 5459186407486897597}
+  - component: {fileID: 1982025023834254652}
   m_Layer: 0
   m_Name: AssaltPlayer
   m_TagString: Player
@@ -12082,6 +12085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BulletPrefab: {fileID: 8979071704063216447, guid: 4b1524df77eed8d4aacaf8cfbdeb010a, type: 3}
+  m_BulletName: "\u9283\u5F3E"
   m_MuzzleTransforms:
   - {fileID: 6706790713241282470}
   m_BulletSpeed: 100
@@ -12150,6 +12154,111 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WaterEffect: {fileID: 1214734191065541799}
+--- !u!114 &8682403666562453813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462211357302921691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277584237ad31144584195f79af03cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_viewIdField: 0
+  m_IsDontDestroyOnRoom: 0
+  m_IsInstantiated: 0
+  m_ObjectStreamCheckTime: 0
+  m_ObjectStreamSendBytes: 
+  m_IsEncrypt: 1
+  InternalObservedComponents: []
+  ObservedComponents:
+  - {fileID: 5459186407486897597}
+  - {fileID: 1982025023834254652}
+  ownerId: 0
+  group: 0
+  prefixBackup: -1
+  ownershipTransfer: 0
+  compressedStream: 0
+--- !u!114 &5459186407486897597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462211357302921691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e43095d0b31c5c4da5d336507b33fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SyncPosition:
+    m_EnableSync: 1
+    m_EnableInterpolate: 1
+    m_LerpRate: 10
+  m_SyncRotation:
+    m_EnableSync: 1
+    m_EnableInterpolate: 0
+    m_LerpRate: 5
+  m_SyncScale:
+    m_EnableSync: 0
+    m_EnableInterpolate: 0
+    m_LerpRate: 1
+  m_SnapEnabled: 1
+  m_SnapThreshold: 3
+--- !u!114 &1982025023834254652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462211357302921691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a212333f0fad40b429ea9c65549ab6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 5462211357302921690}
+  m_Controller: {fileID: 9100000, guid: 67795aa375b7eca48ba2293f54238e5a, type: 2}
+  m_SyncAnimLayers:
+  - m_Index: 0
+    m_Name: Base Layer
+    m_EnableSync: 1
+  m_SyncAnimParams:
+  - m_Type: 4
+    m_Name: Run
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: Jump
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u653B\u6483"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isHit
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isDie
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u30EA\u30ED\u30FC\u30C9"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isShot
+    m_EnableSync: 1
 --- !u!1 &5462211357305430621
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
+    MonobitEngine.MonobitView m_MonobitView = null;
     [SerializeField, Header("移動速度")]
     public float m_MoveSpeed = 10f;
     [SerializeField, Header("ジャンプ力")]
@@ -84,6 +85,24 @@ public class PlayerMove : MonoBehaviour
     private AudioSource m_WaterSE;
     [SerializeField]
     private ParticleSystem m_WaterMoveEffect;
+    private void Awake()
+    {
+        // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+        if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+        {
+            m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+        }
+        // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+        else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+        {
+            m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+        }
+        // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+        else
+        {
+            m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+        }
+    }
     private void Start()
     {
 
@@ -102,6 +121,10 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(!m_MonobitView.isMine)
+        {
+            return;
+        }
         if (m_PlayerAnimator.GetBool("isDie"))
         {
             return;
@@ -152,6 +175,10 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        if (!m_MonobitView.isMine)
+        {
+            return;
+        }
         m_Hp = Mathf.Min(m_Hp, m_MaxHp);
         m_PlayerDamage=Mathf.Min(m_PlayerDamage,m_PlayerMaxDamage);
         // マウスの移動量を取得

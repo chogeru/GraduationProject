@@ -1,8 +1,9 @@
+using MonobitEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraRaycast : MonoBehaviour
+public class CameraRaycast : MonobitEngine.MunMonoBehaviour
 {
     [SerializeField, Header("パーティクルプレハブ")]
     public GameObject m_ParticlePrefab; // パーティクルのプレハブをインスペクタから割り当てる
@@ -16,6 +17,8 @@ public class CameraRaycast : MonoBehaviour
     public string m_LastHitObjectName; // 最後にヒットしたオブジェクトの名前を保持する変数
     [SerializeField]
     public Vector3 m_SpownPoint;
+    [SerializeField]
+    private GameObject playerObject = null;
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -53,11 +56,19 @@ public class CameraRaycast : MonoBehaviour
     public void SpownPlayer()
     {
         // lastHitObjectName に保存された名前を持つプレイヤープレハブを生成
-        GameObject playerPrefabToSpawn = Resources.Load<GameObject>(m_LastHitObjectName);
-        if (playerPrefabToSpawn != null)
+        // GameObject playerPrefabToSpawn = Resources.Load<GameObject>(m_LastHitObjectName);
+        //  if (playerPrefabToSpawn != null)
+        //  {
+        if (playerObject == null)
         {
             // スポーンポイントにプレイヤーを生成
-            Instantiate(playerPrefabToSpawn, m_SpownPoint, Quaternion.identity);
+            playerObject=MonobitEngine.MonobitNetwork.Instantiate(
+                //playerPrefabToSpawn
+                m_LastHitObjectName
+                , m_SpownPoint
+                , Quaternion.identity
+                , 0);
+            //   }
         }
     }
 }

@@ -9,6 +9,8 @@ public class EnemySpown : MonoBehaviour
     [SerializeField]
     private GameObject[] m_EnemyPrefabs; // スポーンするEnemyのプレハブの配列
     [SerializeField]
+    private string[] m_EnemyName;
+    [SerializeField]
     private float m_SpawnDistanceThreshold = 10f; // スポーンをトリガーする距離の閾値
     [SerializeField]
     private float m_MinSpawnInterval = 3f; // 最小スポーン間隔]
@@ -32,6 +34,7 @@ public class EnemySpown : MonoBehaviour
 
     private void Update()
     {
+  
         // スポーンポイントからプレイヤーまでの距離を計算します
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);
 
@@ -54,10 +57,11 @@ public class EnemySpown : MonoBehaviour
                 );
 
                 // ランダムな敵プレハブを選択します
-                GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
-
+               // GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
+                string randomEnemy = m_EnemyName[Random.Range(0, m_EnemyName.Length)];
+                MonobitEngine.MonobitNetwork.Instantiate(randomEnemy, randomSpawnPosition,Quaternion.identity,0);
                 // ランダムな位置に敵をスポーンさせます
-                Instantiate(randomEnemyPrefab, randomSpawnPosition, Quaternion.identity);
+               // Instantiate(randomEnemyPrefab, randomSpawnPosition, Quaternion.identity);
                 AudioSource.PlayClipAtPoint(m_SpownAudio, randomSpawnPosition, m_Volume);
 
                 // パーティクルエフェクトを再生します
