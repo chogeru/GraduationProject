@@ -175,6 +175,7 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+
         if (!m_MonobitView.isMine)
         {
             return;

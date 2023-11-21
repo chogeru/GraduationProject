@@ -8,5 +8,7 @@ public class ParticleCollision : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         other.GetComponent<EnemyMove>().ParticleDamage();
+        other.GetComponent<BossEnemy>().ParticleDamage();
+        other.GetComponent<WaterEnemy>().ParticleDamage();
     }
 }

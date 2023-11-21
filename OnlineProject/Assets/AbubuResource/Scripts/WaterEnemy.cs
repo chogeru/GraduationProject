@@ -54,7 +54,7 @@ public class WaterEnemy : MonoBehaviour
     private float m_InitialVolumeBoss;
     private float m_Timer;
     private float m_MaxVolume = 0.1f;
-
+    private float m_HitCoolTime;
 
     [SerializeField]
     private Transform m_Player;
@@ -81,6 +81,9 @@ public class WaterEnemy : MonoBehaviour
         m_InitialVolumeBoss = BossBGM.volume;
         BossBGM.gameObject.SetActive(false);
         m_Hp = m_MaxHp;
+        mHpSlider.value = 1;
+     
+
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -98,7 +101,7 @@ public class WaterEnemy : MonoBehaviour
 
         if (distanceToPlayer <= m_DetectionDistance)
         {
-            
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
             m_BossHoGage.SetActive(true);
             m_Animator.SetBool("isBattle", true);
             if (m_Hp<=0)
@@ -166,7 +169,7 @@ public class WaterEnemy : MonoBehaviour
     }
     private void ShootRandomProjectile()
     {
-        // 3つの弾のうちランダムに1つを選ぶ
+        // 2つの弾のうちランダムに1つを選ぶ
         int randomProjectileIndex = Random.Range(0, 2);
        
         // ランダムな弾を生成し、プレイヤーに向かって発射する処理を実装する
@@ -220,6 +223,30 @@ public class WaterEnemy : MonoBehaviour
             //AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             m_Hp -= 40;
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            // AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            IsHit();
+            m_Animator.SetBool("isHit", true);
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        }
+    }
+       public void ParticleDamage()
+    {
+        m_Hp -= 500;
+        mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+    }
+    private void IsHit()
+    {
+        m_HitCoolTime += Time.deltaTime;
+        if (m_HitCoolTime > 0.05)
+        {
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
+            m_HitCoolTime = 0;
         }
     }
 }

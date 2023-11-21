@@ -144,7 +144,7 @@ public class MagicEnemy : MonoBehaviour
         { 
             m_Animator.SetBool("isAttack", true);
             Vector3 preSpawnPosition = closestPlayer.transform.position;
-            preSpawnPosition.y += 1.5f; // プレイヤーの位置から0.5の高さに設定
+            preSpawnPosition.y += 1.5f; // プレイヤーの位置から1.5の高さに設定
 
             // 事前エフェクトを生成し、そのインスタンスを変数に保存する
             m_PreAttackEffectInstance = Instantiate(m_PreAttackEffectPrefab, preSpawnPosition, Quaternion.identity);

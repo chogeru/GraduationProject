@@ -50,7 +50,8 @@ public class GunShot : MonobitEngine.MonoBehaviour
     private ParticleSystem ChargeEffect;
     [SerializeField]
     private ParticleSystem m_FlameEffect;
-
+    [SerializeField]
+    private GameObject m_RailChargEffect;
     [SerializeField]
     private Slider ChargeBar; // Slider型の
 
@@ -120,6 +121,7 @@ public class GunShot : MonobitEngine.MonoBehaviour
         m_CurrentAmmo--;
         UpdateBulletSlider();
     }
+    [MunRPC]
     private void FireShotgun()
     {
 
@@ -151,17 +153,17 @@ public class GunShot : MonobitEngine.MonoBehaviour
         m_CurrentAmmo -= m_NumBulletsInShotgun; // ショットガンでは1回の発射で複数の弾を消費する
         UpdateBulletSlider();
     }
+    [MunRPC]
     private void ChargeShot()
     {
         // マウスが押されている間チャージを行う
-        if (Input.GetMouseButton(0))
-        {
+      
             chargeTime += Time.deltaTime; // チャージ時間を加算
-        }
+        m_RailChargEffect.SetActive(true);
 
         // マウスを離したらチャージショットを発射
-        if (Input.GetMouseButtonUp(2) && isCharging)
-        {
+        if(chargeTime>1.3)
+        { 
             foreach (Transform muzzleTransform in m_MuzzleTransforms)
             {
                 // チャージの強度に応じて弾の速度や威力を調整
@@ -172,7 +174,7 @@ public class GunShot : MonobitEngine.MonoBehaviour
                 GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
                 // 球の Rigidbody コンポーネントを取得
                 Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
-
+                m_RailChargEffect.SetActive(false);
                 if (bulletRigidbody != null)
                 {
                     // チャージの強度に応じた速度を加える
@@ -197,11 +199,13 @@ public class GunShot : MonobitEngine.MonoBehaviour
             // ChargeBar.Show();
         }
     }
+    [MunRPC]
     private void FlameFire()
     {
         m_FlameEffect.Play();
         m_FlameCol.SetActive(true);
     }
+    [MunRPC]
     private void GrenadeThrow()
     {
         foreach (Transform muzzleTransform in m_MuzzleTransforms)
@@ -224,6 +228,10 @@ public class GunShot : MonobitEngine.MonoBehaviour
     }
     private void Update()
     {
+        if (!m_MonobitView.isMine)
+        {
+            return;
+        }
         m_Time += Time.deltaTime;
         if (isReload == false)
         {
@@ -237,17 +245,17 @@ public class GunShot : MonobitEngine.MonoBehaviour
                         m_Time = 0;
                         break;
                     case GunType.Shotgun:
-                        FireShotgun();
+                        m_MonobitView.RPC("FireShotgun",MonobitEngine.MonobitTargets.All,null);
                         m_Time = 0;
                         break;
                     case GunType.RailGun:
-                        ChargeShot();
+                        m_MonobitView.RPC("ChargeShot", MonobitEngine.MonobitTargets.All, null);  
                         break;
                     case GunType.FlameThrower:
-                        FlameFire();
+                        m_MonobitView.RPC("FlameFire", MonobitEngine.MonobitTargets.All, null);
                         break;
                     case GunType.Grenade:
-                        GrenadeThrow();
+                        m_MonobitView.RPC("GrenadeThrow", MonobitEngine.MonobitTargets.All, null);
                         m_Time = 0;
                         break;
 
@@ -263,6 +271,20 @@ public class GunShot : MonobitEngine.MonoBehaviour
                 m_FlameEffect.Stop();
             }
         }
+        if(currentGunType==GunType.RailGun)
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                m_RailChargEffect.SetActive(false);
+            }
+
+        }
+        if (m_Animator.GetBool("Run"))
+        {
+            m_FlameCol.SetActive(false);
+            m_FlameEffect.Stop();
+        }
+        
         if (m_CurrentAmmo <= 0)
         {
             Reload();

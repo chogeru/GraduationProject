@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerReSpown : MonoBehaviour
 {
+    MonobitEngine.MonobitView m_MonobitView = null;
+
     [SerializeField]
     private GameObject m_ReSpownEffect;
     [SerializeField]
@@ -22,6 +24,24 @@ public class PlayerReSpown : MonoBehaviour
 
     private float m_Time;
     public bool isHit=false;
+    void Awake()
+    {
+        // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+        if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+        {
+            m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+        }
+        // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+        else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+        {
+            m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+        }
+        // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+        else
+        {
+            m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+        }
+    }
     void Start()
     {
         playerMove = GetComponent<PlayerMove>();
@@ -32,7 +52,10 @@ public class PlayerReSpown : MonoBehaviour
     }
     private void Update()
     {
-       
+        if (!m_MonobitView.isMine)
+        {
+            return;
+        }
         if (isHit==true)
         {
             m_Time += Time.deltaTime;

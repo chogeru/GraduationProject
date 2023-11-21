@@ -63,7 +63,7 @@ public class BossEnemy : MonoBehaviour
     private float m_InitialVolumeBoss;
     private float m_Timer;
     private float m_MaxVolume = 0.1f;
-
+    private float m_HitCoolTime;
     private bool isDie = false;
     [SerializeField, Header("ÅŒã‚Ìƒ{ƒX‚©‚Ç‚¤‚©")]
     private bool isLastBoss = false;
@@ -133,7 +133,7 @@ public class BossEnemy : MonoBehaviour
         {
             isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
-            m_BossHoGage.SetActive(false);
+          // m_BossHoGage.SetActive(false);
 
         }
         m_AttackTime += Time.deltaTime;
@@ -262,5 +262,28 @@ public class BossEnemy : MonoBehaviour
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
     }
-
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+           // AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            IsHit();
+            m_Animator.SetBool("isHit", true);
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        }
+    }
+    public void ParticleDamage()
+    {
+        m_Hp -= 500;
+        mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+    }
+    private void IsHit()
+    {
+        m_HitCoolTime += Time.deltaTime;
+        if (m_HitCoolTime > 0.05)
+        {
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
+            m_HitCoolTime = 0;
+        }
+    }
 }

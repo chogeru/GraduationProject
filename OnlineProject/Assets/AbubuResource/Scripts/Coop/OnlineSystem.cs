@@ -2,74 +2,93 @@ using MonobitEngine;
 using mun;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 public class OnlineSystem : MonobitEngine.MonoBehaviour
 {
-    [SerializeField, Header("チャット用テキスト")]
-    private Text m_ChatText;
+
     [SerializeField,Header("ルーム作成用テキスト")]
-    private Text m_RoomNameText;
-    [SerializeField, Header("チャットメッセージリスト")]
-    private List<string> m_Chat = new List<string>();
-    [SerializeField, Header("ログイン情報")]
-    private Text m_LogineText;
-    [SerializeField, Header("メッセージ")]
-    private Text m_CahtMessage;
-    [SerializeField, Header("プレイヤー名")]
-    private Text m_PlayerName;
+    private Text m_CreateRoomNameText;
+    [SerializeField, Header("ルームパスワード")]
+    private Text m_PassWordText;
+    [SerializeField, Header("ジョインルーム名テキスト")]
+    private Text m_JoinRoomNameText;
+    [SerializeField,Header("ジョインルームパスワード")]
+    private Text m_JoinRoomPasWordText;
 
     [SerializeField, Header("名前入力UI")]
-    private GameObject m_NameUI;
-    [SerializeField, Header("ルーム入出用UI")]
-    private GameObject m_RoomUI;
+    public List<Text> playerListTexts;
 
-    [SerializeField, Header("出現用プレイヤー")]
-    private string m_PlayerSpwn = "";
-    [SerializeField, Header("Player出現位置")]
-    private Transform[] m_PlayerPos;
-    [SerializeField, Header("プレイヤースポーンチェック")]
-    private bool m_PlayerSpownCheck = false;
-    [SerializeField, Header("ルーム名")]
-    private string m_RoomName = "";
-    [SerializeField, Header("マッチルームの最大人数")]
-    private byte m_MaxPlayers = 8;
-    [SerializeField, Header("自身のオブジェクトが生成されたかどうか")]
-    private bool m_IsSpownMyChara = false;
-
+    public InputField playerNameInput;
+   
     public void Awake()
     {
         //最初に自動でロビー作成
         MonobitEngine.MonobitNetwork.autoJoinLobby = true;
         MonobitNetwork.ConnectServer("OnlineServer_v1.0");
     }
+
     private void Update()
     {
         SarverConnect();
+   
     }
     private void SarverConnect()
     {
-        if (MonobitNetwork.isConnect)
+        if (MonobitEngine.MonobitNetwork.isConnect)
         {
-            if(!MonobitNetwork.inRoom)
-            {
-                if (Input.GetKey(KeyCode.I))
-                {
-                    MonobitEngine.MonobitNetwork.CreateRoom(m_RoomName);
-                    Debug.Log("ルーム作成");
-                }
-                if(Input.GetKey(KeyCode.R))
-                {
-                    MonobitEngine.MonobitNetwork.JoinRoom(m_RoomName);
-
-                }
-            }
+            Debug.Log("connected");
+        }
+        else
+        {
+            Debug.Log("disconnected");
         }
     }
-    private void CreateRoom()
+ 
+    public void CreateRoom()
     {
-        m_RoomNameText = GetComponent<Text>();
+        string roomName = m_CreateRoomNameText.text;
+        string roomPassword=m_PassWordText.text;
+        MonobitEngine.RoomSettings roomsetting = new MonobitEngine.RoomSettings();
+        roomsetting.maxPlayers = 4;
+        roomsetting.isVisible = true;
+        roomsetting.isOpen = true;
+
+        MonobitEngine.MonobitNetwork.CreateRoom(roomName+roomPassword);
+        Debug.Log(roomName+roomPassword);
+
+    }
+    public void JoinRoom()
+    {
+        string JoinRoomName=m_JoinRoomNameText.text;
+        string JoinRoomPasword=m_JoinRoomPasWordText.text;
+
+        MonobitEngine.MonobitNetwork.JoinRoom(JoinRoomName+JoinRoomPasword);
+        Debug.Log(JoinRoomName+JoinRoomPasword);
+        
+    }
+    public void OfflineMode()
+    {
+        if (!MonobitNetwork.inRoom)
+        {
+            MonobitNetwork.LeaveRoom();
+            MonobitEngine.MonobitNetwork.DisconnectServer();
+
+        }
+    }
+    public void OnDisconnectedFromServer()
+    { 
+        SceneManager.LoadScene("Title");
+
+    }
+    public void SetPlayerName()
+    {
+        // プレイヤーがゲームに参加したら、名前を設定して保存する
+        string playerName = playerNameInput.text;
+        MonobitNetwork.playerName = playerName;
+        Debug.Log(MonobitNetwork.playerName);
     }
 }

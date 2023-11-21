@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 866318651, guid: 4c5bb865b30ede2459e1b57d5c148ad3, type: 3}
+  m_Name: MonobitAuthenticateCode
+  m_EditorClassIdentifier: 
+  saveAuthID: aW4o89Sctb2XUlK1zSU3bOdpbyRtoiUQH8v6b5zPyebL1IgjzizFgG3TUjHjpGYDXd2gT1KWiPaWdYYssGwuVg==
