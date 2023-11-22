@@ -21045,7 +21045,7 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 15
-  m_PlayerMaxDamage: 0
+  m_PlayerMaxDamage: 15
   m_DownDamage: 12
   m_TPSCamera: {fileID: 6139423185681305339}
   m_TPSZoomCamera: {fileID: 6139423185139389807}
@@ -21081,6 +21081,7 @@ MonoBehaviour:
   m_BulletSlider: {fileID: 5404956796867331928}
   ChargeEffect: {fileID: 0}
   m_FlameEffect: {fileID: 0}
+  m_RailChargEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
   m_MaxAmmo: 120
   m_CurrentAmmo: 0
@@ -21154,10 +21155,12 @@ MonoBehaviour:
   m_ObjectStreamSendBytes: 
   m_IsEncrypt: 1
   InternalObservedComponents: []
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -3261466398768485315}
+  - {fileID: 6305885035557084068}
   ownerId: 0
   group: 0
-  prefixBackup: -1
+  prefixBackup: 0
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!114 &-3261466398768485315
@@ -21198,10 +21201,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a212333f0fad40b429ea9c65549ab6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_SyncAnimLayers: []
-  m_SyncAnimParams: []
+  m_Animator: {fileID: 4894706973097723998}
+  m_Controller: {fileID: 9100000, guid: 67795aa375b7eca48ba2293f54238e5a, type: 2}
+  m_SyncAnimLayers:
+  - m_Index: 0
+    m_Name: Base Layer
+    m_EnableSync: 1
+  m_SyncAnimParams:
+  - m_Type: 4
+    m_Name: Run
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: Jump
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u653B\u6483"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isHit
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isDie
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u30EA\u30ED\u30FC\u30C9"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isShot
+    m_EnableSync: 1
 --- !u!1 &4894706973103125465
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,6 +50,16 @@ public class PVPBattleManager : MonoBehaviour
     }
     private void GameEnd()
     {
+        DestroyAllWithTag("Player");
+        DestroyAllWithTag("Enemy");
         SceneManager.LoadScene("Title");
+    }
+    private void DestroyAllWithTag(string tag)
+    {
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in taggedObjects)
+        {
+            Destroy(obj);
+        }
     }
 }

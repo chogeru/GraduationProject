@@ -234,6 +234,14 @@ public class WaterEnemy : MonoBehaviour
             m_Animator.SetBool("isHit", true);
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            // AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            IsHit();
+            m_Animator.SetBool("isHit", true);
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        }
+
     }
        public void ParticleDamage()
     {

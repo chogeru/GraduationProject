@@ -189,4 +189,23 @@ public class MagicEnemy : MonoBehaviour
             m_Hp -= 40;
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
+
+            m_Animator.SetBool("isHit", true);
+         
+        }
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
+
+            m_Animator.SetBool("isHit", true);
+
+        }
+    }
 }

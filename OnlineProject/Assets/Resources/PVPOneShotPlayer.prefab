@@ -38350,7 +38350,7 @@ MonoBehaviour:
   m_MinHp: 0
   m_Hp: 100
   m_PlayerDamage: 75
-  m_PlayerMaxDamage: 0
+  m_PlayerMaxDamage: 75
   m_DownDamage: 50
   m_TPSCamera: {fileID: 3300167472537356806}
   m_TPSZoomCamera: {fileID: 3300167473070887314}
@@ -38386,6 +38386,7 @@ MonoBehaviour:
   m_BulletSlider: {fileID: 3822391194531367589}
   ChargeEffect: {fileID: 0}
   m_FlameEffect: {fileID: 0}
+  m_RailChargEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
   m_MaxAmmo: 30
   m_CurrentAmmo: 0
@@ -38459,7 +38460,9 @@ MonoBehaviour:
   m_ObjectStreamSendBytes: 
   m_IsEncrypt: 1
   InternalObservedComponents: []
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6282734822348375126}
+  - {fileID: -4253383557274369283}
   ownerId: 0
   group: 0
   prefixBackup: -1

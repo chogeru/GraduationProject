@@ -21,6 +21,7 @@ TagManager:
   - RecoveryItem
   - CheckPoint
   - Interactive
+  - Fire
   layers:
   - Default
   - TransparentFX

@@ -274,6 +274,14 @@ public class EnemyMove : MonoBehaviour
             m_Animator.SetBool("isHit", true);
             HpSliderUpdate();
         }
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+            IsHit();
+            m_Animator.SetBool("isHit", true);
+            HpSliderUpdate();
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {

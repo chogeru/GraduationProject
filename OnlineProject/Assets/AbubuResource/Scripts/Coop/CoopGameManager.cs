@@ -19,7 +19,8 @@ public class CoopGameManager : MonoBehaviour
     private float m_GameEndTime;
     private void Start()
     {
-        m_ClearCanvas.SetActive(false); 
+        m_ClearCanvas.SetActive(false);
+   
     }
     private void Update()
     {

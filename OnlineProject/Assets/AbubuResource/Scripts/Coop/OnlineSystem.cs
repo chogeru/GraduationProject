@@ -40,11 +40,11 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     {
         if (MonobitEngine.MonobitNetwork.isConnect)
         {
-            Debug.Log("connected");
+            Debug.Log("コネクト～");
         }
         else
         {
-            Debug.Log("disconnected");
+            Debug.Log("コネクトじゃない～");
         }
     }
  
