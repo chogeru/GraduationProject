@@ -1,3 +1,4 @@
+using Monobit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class EnemyMove : MonoBehaviour
 {
+
     [SerializeField]
     private string m_PlayerTag = "Player";
     [SerializeField]
@@ -78,6 +80,8 @@ public class EnemyMove : MonoBehaviour
     [SerializeField, Header("ランダムに生成するプレハブ")]
     private GameObject[] m_ItemPrefabs;
     private float m_DestroyTime;
+
+  
     private void Start()
     {
         Hp = m_MaxHp;
@@ -233,7 +237,7 @@ public class EnemyMove : MonoBehaviour
     }
     public void ParticleDamage()
     {
-        Hp -= 500;
+        Hp -= 5;
         HpSliderUpdate();
 
     }
@@ -248,6 +252,7 @@ public class EnemyMove : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             Hp -= m_PlayerMove.m_PlayerDamage;
+          
             m_Animator.SetBool("isHit", true);
             HpSliderUpdate();
         }
@@ -311,4 +316,5 @@ public class EnemyMove : MonoBehaviour
     {
         m_MoveSpeed += m_DownSpeed;
     }
+  
 }

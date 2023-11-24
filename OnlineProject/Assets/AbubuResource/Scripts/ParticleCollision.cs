@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticleCollision : MonoBehaviour
 {
-    EnemyMove enemyMove;
+    //EnemyMove enemyMove;
     private void OnParticleCollision(GameObject other)
     {
         other.GetComponent<EnemyMove>().ParticleDamage();

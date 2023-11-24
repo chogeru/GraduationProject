@@ -284,7 +284,7 @@ public class BossEnemy : MonoBehaviour
     }
     public void ParticleDamage()
     {
-        m_Hp -= 500;
+        m_Hp -= 15;
         mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
     }
     private void IsHit()

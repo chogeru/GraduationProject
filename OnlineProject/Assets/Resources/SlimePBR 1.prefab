@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 2405516673717952136}
   m_Layer: 0
   m_Name: AttackCol
-  m_TagString: Untagged
+  m_TagString: EnemyATCol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

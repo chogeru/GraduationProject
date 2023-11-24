@@ -29267,24 +29267,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ce7f2f780cd784eab20b29bb310df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 100004, guid: 784190dcb0c7afb42bb24fa5770e6016, type: 3}
+  m_BulletPrefab: {fileID: 8979071704063216447, guid: cdb9ca61731bb6b429221b8e88334faa, type: 3}
   m_MuzzleTransforms:
   - {fileID: 9077032344061966028}
   m_BulletSpeed: 100
   m_BulletDownSpeed: 0
   m_CoolTime: 0.05
   m_Animator: {fileID: 0}
-  m_ReloadTime: 2
+  m_ReloadTime: 1
   m_ReloadCoolTime: 0
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
   m_FlameCol: {fileID: 0}
-  m_BulletSlider: {fileID: 4522112090412946323}
+  m_BulletSlider: {fileID: 4837589293707253468, guid: 7febb53b6c74c5f4ea593287f55f6cfe, type: 3}
   ChargeEffect: {fileID: 0}
   m_FlameEffect: {fileID: 0}
   m_RailChargEffect: {fileID: 0}
   ChargeBar: {fileID: 0}
-  m_MaxAmmo: 45
+  m_MaxAmmo: 60
   m_CurrentAmmo: 0
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6
@@ -29361,7 +29361,7 @@ MonoBehaviour:
   - {fileID: -5235858352276904681}
   ownerId: 0
   group: 0
-  prefixBackup: -1
+  prefixBackup: 0
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!114 &2342800678089818173
@@ -36280,15 +36280,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9077032344061966029}
-  m_LocalRotation: {x: -0.16776085, y: 0.9645639, z: -0.16569686, w: -0.118395254}
-  m_LocalPosition: {x: -0.351, y: -0.095, z: 1.69}
+  m_LocalRotation: {x: -0.02143728, y: 0.0044334508, z: 0.009741988, w: 0.9997129}
+  m_LocalPosition: {x: 0.014522654, y: 0.14657436, z: 0.90909433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1345053461443193684}
   m_Father: {fileID: 7304884206461952829}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 21.062, y: 190.671, z: -17.744}
+  m_LocalEulerAnglesHint: {x: -2.462, y: 0.484, z: 1.106}
 --- !u!1 &9077032344128626409
 GameObject:
   m_ObjectHideFlags: 0

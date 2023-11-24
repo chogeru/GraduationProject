@@ -12,7 +12,6 @@ TagManager:
   - Ground
   - Wall
   - Enemy
-  - FxTemporaire
   - Bullet
   - Item
   - StageWall
@@ -22,6 +21,7 @@ TagManager:
   - CheckPoint
   - Interactive
   - Fire
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
