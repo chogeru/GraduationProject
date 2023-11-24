@@ -56,19 +56,28 @@ public class CameraRaycast : MonobitEngine.MunMonoBehaviour
     public void SpownPlayer()
     {
         // lastHitObjectName に保存された名前を持つプレイヤープレハブを生成
-        // GameObject playerPrefabToSpawn = Resources.Load<GameObject>(m_LastHitObjectName);
+        if(MonobitNetwork.offline==true)
+        {
+            GameObject playerPrefabToSpawn = Resources.Load<GameObject>(m_LastHitObjectName);
+            Instantiate(playerPrefabToSpawn, m_SpownPoint, Quaternion.identity);
+        }
+
         //  if (playerPrefabToSpawn != null)
         //  {
-        if (playerObject == null)
+        if(MonobitNetwork.offline == false)
         {
-            // スポーンポイントにプレイヤーを生成
-            playerObject=MonobitEngine.MonobitNetwork.Instantiate(
-                //playerPrefabToSpawn
-                m_LastHitObjectName
-                , m_SpownPoint
-                , Quaternion.identity
-                , 0);
-            //   }
+            if (playerObject == null)
+            {
+                // スポーンポイントにプレイヤーを生成
+                playerObject = MonobitEngine.MonobitNetwork.Instantiate(
+                    //playerPrefabToSpawn
+                    m_LastHitObjectName
+                    , m_SpownPoint
+                    , Quaternion.identity
+                    , 0);
+                //   }
+            }
         }
+        
     }
 }

@@ -34,7 +34,7 @@ public class EnemySpown : MonoBehaviour
 
     private void Update()
     {
-  
+
         // スポーンポイントからプレイヤーまでの距離を計算します
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);
 
@@ -56,12 +56,18 @@ public class EnemySpown : MonoBehaviour
                     transform.position.z + Random.onUnitSphere.z * Random.Range(0f, 10f)
                 );
 
-                // ランダムな敵プレハブを選択します
-               // GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
-                string randomEnemy = m_EnemyName[Random.Range(0, m_EnemyName.Length)];
-                MonobitEngine.MonobitNetwork.Instantiate(randomEnemy, randomSpawnPosition,Quaternion.identity,0);
-                // ランダムな位置に敵をスポーンさせます
-               // Instantiate(randomEnemyPrefab, randomSpawnPosition, Quaternion.identity);
+                if (MonobitEngine.MonobitNetwork.offline == false)
+                {
+                    string randomEnemy = m_EnemyName[Random.Range(0, m_EnemyName.Length)];
+                    MonobitEngine.MonobitNetwork.Instantiate(randomEnemy, randomSpawnPosition, Quaternion.identity, 0);
+                }
+                if (MonobitEngine.MonobitNetwork.offline == true)
+                {
+                    // ランダムな敵プレハブを選択します
+                    GameObject randomEnemyPrefab = m_EnemyPrefabs[Random.Range(0, m_EnemyPrefabs.Length)];
+                    // ランダムな位置に敵をスポーンさせます
+                    Instantiate(randomEnemyPrefab, randomSpawnPosition, Quaternion.identity);
+                }
                 AudioSource.PlayClipAtPoint(m_SpownAudio, randomSpawnPosition, m_Volume);
 
                 // パーティクルエフェクトを再生します

@@ -34,7 +34,6 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     private void Update()
     {
         SarverConnect();
-   
     }
     private void SarverConnect()
     {
@@ -80,8 +79,10 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
         }
     }
     public void OnDisconnectedFromServer()
-    { 
-        SceneManager.LoadScene("Title");
+    {
+        MonobitEngine.MonobitNetwork.offline = true;
+        Debug.Log("ãŸã}ÉçÉO");
+       // SceneManager.LoadScene("Title");
 
     }
     public void SetPlayerName()

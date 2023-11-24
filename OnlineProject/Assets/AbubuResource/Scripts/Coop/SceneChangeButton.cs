@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class SceneChangeButton : MonoBehaviour
+using MonobitEngine;
+public class SceneChangeButton : MonobitEngine.MonoBehaviour
 {
 
     [SerializeField]
@@ -25,6 +26,7 @@ public class SceneChangeButton : MonoBehaviour
     {
         DestroyAllWithTag("Player");
         DestroyAllWithTag("Enemy");
+        MonobitEngine.MonobitNetwork.LeaveRoom();
         SceneManager.LoadScene("Title");
     }
     private void DestroyAllWithTag(string tag)

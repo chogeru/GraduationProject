@@ -26,20 +26,23 @@ public class PlayerReSpown : MonoBehaviour
     public bool isHit=false;
     void Awake()
     {
-        // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
-        if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+        if (MonobitEngine.MonobitNetwork.offline == false)
         {
-            m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
-        }
-        // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
-        else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
-        {
-            m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
-        }
-        // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
-        else
-        {
-            m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
         }
     }
     void Start()
@@ -52,9 +55,12 @@ public class PlayerReSpown : MonoBehaviour
     }
     private void Update()
     {
-        if (!m_MonobitView.isMine)
+        if (MonobitEngine.MonobitNetwork.offline == false)
         {
-            return;
+            if (!m_MonobitView.isMine)
+            {
+                return;
+            }
         }
         if (isHit==true)
         {

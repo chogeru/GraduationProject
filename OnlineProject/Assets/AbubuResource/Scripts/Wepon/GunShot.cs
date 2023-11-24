@@ -71,20 +71,23 @@ public class GunShot : MonobitEngine.MonoBehaviour
     private GunType currentGunType = GunType.Assault;
     void Awake()
     {
-        // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
-        if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+        if (MonobitNetwork.offline == false)
         {
-            m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
-        }
-        // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
-        else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
-        {
-            m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
-        }
-        // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
-        else
-        {
-            m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
         }
     }
     private void Start()
@@ -228,9 +231,13 @@ public class GunShot : MonobitEngine.MonoBehaviour
     }
     private void Update()
     {
-        if (!m_MonobitView.isMine)
+        if (MonobitNetwork.offline == false)
         {
-            return;
+
+            if (!m_MonobitView.isMine)
+            {
+                return;
+            }
         }
         m_Time += Time.deltaTime;
         if (isReload == false)
@@ -241,21 +248,56 @@ public class GunShot : MonobitEngine.MonoBehaviour
                 {
                     case GunType.Assault:
                         //  Fire();
-                       m_MonobitView.RPC("Fire",MonobitEngine.MonobitTargets.All,null);
+                        if (MonobitEngine.MonobitNetwork.offline == false)
+                        {
+                            m_MonobitView.RPC("Fire", MonobitEngine.MonobitTargets.All, null);
+                        }
+                        else
+                        {
+                            Fire();
+                        }
                         m_Time = 0;
                         break;
                     case GunType.Shotgun:
-                        m_MonobitView.RPC("FireShotgun",MonobitEngine.MonobitTargets.All,null);
+                        if (MonobitEngine.MonobitNetwork.offline == false)
+                        {
+                            m_MonobitView.RPC("FireShotgun", MonobitEngine.MonobitTargets.All, null);
+                        }
+                        else
+                        {
+                            FireShotgun();
+                        }
                         m_Time = 0;
                         break;
                     case GunType.RailGun:
-                        m_MonobitView.RPC("ChargeShot", MonobitEngine.MonobitTargets.All, null);  
+                        if (MonobitEngine.MonobitNetwork.offline == false)
+                        {
+                            m_MonobitView.RPC("ChargeShot", MonobitEngine.MonobitTargets.All, null);
+                        }
+                        else
+                        {
+                            ChargeShot();
+                        }
                         break;
                     case GunType.FlameThrower:
-                        m_MonobitView.RPC("FlameFire", MonobitEngine.MonobitTargets.All, null);
+                        if (MonobitEngine.MonobitNetwork.offline == false)
+                        {
+                            m_MonobitView.RPC("FlameFire", MonobitEngine.MonobitTargets.All, null);
+                        }
+                        else
+                        {
+                            FlameFire();
+                        }
                         break;
                     case GunType.Grenade:
-                        m_MonobitView.RPC("GrenadeThrow", MonobitEngine.MonobitTargets.All, null);
+                        if (MonobitEngine.MonobitNetwork.offline == false)
+                        {
+                            m_MonobitView.RPC("GrenadeThrow", MonobitEngine.MonobitTargets.All, null);
+                        }
+                        else
+                        {
+                            GrenadeThrow();
+                        }
                         m_Time = 0;
                         break;
 
@@ -269,6 +311,13 @@ public class GunShot : MonobitEngine.MonoBehaviour
             {
                 m_FlameCol.SetActive(false);
                 m_FlameEffect.Stop();
+             
+
+            }
+            if (m_Animator.GetBool("Run"))
+            {
+                m_FlameCol.SetActive(false);
+                m_FlameEffect.Stop();
             }
         }
         if(currentGunType==GunType.RailGun)
@@ -279,12 +328,7 @@ public class GunShot : MonobitEngine.MonoBehaviour
             }
 
         }
-        if (m_Animator.GetBool("Run"))
-        {
-            m_FlameCol.SetActive(false);
-            m_FlameEffect.Stop();
-        }
-        
+      
         if (m_CurrentAmmo <= 0)
         {
             Reload();
