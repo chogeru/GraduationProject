@@ -75,8 +75,16 @@ public class WaterEnemy : MonoBehaviour
     [SerializeField]
     private GameObject m_ChrgeShot;
 
+    [SerializeField]
+    private ParticleSystem m_FireEffect;
+    [SerializeField]
+    private float m_FireTime;
+    private float m_FCTime;
+    private bool isFire = false;
     void Start()
     {
+        m_FireEffect.Stop();
+
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
         BossBGM.gameObject.SetActive(false);
@@ -166,6 +174,30 @@ public class WaterEnemy : MonoBehaviour
             m_AttackSE.SetActive(false);
             m_Animator.SetBool("isAttack", false);
         }
+        if (isFire == true)
+        {
+            IsFired();
+        }
+        if (m_FireTime > 5)
+        {
+            isFire = false;
+            m_FireTime = 0;
+            m_FireEffect.Stop();
+        }
+    }
+    private void IsFired()
+    {
+
+        m_FCTime += Time.deltaTime;
+        m_FireTime += Time.deltaTime;
+        m_FireEffect.Play();
+        if (m_FCTime > 0.2)
+        {
+            m_Hp -= 1;
+            m_FCTime = 0;
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+        }
+
     }
     private void ShootRandomProjectile()
     {
@@ -238,6 +270,8 @@ public class WaterEnemy : MonoBehaviour
         {
             // AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             IsHit();
+            isFire = true;
+
             m_Animator.SetBool("isHit", true);
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
@@ -251,7 +285,7 @@ public class WaterEnemy : MonoBehaviour
     private void IsHit()
     {
         m_HitCoolTime += Time.deltaTime;
-        if (m_HitCoolTime > 0.05)
+        if (m_HitCoolTime > 0.3)
         {
             m_Hp -= m_PlayerMove.m_PlayerDamage;
             m_HitCoolTime = 0;

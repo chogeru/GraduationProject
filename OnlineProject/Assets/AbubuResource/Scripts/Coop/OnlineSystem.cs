@@ -34,6 +34,7 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     private void Update()
     {
         SarverConnect();
+        RoomSetting();
     }
     private void SarverConnect()
     {
@@ -55,10 +56,18 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
         roomsetting.maxPlayers = 4;
         roomsetting.isVisible = true;
         roomsetting.isOpen = true;
-
-        MonobitEngine.MonobitNetwork.CreateRoom(roomName+roomPassword);
+        MonobitEngine.LobbyInfo lobby = new MonobitEngine.LobbyInfo();
+        lobby.Kind = LobbyKind.Default;
+        
+        MonobitEngine.MonobitNetwork.CreateRoom(roomName+roomPassword,roomsetting,lobby);
         Debug.Log(roomName+roomPassword);
 
+    }
+    private void RoomSetting()
+    {
+
+        Debug.Log(MonobitEngine.MonobitNetwork.room.playerCount);
+        Debug.Log(MonobitEngine.MonobitNetwork.room.maxPlayers);
     }
     public void JoinRoom()
     {

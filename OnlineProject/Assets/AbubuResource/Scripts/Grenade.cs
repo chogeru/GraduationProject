@@ -31,9 +31,7 @@ public class Grenade : MonoBehaviour
         _collider.enabled = false;
     }
 
-    /// <summary>
-    /// ”š”j‚·‚é
-    /// </summary>
+
     public void Explode()
     {
         // “–‚½‚è”»’èŠÇ—‚ÌƒRƒ‹[ƒ`ƒ“

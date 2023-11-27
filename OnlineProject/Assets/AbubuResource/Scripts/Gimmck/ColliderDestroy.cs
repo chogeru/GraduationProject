@@ -8,7 +8,7 @@ public class ColliderDestroy : MonoBehaviour
     private void Update()
     {
         m_Time += Time.deltaTime;
-        if(m_Time>1)
+        if(m_Time>0.3)
         {
             Destroy(gameObject);
         }

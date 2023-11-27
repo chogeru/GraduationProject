@@ -40,8 +40,16 @@ public class MagicEnemy : MonoBehaviour
 
     StageWall m_stageWall;
 
+    [SerializeField]
+    private ParticleSystem m_FireEffect;
+    [SerializeField]
+    private float m_FireTime;
+    private float m_FCTime;
+    private float m_HitCoolTime;
+    private bool isFire = false;
     private void Start()
     {
+        m_FireEffect.Stop();
         GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
         m_Player = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
@@ -109,6 +117,30 @@ public class MagicEnemy : MonoBehaviour
             targetDirection.y = 0; // YŽ²‚Ì‰ñ“]‚ð–³Œø‚É‚·‚éi“G‚Í…•½•ûŒü‚ÉŒü‚­j
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), m_RotationSpeed * Time.deltaTime);
         }
+        if (isFire == true)
+        {
+            IsFired();
+        }
+        if (m_FireTime > 5)
+        {
+            isFire = false;
+            m_FireTime = 0;
+            m_FireEffect.Stop();
+        }
+    }
+    private void IsFired()
+    {
+
+        m_FCTime += Time.deltaTime;
+        m_FireTime += Time.deltaTime;
+        m_FireEffect.Play();
+        if (m_FCTime > 0.2)
+        {
+            m_Hp -= 1;
+            m_FCTime = 0;
+          
+        }
+
     }
     private void ItemSpown()
     {
@@ -194,17 +226,27 @@ public class MagicEnemy : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            m_Hp -= m_PlayerMove.m_PlayerDamage;
-
+            IsHit();
             m_Animator.SetBool("isHit", true);
          
         }
         if (other.gameObject.CompareTag("Fire"))
         {
-            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            m_Hp -= m_PlayerMove.m_PlayerDamage;
+            IsHit();
+            isFire = true;
 
             m_Animator.SetBool("isHit", true);
+
+        }
+    }
+    private void IsHit()
+    {
+        m_HitCoolTime += Time.deltaTime;
+        if (m_HitCoolTime > 0.15)
+        {
+            m_Hp -= m_PlayerMove.m_PlayerDamage;
+            m_HitCoolTime = 0;
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
 
         }
     }

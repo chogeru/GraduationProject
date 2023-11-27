@@ -84,8 +84,19 @@ public class BossEnemy : MonoBehaviour
     private GameObject m_ATCol;
     [SerializeField]
     private GameObject m_Wall;
+
+    [SerializeField]
+    private ParticleSystem m_FireEffect;
+    [SerializeField]
+    private float m_FireTime;
+    private float m_FCTime;
+    private bool isFire = false;
+
+    [SerializeField]
+    private GameObject m_DestroyBGM;
     void Start()
     {
+        m_FireEffect.Stop();
         m_Hp = m_MaxHp;
         mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         m_InitialVolumeIdle = IdleBGM.volume;
@@ -150,6 +161,32 @@ public class BossEnemy : MonoBehaviour
         {
             BossDie();
         }
+
+        if (isFire == true)
+        {
+            IsFired();
+        }
+        if (m_FireTime > 5)
+        {
+            isFire = false;
+            m_FireTime = 0;
+            m_FireEffect.Stop();
+        }
+    }
+    private void IsFired()
+    {
+
+        m_FCTime += Time.deltaTime;
+        m_FireTime += Time.deltaTime;
+        m_FireEffect.Play();
+        if (m_FCTime > 0.2)
+        {
+            m_Hp -= 1;
+            m_FCTime = 0;
+            mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
+
+        }
+
     }
     private IEnumerator AvoidObstacle()
     {
@@ -223,6 +260,10 @@ public class BossEnemy : MonoBehaviour
                 CoopScoreManager.AddScore(m_Point);
                 isPoint = true;
             }
+            if(isLastBoss)
+            {
+                Destroy(m_DestroyBGM);
+            }
             if (isLastBoss == false)
             {
                 m_BossHoGage.SetActive(false);
@@ -269,15 +310,14 @@ public class BossEnemy : MonoBehaviour
            // AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             IsHit();
             m_Animator.SetBool("isHit", true);
-            m_Hp -= m_PlayerMove.m_PlayerDamage;
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
         if (other.gameObject.CompareTag("Fire"))
         {
+            isFire = true;
             // AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
             IsHit();
             m_Animator.SetBool("isHit", true);
-            m_Hp -= m_PlayerMove.m_PlayerDamage;
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
         }
 
@@ -290,7 +330,7 @@ public class BossEnemy : MonoBehaviour
     private void IsHit()
     {
         m_HitCoolTime += Time.deltaTime;
-        if (m_HitCoolTime > 0.05)
+        if (m_HitCoolTime > 0.15)
         {
             m_Hp -= m_PlayerMove.m_PlayerDamage;
             m_HitCoolTime = 0;

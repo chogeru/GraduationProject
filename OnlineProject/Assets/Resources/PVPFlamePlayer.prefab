@@ -63887,6 +63887,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182021191988777474, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182021191988777474, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182021191988777474, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
       propertyPath: InitialModule.size3D
       value: 0
       objectReference: {fileID: 0}
@@ -63915,6 +63923,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182248279205335896, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182248279205335896, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
       propertyPath: InitialModule.startSpeed.scalar
       value: 75
       objectReference: {fileID: 0}
@@ -63924,6 +63936,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4182251795114918520, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182251795114918520, guid: 73492a143f134ed44824fab6f44322f5, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4182251795114918520, guid: 73492a143f134ed44824fab6f44322f5, type: 3}

@@ -5537,11 +5537,11 @@ MonoBehaviour:
   m_BulletPrefab: {fileID: 286464781934190657, guid: 4a0b6a971ca5d2844b543cb10b084e01, type: 3}
   m_MuzzleTransforms:
   - {fileID: 286824859}
-  m_BulletSpeed: 50
+  m_BulletSpeed: 80
   m_BulletDownSpeed: 0
-  m_CoolTime: 0.1
+  m_CoolTime: 0.3
   m_Animator: {fileID: 0}
-  m_ReloadTime: 2
+  m_ReloadTime: 1.5
   m_ReloadCoolTime: 0
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}

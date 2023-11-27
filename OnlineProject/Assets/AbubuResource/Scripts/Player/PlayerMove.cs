@@ -181,6 +181,10 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
+        if (MonobitEngine.MonobitNetwork.isHost)
+        {
+            Debug.Log("Ž„ƒzƒXƒg");
+        }
         if (MonobitEngine.MonobitNetwork.offline == false)
         {
             if (!m_MonobitView.isMine)

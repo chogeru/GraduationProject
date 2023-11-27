@@ -9791,7 +9791,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.16737382
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2719895536134542793
 MonoBehaviour:
@@ -9805,9 +9805,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df3de97278c1c94699457571f0d4148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CurrentType: 0
   m_Recovery: 100
   m_ItemHitEffect: {fileID: 5359393767694894929, guid: f98739054547b6c42848716d424d5ace, type: 3}
   m_ItemGetSE: {fileID: 8300000, guid: 9ece7efe318f14f42b6ef7e82043ac09, type: 3}
+  m_AttackBoost: 0
 --- !u!95 &-3853716262622605810
 Animator:
   serializedVersion: 4

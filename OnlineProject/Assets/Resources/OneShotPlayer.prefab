@@ -17031,8 +17031,8 @@ MonoBehaviour:
   m_MaxHp: 100
   m_MinHp: 0
   m_Hp: 100
-  m_PlayerDamage: 45
-  m_PlayerMaxDamage: 65
+  m_PlayerDamage: 65
+  m_PlayerMaxDamage: 80
   m_DownDamage: 0
   m_TPSCamera: {fileID: 6008842081880023912}
   m_TPSZoomCamera: {fileID: 6008842082413951228}
@@ -17058,7 +17058,7 @@ MonoBehaviour:
   - {fileID: 6008842083780910001}
   m_BulletSpeed: 150
   m_BulletDownSpeed: 0
-  m_CoolTime: 1
+  m_CoolTime: 0.7
   m_Animator: {fileID: 0}
   m_ReloadTime: 2
   m_ReloadCoolTime: 0

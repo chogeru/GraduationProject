@@ -81,9 +81,34 @@ public class EnemyMove : MonoBehaviour
     private GameObject[] m_ItemPrefabs;
     private float m_DestroyTime;
 
-  
+    //
+    [SerializeField]
+    private ParticleSystem m_FireEffect;
+    [SerializeField]
+    private float m_FireTime;
+    private float m_FCTime;
+    private bool isFire = false;
+
+
+    private bool isIce=false;
+    private float m_IceTime;
+    private float m_SetMoveSpeed;
+    private SkinnedMeshRenderer[] childRenderers;
+    private Material[] originalMaterials;
     private void Start()
     {
+        childRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        // 子オブジェクトのSkinnedMeshRendererの初期マテリアルを取得
+        List<Material> materialsList = new List<Material>();
+        foreach (var renderer in childRenderers)
+        {
+            materialsList.AddRange(renderer.sharedMaterials);
+        }
+        originalMaterials = materialsList.ToArray();
+
+        m_SetMoveSpeed = m_MoveSpeed;
+        m_FireEffect.Stop();
         Hp = m_MaxHp;
         mHpSlider.value = 1;
         GameObject[] stagewalls = GameObject.FindGameObjectsWithTag("StageWall");
@@ -107,6 +132,8 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
+        
+      
         if (Hp <= 0)
         {
             isAlive = false;
@@ -127,6 +154,27 @@ public class EnemyMove : MonoBehaviour
                 Destroy(gameObject);
             }
 
+        }
+        if(m_IceTime>3)
+        {
+            isIce = false;
+            m_MoveSpeed = m_SetMoveSpeed;
+            m_Animator.speed = 1f;
+        }
+        if (!isIce)
+        {
+            // マテリアルを初期状態に戻す
+            foreach (var renderer in childRenderers)
+            {
+                renderer.sharedMaterials = originalMaterials;
+            }
+        }
+        if (isIce == true)
+        {
+            m_MoveSpeed = 0;
+            m_Animator.speed = 0f;
+            m_IceTime += Time.deltaTime;
+            return;
         }
         Vector3 directionToPlayer = m_Player.position - transform.position;
 
@@ -193,9 +241,32 @@ public class EnemyMove : MonoBehaviour
             m_AttackTime = 0;
             m_Animator.SetBool("isAttack", false);
         }
-
+        if(isFire==true)
+        {
+            IsFired();
+        }
+        if(m_FireTime>5)
+        {
+            isFire = false;
+            m_FireTime = 0;
+            m_FireEffect.Stop();
+        }
+      
     }
-
+    private void IsFired()
+    {
+    
+        m_FCTime += Time.deltaTime;
+        m_FireTime += Time.deltaTime;
+        m_FireEffect.Play();
+        if(m_FCTime>0.2)
+        {
+            Hp -= 1;
+            m_FCTime = 0;
+            HpSliderUpdate();
+        }
+        
+    }
     private IEnumerator AvoidObstacle()
     {
         Vector3 avoidanceDirection = Quaternion.Euler(0, 45, 0) * transform.forward;
@@ -274,17 +345,18 @@ public class EnemyMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            IsHit();
+            BurretIsHit();
             m_Animator.SetBool("isHit", true);
             HpSliderUpdate();
         }
         if (other.gameObject.CompareTag("Fire"))
         {
-            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            IsHit();
+            isFire = true;
+            m_FireEffect.Play();
+            FireIsHit();
             m_Animator.SetBool("isHit", true);
             HpSliderUpdate();
+           
         }
 
     }
@@ -295,14 +367,31 @@ public class EnemyMove : MonoBehaviour
             OutWater();
         }
     }
-    private void IsHit()
+    private void FireIsHit()
     {
         m_HitCoolTime += Time.deltaTime;
-        if (m_HitCoolTime > 0.05)
+        if (m_HitCoolTime > 0.15)
         {
             Hp -= m_PlayerMove.m_PlayerDamage;
             m_HitCoolTime = 0;
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+
         }
+    }
+    private void BurretIsHit()
+    {
+        m_HitCoolTime += Time.deltaTime;
+        if (m_HitCoolTime > 0.01)
+        {
+            Hp -= m_PlayerMove.m_PlayerDamage;
+            m_HitCoolTime = 0;
+            AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
+
+        }
+    }
+    public void SetIsIce(bool value)
+    {
+        isIce = value;
     }
     private void HpSliderUpdate()
     {

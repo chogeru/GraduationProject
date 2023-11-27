@@ -38076,7 +38076,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   m_ReloadTime: 0
   m_ReloadCoolTime: 0
-  m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
+  m_AudioGunSE: {fileID: 8300000, guid: 2d3e02b199cd44940a1d07998562bca2, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
   m_FlameCol: {fileID: 0}
   m_BulletSlider: {fileID: 4200437185146000931}

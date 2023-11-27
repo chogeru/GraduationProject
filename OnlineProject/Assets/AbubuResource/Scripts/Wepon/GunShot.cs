@@ -172,6 +172,7 @@ public class GunShot : MonobitEngine.MonoBehaviour
                 // チャージの強度に応じて弾の速度や威力を調整
                 float bulletSpeed = m_BulletSpeed + chargeTime * 10f; // チャージ時間に応じて速度を増加
                 float bulletDamage = 10f + chargeTime * 5f; // チャージ時間に応じて威力を増加
+                AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
 
                 // 球のプレハブから新しい球を生成
                 GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);

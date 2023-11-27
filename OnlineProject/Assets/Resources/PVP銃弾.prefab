@@ -208,7 +208,7 @@ TrailRenderer:
   m_Time: 0.1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.3
+    widthMultiplier: 0.08
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -226,8 +226,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 1, b: 1, a: 0.18431373}
-      key1: {r: 0, g: 1, b: 1, a: 1}
+      key0: {r: 0.8773585, g: 0.8663225, b: 0.8663225, a: 0.18431373}
+      key1: {r: 0.8784314, g: 0.8666667, b: 0.8666667, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0.52156866}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -277,9 +277,9 @@ GameObject:
   - component: {fileID: 7516392789516833602}
   - component: {fileID: 424997052900234740}
   - component: {fileID: 764044176353463626}
-  - component: {fileID: 8689980907740893317}
+  - component: {fileID: 8404185253283759465}
   m_Layer: 0
-  m_Name: "\u30A8\u30CD\u30EB\u30AE\u30FC\u5F3E"
+  m_Name: "PVP\u9283\u5F3E"
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +317,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8979071704063216447}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_WaterEffect: {fileID: 7655174661349736853}
---- !u!114 &8689980907740893317
+--- !u!114 &8404185253283759465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -417,7 +417,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8979071704063216447}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3c0c079d81aba2479d629fd3e5de186, type: 3}
+  m_Script: {fileID: 11500000, guid: a3eb18168d9d061418bbe32b66668ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IceMaterial: {fileID: 2100000, guid: 6de2f4e7d1bd67d41954e4464d7ea26c, type: 2}
+  damageAmount: 10
