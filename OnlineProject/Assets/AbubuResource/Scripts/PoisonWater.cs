@@ -5,24 +5,34 @@ using UnityEngine;
 public class PoisonWater : MonoBehaviour
 {
     PlayerMove m_PlayerMove;
-    private Transform m_Player;
-    private int m_Damage=1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_Player = GameObject.FindGameObjectWithTag("Player").transform;
-        m_PlayerMove = m_Player.GetComponent<PlayerMove>();
-    }
+    private int m_Damage=20;
+    private float m_PoinsonCoolTIme;
+    private bool isAttck=false;
 
     // Update is called once per frame
     void Update()
     {
+        if(isAttck)
+        {
+            m_PoinsonCoolTIme += Time.deltaTime;
+        }
+        if(m_PoinsonCoolTIme>1)
+        {
+            m_PoinsonCoolTIme = 0;
+            isAttck = false;
+        }
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player")&&isAttck==false)
         {
-            m_PlayerMove.m_Hp--;
+            m_PlayerMove=other.GetComponent<PlayerMove>();
+            if(m_PlayerMove!=null)
+            {
+                m_PlayerMove.TakeDamage(m_Damage);
+
+            }
+            isAttck = true;
         }
     }
 }

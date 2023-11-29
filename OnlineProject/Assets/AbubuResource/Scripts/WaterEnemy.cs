@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class WaterEnemy : MonoBehaviour
 {
     [SerializeField]
+    private string m_PlayerTag = "Player";
+
+    [SerializeField]
     private int Damage;
 
     [SerializeField]
@@ -48,6 +51,7 @@ public class WaterEnemy : MonoBehaviour
     private AudioSource IdleBGM;
     [SerializeField]
     private AudioSource BossBGM;
+   
     private float m_FadeDuration = 5.0f;
 
     private float m_InitialVolumeIdle;
@@ -90,9 +94,10 @@ public class WaterEnemy : MonoBehaviour
         BossBGM.gameObject.SetActive(false);
         m_Hp = m_MaxHp;
         mHpSlider.value = 1;
-     
 
-        m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+        m_Player = GameObject.FindGameObjectWithTag(m_PlayerTag).transform;
+
+
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
@@ -103,7 +108,27 @@ public class WaterEnemy : MonoBehaviour
     {
         m_Timer += Time.deltaTime;
 
-        
+        GameObject[] players = GameObject.FindGameObjectsWithTag(m_PlayerTag);
+        if(players.Length>0)
+        {
+            float closestDistance = Mathf.Infinity;
+            GameObject closestPlayer = null;
+
+            foreach(GameObject player in players)
+            {
+                float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
+
+                if (distanceToPlayers < closestDistance)
+                {
+                    closestDistance = distanceToPlayers;
+                    closestPlayer = player;
+                }
+            }
+            if (closestPlayer != null)
+            {
+                m_Player = closestPlayer.transform;
+            }
+        }
         Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
 
