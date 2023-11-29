@@ -34858,6 +34858,7 @@ GameObject:
   - component: {fileID: -8290121852601185625}
   - component: {fileID: -4806811955762384543}
   - component: {fileID: 1740147506223334290}
+  - component: {fileID: -5044526751528367420}
   m_Layer: 0
   m_Name: PVPShotGunPlayer
   m_TagString: Player
@@ -35034,7 +35035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ce7f2f780cd784eab20b29bb310df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 8979071704063216447, guid: 4b1524df77eed8d4aacaf8cfbdeb010a, type: 3}
+  m_BulletPrefab: {fileID: 8979071704063216447, guid: d369ac03495954b4c8393d33d3699f79, type: 3}
   m_MuzzleTransforms:
   - {fileID: 124224175969916493}
   m_BulletSpeed: 100
@@ -35173,6 +35174,18 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &-5044526751528367420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686518819858966576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1686518819861435318
 GameObject:
   m_ObjectHideFlags: 0

@@ -20890,6 +20890,7 @@ GameObject:
   - component: {fileID: 3515919443960920523}
   - component: {fileID: -3261466398768485315}
   - component: {fileID: 6305885035557084068}
+  - component: {fileID: -2882286953780134191}
   m_Layer: 0
   m_Name: PVPAssaltPlayer
   m_TagString: Player
@@ -21241,6 +21242,18 @@ MonoBehaviour:
   - m_Type: 4
     m_Name: isShot
     m_EnableSync: 1
+--- !u!114 &-2882286953780134191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4894706973097723999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4894706973103125465
 GameObject:
   m_ObjectHideFlags: 0
@@ -28350,7 +28363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6139423183840327203}
   m_LocalRotation: {x: -0.03663459, y: 0.004284857, z: 0.009808178, w: 0.9992714}
-  m_LocalPosition: {x: 0.014522654, y: 0.14657436, z: 0.90909433}
+  m_LocalPosition: {x: 0.009, y: 0.172, z: 1.369}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

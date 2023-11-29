@@ -7877,6 +7877,7 @@ GameObject:
   - component: {fileID: 1076954678749754398}
   - component: {fileID: 2280763803782228155}
   - component: {fileID: 253703915755923211}
+  - component: {fileID: 2548110241566101121}
   m_Layer: 0
   m_Name: PVPGrenadePlayer
   m_TagString: Player
@@ -8192,6 +8193,18 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &2548110241566101121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438313261223821712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2438313261256262437
 GameObject:
   m_ObjectHideFlags: 0

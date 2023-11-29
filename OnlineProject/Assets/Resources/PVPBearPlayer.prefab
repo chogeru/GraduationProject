@@ -523,7 +523,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286824858}
   m_LocalRotation: {x: 0.6805576, y: -0.003867542, z: 0.009868492, w: 0.732618}
-  m_LocalPosition: {x: -0, y: -1.308, z: -0.414}
+  m_LocalPosition: {x: 0.038, y: -1.497, z: -0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5358,6 +5358,7 @@ GameObject:
   - component: {fileID: 3502429455253321111}
   - component: {fileID: 887515607138962706}
   - component: {fileID: 3725816589007396024}
+  - component: {fileID: -2550137583656193111}
   m_Layer: 0
   m_Name: PVPBearPlayer
   m_TagString: Player
@@ -5534,7 +5535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12ce7f2f780cd784eab20b29bb310df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletPrefab: {fileID: 286464781934190657, guid: 4a0b6a971ca5d2844b543cb10b084e01, type: 3}
+  m_BulletPrefab: {fileID: 286464781934190657, guid: 6bbc30c3f211dc54ab8b1a6f2ae9c62e, type: 3}
   m_MuzzleTransforms:
   - {fileID: 286824859}
   m_BulletSpeed: 50
@@ -5673,6 +5674,18 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &-2550137583656193111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648003916318582758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1648003916323970144
 GameObject:
   m_ObjectHideFlags: 0

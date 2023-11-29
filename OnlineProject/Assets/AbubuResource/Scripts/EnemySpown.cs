@@ -36,10 +36,12 @@ public class EnemySpown : MonoBehaviour
     {
         if (MonobitEngine.MonobitNetwork.offline)
         {
+            /*
             if (!MonobitEngine.MonobitNetwork.isHost)
             {
                 return;
             }
+            */
         }
         // スポーンポイントからプレイヤーまでの距離を計算します
         float distanceToPlayer = Vector3.Distance(transform.position, m_PlayerTransform.position);

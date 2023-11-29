@@ -132,8 +132,33 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
-        
-      
+        // "Player"タグを持つすべてのGameObjectを取得する
+        GameObject[] players = GameObject.FindGameObjectsWithTag(m_PlayerTag);
+
+        if (players.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+            GameObject closestPlayer = null;
+
+            // 最も近いプレイヤーを探す
+            foreach (GameObject player in players)
+            {
+                float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
+
+                if (distanceToPlayers < closestDistance)
+                {
+                    closestDistance = distanceToPlayers;
+                    closestPlayer = player;
+                }
+            }
+
+            if (closestPlayer != null)
+            {
+                m_Player = closestPlayer.transform; 
+            }
+        }
+
+
         if (Hp <= 0)
         {
             isAlive = false;
@@ -155,7 +180,7 @@ public class EnemyMove : MonoBehaviour
             }
 
         }
-        if(m_IceTime>3)
+       if(m_IceTime>3)
         {
             isIce = false;
             m_MoveSpeed = m_SetMoveSpeed;

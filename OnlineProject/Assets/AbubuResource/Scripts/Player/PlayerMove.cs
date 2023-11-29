@@ -185,6 +185,10 @@ public class PlayerMove : MonoBehaviour
         {
             Debug.Log("私ホスト");
         }
+        else
+        {
+            Debug.Log("ホストじゃない");
+        }
         if (MonobitEngine.MonobitNetwork.offline == false)
         {
             if (!m_MonobitView.isMine)

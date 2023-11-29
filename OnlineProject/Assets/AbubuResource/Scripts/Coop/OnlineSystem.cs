@@ -65,7 +65,8 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     }
     private void RoomSetting()
     {
-
+        if(!MonobitEngine.MonobitNetwork.inRoom)
+        { return; };
         Debug.Log(MonobitEngine.MonobitNetwork.room.playerCount);
         Debug.Log(MonobitEngine.MonobitNetwork.room.maxPlayers);
     }
