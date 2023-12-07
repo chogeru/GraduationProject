@@ -80,7 +80,8 @@ public class PlayerMove : MonoBehaviour
     private GameObject m_RecoverySE;
     [SerializeField]
     private GameObject m_FadInCanvas;
-
+    [SerializeField]
+    private GameObject m_PlayerCanvas;
     [SerializeField]
     private AudioSource m_WaterSE;
     [SerializeField]
@@ -108,7 +109,6 @@ public class PlayerMove : MonoBehaviour
     }
     private void Start()
     {
-
         //Sliderを満タンにする。
         m_HpSlider.value = 1;
         //現在のHPを最大HPと同じに。
@@ -120,6 +120,9 @@ public class PlayerMove : MonoBehaviour
         m_MoveParticle.SetActive(false);
         m_CameraAnimator = m_TPSZoomCamera.GetComponent<Animator>();
         m_TPSCameAnimator = m_TPSCamera.GetComponent<Animator>();
+        m_TPSCamera.SetActive(false);
+        m_TPSZoomCamera.SetActive(false);
+        m_PlayerCanvas.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -135,6 +138,9 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
+        HpUpdate();
+
+        m_PlayerCanvas.SetActive(true);
         m_Speed = Mathf.Clamp(m_Speed, 0, 20);
         // プレイヤーの移動
         m_HorizontalInput = Input.GetAxis("Horizontal");
@@ -169,10 +175,10 @@ public class PlayerMove : MonoBehaviour
             m_Speed = m_MoveSpeed;
             m_PlayerAnimator.SetBool("Run", false);
         }
-        if(isinvincibility)
+        if (isinvincibility)
         {
             m_DieinvincibilityTime += Time.deltaTime;
-            if(m_DieinvincibilityTime>=2)
+            if (m_DieinvincibilityTime >= 2)
             {
                 isinvincibility = false;
             }
@@ -197,10 +203,10 @@ public class PlayerMove : MonoBehaviour
             }
         }
         m_Hp = Mathf.Min(m_Hp, m_MaxHp);
-        m_PlayerDamage=Mathf.Min(m_PlayerDamage,m_PlayerMaxDamage);
+        m_PlayerDamage = Mathf.Min(m_PlayerDamage, m_PlayerMaxDamage);
         // マウスの移動量を取得
         float mouseX = Input.GetAxis("Mouse X");
-        
+
         // オブジェクトを回転させる
         // Y軸を基準に水平方向に回転
         transform.Rotate(Vector3.up, mouseX * m_Sensitivity, Space.World);
@@ -224,6 +230,7 @@ public class PlayerMove : MonoBehaviour
                 isGrounded = true;
             }
         }
+
         if (Input.GetMouseButton(1))
         {
             m_TPSCamera.SetActive(false);
@@ -237,7 +244,7 @@ public class PlayerMove : MonoBehaviour
             m_CameraAnimator.SetBool("isZoom", false);
             m_TPSCameAnimator.SetBool("isTPS", true);
         }
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             if (Mathf.Approximately(m_HorizontalInput, 0f) && Mathf.Approximately(m_VerticalInput, 0f))
             {
@@ -269,7 +276,8 @@ public class PlayerMove : MonoBehaviour
     }
     public void TakeDamage(int damageAmount)
     {
-        if (isinvincibility==false)
+
+        if (isinvincibility == false)
         {
             // ダメージを受けた時の処理
             m_Hp -= damageAmount;
@@ -294,8 +302,15 @@ public class PlayerMove : MonoBehaviour
         CoopScoreManager.AddScore(-250);
         isinvincibility = true;
         playerReSpown.isHit = true;
-        m_FadInCanvas.SetActive(true);
         m_PlayerAnimator.SetBool("isDie", true);
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            if (!m_MonobitView.isMine)
+            {
+                return;
+            }
+        }
+        m_FadInCanvas.SetActive(true);
     }
 
     private void EndDie()

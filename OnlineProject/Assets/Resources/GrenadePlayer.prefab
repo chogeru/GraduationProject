@@ -7877,6 +7877,7 @@ GameObject:
   - component: {fileID: 1076954678749754398}
   - component: {fileID: 2280763803782228155}
   - component: {fileID: 253703915755923211}
+  - component: {fileID: 2290604950988442089}
   m_Layer: 0
   m_Name: GrenadePlayer
   m_TagString: Player
@@ -8039,6 +8040,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 3966594090287413840}
   m_RecoverySE: {fileID: 3965492223734492527}
   m_FadInCanvas: {fileID: 3965492222667504091}
+  m_PlayerCanvas: {fileID: 3965492223449146582}
   m_WaterSE: {fileID: 8450273929273134293}
   m_WaterMoveEffect: {fileID: 5241954261359083949}
 --- !u!114 &4293928332640762645
@@ -8192,6 +8194,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &2290604950988442089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438313261223821712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 3965492224301729588}
+  m_PlayerTPSCamera: {fileID: 3965492223768206496}
 --- !u!1 &2438313261256262437
 GameObject:
   m_ObjectHideFlags: 0
@@ -17418,7 +17434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3965492223768206497
 Transform:
   m_ObjectHideFlags: 0
@@ -18952,7 +18968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3965492224301729584
 Transform:
   m_ObjectHideFlags: 0

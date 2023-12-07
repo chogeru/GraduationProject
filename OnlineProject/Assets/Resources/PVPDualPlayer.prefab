@@ -3331,7 +3331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293759853774363962
 Transform:
   m_ObjectHideFlags: 0
@@ -4311,7 +4311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293759854306051755
 Transform:
   m_ObjectHideFlags: 0
@@ -30764,13 +30764,10 @@ GameObject:
   - component: {fileID: 616146784143565085}
   - component: {fileID: 616146784143565084}
   - component: {fileID: 616146784143565087}
-  - component: {fileID: 616146784143565083}
-  - component: {fileID: 293759852547964757}
   - component: {fileID: 1932780550022796831}
   - component: {fileID: -7525491811434035121}
   - component: {fileID: -8922318271366214325}
   - component: {fileID: 1281538524885867579}
-  - component: {fileID: -2744946141328873699}
   m_Layer: 0
   m_Name: PVPDualPlayer
   m_TagString: Player
@@ -30919,7 +30916,7 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 616146784143565086}
   m_HpSlider: {fileID: 9017447758014084244}
   m_HpText: {fileID: 293759852535160786}
-  playerReSpown: {fileID: 293759852547964757}
+  playerReSpown: {fileID: 0}
   isGrounded: 1
   isRecovery: 0
   m_MaxHp: 100
@@ -30933,6 +30930,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 294927922649063514}
   m_RecoverySE: {fileID: 293759854272411493}
   m_FadInCanvas: {fileID: 293759853208429521}
+  m_PlayerCanvas: {fileID: 293759853987069660}
   m_WaterSE: {fileID: 7627268632617393145}
   m_WaterMoveEffect: {fileID: 3002073737264150488}
 --- !u!114 &616146784143565087
@@ -30952,7 +30950,7 @@ MonoBehaviour:
   - {fileID: 293759853005940199}
   - {fileID: 1411505610915397187}
   m_BulletSpeed: 100
-  m_BulletDownSpeed: 0
+  m_BulletDownSpeed: 50
   m_CoolTime: 0.05
   m_Animator: {fileID: 0}
   m_ReloadTime: 2
@@ -30970,41 +30968,6 @@ MonoBehaviour:
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6
   currentGunType: 0
---- !u!114 &616146784143565083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354818035046095770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4777d9954b143e4db26ee04b65c24f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RotationSpeed: 100
-  m_EnemyTag: Enemy
-  m_CurrentTarget: {fileID: 0}
-  isTargeting: 0
-  m_RockUI: {fileID: 0}
---- !u!114 &293759852547964757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354818035046095770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942428776a16a864a8b3f42282a09a38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ReSpownEffect: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
-  m_ReSpownSE: {fileID: 293759852945278138}
-  m_FadeIN: {fileID: 293759853208429521}
-  m_LastChackPointPosition: {x: 0, y: 0, z: 0}
-  m_LastChackPointRotation: {x: 0, y: 0, z: 0, w: 0}
-  isHit: 0
 --- !u!114 &1932780550022796831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31042,7 +31005,7 @@ MonoBehaviour:
   - {fileID: 1281538524885867579}
   ownerId: 0
   group: 0
-  prefixBackup: -1
+  prefixBackup: 0
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!114 &-8922318271366214325
@@ -31087,18 +31050,6 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
---- !u!114 &-2744946141328873699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354818035046095770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1354818035048341532
 GameObject:
   m_ObjectHideFlags: 0

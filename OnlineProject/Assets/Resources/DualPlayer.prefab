@@ -3331,7 +3331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293759853774363962
 Transform:
   m_ObjectHideFlags: 0
@@ -4311,7 +4311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &293759854306051755
 Transform:
   m_ObjectHideFlags: 0
@@ -30770,6 +30770,7 @@ GameObject:
   - component: {fileID: -7525491811434035121}
   - component: {fileID: -8922318271366214325}
   - component: {fileID: 1281538524885867579}
+  - component: {fileID: 1859139066732207979}
   m_Layer: 0
   m_Name: DualPlayer
   m_TagString: Player
@@ -30932,6 +30933,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 294927922649063514}
   m_RecoverySE: {fileID: 293759854272411493}
   m_FadInCanvas: {fileID: 293759853208429521}
+  m_PlayerCanvas: {fileID: 293759853987069660}
   m_WaterSE: {fileID: 7627268632617393145}
   m_WaterMoveEffect: {fileID: 3002073737264150488}
 --- !u!114 &616146784143565087
@@ -31086,6 +31088,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &1859139066732207979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354818035046095770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 293759853774363966}
+  m_PlayerTPSCamera: {fileID: 293759854306051754}
 --- !u!1 &1354818035048341532
 GameObject:
   m_ObjectHideFlags: 0

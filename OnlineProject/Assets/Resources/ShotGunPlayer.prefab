@@ -5166,6 +5166,7 @@ GameObject:
   - component: {fileID: -4770367690805783991}
   - component: {fileID: 2055762347001938997}
   - component: {fileID: -920001151244534443}
+  - component: {fileID: 77173667098441226}
   m_Layer: 0
   m_Name: ShotGunPlayer
   m_TagString: Player
@@ -5328,6 +5329,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 1837073576154508966}
   m_RecoverySE: {fileID: 1836051149040925081}
   m_FadInCanvas: {fileID: 1836051147981794605}
+  m_PlayerCanvas: {fileID: 1836051148789657632}
   m_WaterSE: {fileID: 1742269385407421866}
   m_WaterMoveEffect: {fileID: 1909083621571609967}
 --- !u!114 &1577858497029418979
@@ -5481,6 +5483,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &77173667098441226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127047925849019750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 1836051149683725250}
+  m_PlayerTPSCamera: {fileID: 1836051149141805142}
 --- !u!1 &1127047925855956704
 GameObject:
   m_ObjectHideFlags: 0
@@ -15450,7 +15466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1836051149141805143
 Transform:
   m_ObjectHideFlags: 0
@@ -16749,7 +16765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1836051149683725254
 Transform:
   m_ObjectHideFlags: 0

@@ -329,7 +329,7 @@ public class GunShot : MonobitEngine.MonoBehaviour
             }
 
         }
-      
+        m_BulletSlider.value = (float)m_CurrentAmmo / (float)m_MaxAmmo;
         if (m_CurrentAmmo <= 0)
         {
             Reload();

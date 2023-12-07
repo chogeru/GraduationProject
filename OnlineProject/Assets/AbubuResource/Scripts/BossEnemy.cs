@@ -8,6 +8,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
+    MonobitEngine.MonobitView m_MonobitView = null;
+
     [SerializeField]
     private int m_MaxHp;
 
@@ -94,6 +96,27 @@ public class BossEnemy : MonoBehaviour
 
     [SerializeField]
     private GameObject m_DestroyBGM;
+    private void Awake()
+    {
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
+        }
+    }
     void Start()
     {
         m_FireEffect.Stop();
@@ -102,7 +125,7 @@ public class BossEnemy : MonoBehaviour
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
         m_Wall.SetActive(false);
-        m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+      //  m_Player = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_ActiveFloer.SetActive(false);
         BossBGM.gameObject.SetActive(false);
@@ -112,10 +135,33 @@ public class BossEnemy : MonoBehaviour
     void Update()
     {
         m_Timer += Time.deltaTime;
+        mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
 
         Vector3 directionToPlayer = m_Player.position - transform.position;
         float distanceToPlayer = directionToPlayer.magnitude;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+            GameObject closestPlayer = null;
 
+            // 最も近いプレイヤーを探す
+            foreach (GameObject player in players)
+            {
+                float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
+
+                if (distanceToPlayers < closestDistance)
+                {
+                    closestDistance = distanceToPlayers;
+                    closestPlayer = player;
+                }
+            }
+
+            if (closestPlayer != null)
+            {
+                m_Player = closestPlayer.transform;
+            }
+        }
         if (distanceToPlayer <= m_DetectionDistance)
         {
             BattleStart();
@@ -151,15 +197,36 @@ public class BossEnemy : MonoBehaviour
         // プレイヤーが一定の距離内にいる場合
         if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
         {
-            AttackPlayer();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("AttackPlayer", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                AttackPlayer();
+            }
         }
         if (distanceToPlayer > m_AttackRange)
         {
-            AttackStop();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("AttackStop", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                AttackStop();
+            }
         }
         if (m_Hp <= 0)
         {
-            BossDie();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("BossDie", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                BossDie();
+            }
         }
 
         if (isFire == true)
@@ -208,6 +275,7 @@ public class BossEnemy : MonoBehaviour
         BossBGM.gameObject.SetActive(true);
         m_BossHoGage.SetActive(true);
     }
+    [MunRPC]
     private void AttackPlayer()
     {
       
@@ -215,6 +283,8 @@ public class BossEnemy : MonoBehaviour
         m_Animator.SetBool("isAttack", true);
         m_AttackTime = 0;
     }
+    [MunRPC]
+
     private void AttackStop()
     {
         m_ATCol.SetActive(false);
@@ -229,6 +299,7 @@ public class BossEnemy : MonoBehaviour
         m_ATCol.SetActive(false);
         m_AttackSE.SetActive(false);
     }
+    [MunRPC]
     private void BossDie()
     {
         m_Animator.SetBool("isDie", true);

@@ -84,7 +84,14 @@ public class PlayerReSpown : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("CheckPoint"))
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            if (!m_MonobitView.isMine)
+            {
+                return;
+            }
+        }
+        if (other.gameObject.CompareTag("CheckPoint"))
         {
             //最後のチェックポイントの位置と回転を戻す
             m_LastChackPointPosition=other.transform.position;

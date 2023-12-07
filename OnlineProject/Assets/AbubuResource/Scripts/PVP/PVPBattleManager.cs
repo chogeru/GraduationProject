@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-public class PVPBattleManager : MonoBehaviour
+using MonobitEngine;
+public class PVPBattleManager : MonobitEngine.MonoBehaviour
 {
     [SerializeField,Header("åªç›ÇÃéûä‘")]
     private float m_CurrentTime;
@@ -52,6 +53,7 @@ public class PVPBattleManager : MonoBehaviour
     {
         DestroyAllWithTag("Player");
         DestroyAllWithTag("Enemy");
+        MonobitEngine.MonobitNetwork.LeaveRoom();
         SceneManager.LoadScene("Title");
     }
     private void DestroyAllWithTag(string tag)

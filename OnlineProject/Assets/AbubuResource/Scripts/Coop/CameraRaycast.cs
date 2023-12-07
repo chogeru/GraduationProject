@@ -74,7 +74,10 @@ public class CameraRaycast : MonobitEngine.MunMonoBehaviour
                     m_LastHitObjectName
                     , m_SpownPoint
                     , Quaternion.identity
-                    , 0);
+                    , 0,
+                    null, true, true, false
+                    )
+                     ;
                 //   }
             }
         }

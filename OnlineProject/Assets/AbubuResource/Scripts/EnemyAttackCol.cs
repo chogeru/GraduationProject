@@ -18,6 +18,7 @@ public class EnemyAttackCol : MonoBehaviour
             m_AttackSE.SetActive(true);
             // 衝突したオブジェクトがプレイヤーの場合、体力を減らす
             PlayerMove playermove = other.GetComponent<PlayerMove>();
+
             if (playermove != null)
             {
                 playermove.TakeDamage(damageAmount);

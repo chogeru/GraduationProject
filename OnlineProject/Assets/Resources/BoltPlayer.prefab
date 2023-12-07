@@ -174,7 +174,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -29091,6 +29091,7 @@ GameObject:
   - component: {fileID: -271176941343992721}
   - component: {fileID: 2342800678089818173}
   - component: {fileID: -5235858352276904681}
+  - component: {fileID: 4393487156028801526}
   m_Layer: 0
   m_Name: BoltPlayer
   m_TagString: Player
@@ -29253,6 +29254,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 9078261475258970993}
   m_RecoverySE: {fileID: 9077032345463596110}
   m_FadInCanvas: {fileID: 9077032344404734202}
+  m_PlayerCanvas: {fileID: 9077032345211547127}
   m_WaterSE: {fileID: 633048606874075473}
   m_WaterMoveEffect: {fileID: 8068571574115952941}
 --- !u!114 &8171574716144529972
@@ -29279,7 +29281,7 @@ MonoBehaviour:
   m_AudioGunSE: {fileID: 8300000, guid: b9fa831b2725f714bbc7970d6e846b1d, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
   m_FlameCol: {fileID: 0}
-  m_BulletSlider: {fileID: 4837589293707253468, guid: 7febb53b6c74c5f4ea593287f55f6cfe, type: 3}
+  m_BulletSlider: {fileID: 4522112090412946323}
   ChargeEffect: {fileID: 0}
   m_FlameEffect: {fileID: 0}
   m_RailChargEffect: {fileID: 0}
@@ -29442,6 +29444,20 @@ MonoBehaviour:
   - m_Type: 4
     m_Name: isShot
     m_EnableSync: 1
+--- !u!114 &4393487156028801526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721133521947642033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 9077032344829169173}
+  m_PlayerTPSCamera: {fileID: 9077032345362830721}
 --- !u!1 &7721133521953272631
 GameObject:
   m_ObjectHideFlags: 0
@@ -37861,7 +37877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9077032344829169169
 Transform:
   m_ObjectHideFlags: 0
@@ -39024,7 +39040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9077032345362830720
 Transform:
   m_ObjectHideFlags: 0

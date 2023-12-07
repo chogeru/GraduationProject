@@ -3,9 +3,11 @@ using MalbersAnimations.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class MagicEnemy : MonoBehaviour
+using MonobitEngine;
+public class MagicEnemy : MonobitEngine.MonoBehaviour
 {
+    MonobitEngine.MonobitView m_MonobitView = null;
+
     [SerializeField]
     private int m_Hp;
     [SerializeField]
@@ -41,12 +43,37 @@ public class MagicEnemy : MonoBehaviour
     StageWall m_stageWall;
 
     [SerializeField]
+    private AudioClip m_SetAudio;
+    [SerializeField]
+    private AudioClip m_AttckAudio;
+    [SerializeField]
     private ParticleSystem m_FireEffect;
     [SerializeField]
     private float m_FireTime;
     private float m_FCTime;
     private float m_HitCoolTime;
     private bool isFire = false;
+    void Awake()
+    {
+        if (MonobitNetwork.offline == false)
+        {
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
+        }
+    }
     private void Start()
     {
         m_FireEffect.Stop();
@@ -180,7 +207,7 @@ public class MagicEnemy : MonoBehaviour
 
             // 事前エフェクトを生成し、そのインスタンスを変数に保存する
             m_PreAttackEffectInstance = Instantiate(m_PreAttackEffectPrefab, preSpawnPosition, Quaternion.identity);
-
+            AudioSource.PlayClipAtPoint(m_SetAudio, preSpawnPosition);
             // 1秒後に攻撃エフェクトを生成する
             Invoke("SpawnAttackEffect", 1f);
         }
@@ -197,7 +224,7 @@ public class MagicEnemy : MonoBehaviour
             // エフェクトを生成する際、X軸を270度回転させる
             Quaternion rotation = Quaternion.Euler(270f, 0f, 0f);
             Instantiate(m_AttackEffectPrefab, preEffectPosition, rotation);
-
+            AudioSource.PlayClipAtPoint(m_AttckAudio, preEffectPosition);
             // 攻撃エフェクト生成後、事前エフェクトのインスタンスを破棄する
             Destroy(m_PreAttackEffectInstance);
         }
@@ -218,27 +245,54 @@ public class MagicEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            m_Hp -= 40;
+            if(MonobitEngine.MonobitNetwork.offline==false)
+            {
+                m_MonobitView.RPC("HitItemBullet", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                HitItemBullet();
+            }
         }
+    }
+    [MunRPC]
+    private void HitItemBullet()
+    {
+        m_Hp -= 40;
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            IsHit();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("IsHit", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                IsHit();
+            }
             m_Animator.SetBool("isHit", true);
          
         }
         if (other.gameObject.CompareTag("Fire"))
         {
-            IsHit();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("IsHit", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                IsHit();
+            }
             isFire = true;
 
             m_Animator.SetBool("isHit", true);
 
         }
     }
+    [MunRPC]
     private void IsHit()
     {
         m_HitCoolTime += Time.deltaTime;

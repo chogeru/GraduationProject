@@ -16735,6 +16735,7 @@ GameObject:
   - component: {fileID: -2309139927902411549}
   - component: {fileID: -5879280601124253914}
   - component: {fileID: 2245815154609723772}
+  - component: {fileID: 1742774380955390911}
   m_Layer: 0
   m_Name: FlamePlayer
   m_TagString: Player
@@ -16897,6 +16898,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 6707866433302651419}
   m_RecoverySE: {fileID: 6706790713972978980}
   m_FadInCanvas: {fileID: 6706790712908734864}
+  m_PlayerCanvas: {fileID: 6706790714224245917}
   m_WaterSE: {fileID: 5257699329958606526}
   m_WaterMoveEffect: {fileID: 4510272995001424922}
 --- !u!114 &5876095414044877662
@@ -17049,6 +17051,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &1742774380955390911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462211357302921691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 6706790714613686143}
+  m_PlayerTPSCamera: {fileID: 6706790714073466091}
 --- !u!1 &5462211357305430621
 GameObject:
   m_ObjectHideFlags: 0
@@ -25372,7 +25388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6706790714073466090
 Transform:
   m_ObjectHideFlags: 0
@@ -26535,7 +26551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6706790714613686139
 Transform:
   m_ObjectHideFlags: 0

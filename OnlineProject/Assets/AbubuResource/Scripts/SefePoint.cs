@@ -12,8 +12,10 @@ public class SefePoint : MonoBehaviour
     private float CoolTime=1;
     void Start()
     {
+        /*
         m_Player = GameObject.FindGameObjectWithTag("Player");
         playerMove=m_Player.GetComponent<PlayerMove>();
+        */
     }
 
     private void Update()
@@ -33,6 +35,8 @@ public class SefePoint : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            m_Player = other.gameObject;
+            playerMove = m_Player.GetComponent<PlayerMove>();
            isHit = false;    
         }
     }
@@ -41,6 +45,8 @@ public class SefePoint : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            m_Player = other.gameObject;
+            playerMove = m_Player.GetComponent<PlayerMove>();
             isHit = true;
         }
     }

@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class OnlineSystem : MonobitEngine.MonoBehaviour
 {
 
@@ -35,6 +36,18 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     {
         SarverConnect();
         RoomSetting();
+        Debug.Log(MonobitEngine.MonobitNetwork.playerList);
+        Debug.Log(MonobitEngine.MonobitNetwork.playerName);
+        Debug.Log(MonobitNetwork.player);
+        RoomPlayerName();
+    }
+    private void RoomPlayerName()
+    {
+        foreach (MonobitPlayer player in MonobitNetwork.playerList)
+        {
+           Debug.Log(player.name);
+        }
+      
     }
     private void SarverConnect()
     {
@@ -61,8 +74,9 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
         
         MonobitEngine.MonobitNetwork.CreateRoom(roomName+roomPassword,roomsetting,lobby);
         Debug.Log(roomName+roomPassword);
-
+        Debug.Log(roomsetting.isOpen);
     }
+  
     private void RoomSetting()
     {
         if(!MonobitEngine.MonobitNetwork.inRoom)
@@ -92,8 +106,6 @@ public class OnlineSystem : MonobitEngine.MonoBehaviour
     {
         MonobitEngine.MonobitNetwork.offline = true;
         Debug.Log("ãŸã}ÉçÉO");
-       // SceneManager.LoadScene("Title");
-
     }
     public void SetPlayerName()
     {

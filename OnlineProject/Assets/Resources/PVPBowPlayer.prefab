@@ -21948,13 +21948,10 @@ GameObject:
   - component: {fileID: 6509079585098312993}
   - component: {fileID: 6509079585098312992}
   - component: {fileID: 6509079585098312995}
-  - component: {fileID: 6509079585098312999}
-  - component: {fileID: 6254301821667128169}
   - component: {fileID: 6509079585098312998}
   - component: {fileID: -8817735186984367762}
   - component: {fileID: -4845135761276836767}
   - component: {fileID: 8283375359499125486}
-  - component: {fileID: 8077834263460339308}
   m_Layer: 0
   m_Name: PVPBowPlayer
   m_TagString: Player
@@ -22103,7 +22100,7 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 6509079585098312994}
   m_HpSlider: {fileID: 3457765799437678760}
   m_HpText: {fileID: 6254301821578859502}
-  playerReSpown: {fileID: 6254301821667128169}
+  playerReSpown: {fileID: 0}
   isGrounded: 1
   isRecovery: 0
   m_MaxHp: 100
@@ -22116,7 +22113,8 @@ MonoBehaviour:
   m_TPSZoomCamera: {fileID: 6254301821821946518}
   m_RecoveryEffect: {fileID: 6255447360290106470}
   m_RecoverySE: {fileID: 6254301821721197401}
-  m_FadInCanvas: {fileID: 0}
+  m_FadInCanvas: {fileID: 6254301820637294573}
+  m_PlayerCanvas: {fileID: 6254301821972722400}
   m_WaterSE: {fileID: 15709400159554176}
   m_WaterMoveEffect: {fileID: 15709401065793850}
 --- !u!114 &6509079585098312995
@@ -22153,41 +22151,6 @@ MonoBehaviour:
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6
   currentGunType: 0
---- !u!114 &6509079585098312999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4617698740996626342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4777d9954b143e4db26ee04b65c24f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RotationSpeed: 100
-  m_EnemyTag: Enemy
-  m_CurrentTarget: {fileID: 0}
-  isTargeting: 0
-  m_RockUI: {fileID: 0}
---- !u!114 &6254301821667128169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4617698740996626342}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942428776a16a864a8b3f42282a09a38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ReSpownEffect: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
-  m_ReSpownSE: {fileID: 6254301821003319430}
-  m_FadeIN: {fileID: 0}
-  m_LastChackPointPosition: {x: 0, y: 0, z: 0}
-  m_LastChackPointRotation: {x: 0, y: 0, z: 0, w: 0}
-  isHit: 0
 --- !u!114 &6509079585098312998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22266,22 +22229,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a212333f0fad40b429ea9c65549ab6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_SyncAnimLayers: []
-  m_SyncAnimParams: []
---- !u!114 &8077834263460339308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4617698740996626342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 4617698740996626343}
+  m_Controller: {fileID: 9100000, guid: 67795aa375b7eca48ba2293f54238e5a, type: 2}
+  m_SyncAnimLayers:
+  - m_Index: 0
+    m_Name: Base Layer
+    m_EnableSync: 1
+  m_SyncAnimParams:
+  - m_Type: 4
+    m_Name: Run
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: Jump
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u653B\u6483"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isHit
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isDie
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u30EA\u30ED\u30FC\u30C9"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isShot
+    m_EnableSync: 1
 --- !u!1 &4617698741042062669
 GameObject:
   m_ObjectHideFlags: 0
@@ -28874,8 +28861,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6254301820637294573}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00030517584}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28885,7 +28872,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!223 &6254301820637294577
@@ -30992,7 +30979,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6254301821821946519
 Transform:
   m_ObjectHideFlags: 0
@@ -32000,7 +31987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6254301822355607814
 Transform:
   m_ObjectHideFlags: 0

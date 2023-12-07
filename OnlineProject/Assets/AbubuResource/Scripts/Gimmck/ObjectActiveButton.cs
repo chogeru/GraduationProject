@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 
 public class ObjectActiveButton : MonoBehaviour
 {
+
+    MonobitEngine.MonobitView m_MonobitView = null;
+
     [SerializeField,Header("アクティブにするオブジェクト")]
     private GameObject[] m_ActiveObject;
     [SerializeField, Header("非アクティブにするオブジェクト")]
@@ -28,6 +31,27 @@ public class ObjectActiveButton : MonoBehaviour
     private bool isBulletHit=false;
     [SerializeField]
     private KeyCode m_KeyCode;
+    private void Awake()
+    {
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -51,17 +75,53 @@ public class ObjectActiveButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 Position = transform.position + Vector3.up*0.5f;
-        Vector3 PlayerDirection = m_Player.transform.position-transform.position;
-        float PlayerDistance= PlayerDirection.magnitude;
-        if( PlayerDistance <m_Distance&&isPush)
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            m_MonobitView.RPC("ButtonPush", MonobitEngine.MonobitTargets.All, null);
+        }
+        else
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+            if (players.Length > 0)
+            {
+                float closestDistance = Mathf.Infinity;
+                GameObject closestPlayer = null;
+
+                // 最も近いプレイヤーを探す
+                foreach (GameObject player in players)
+                {
+                    float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
+
+                    if (distanceToPlayers < closestDistance)
+                    {
+                        closestDistance = distanceToPlayers;
+                        closestPlayer = player;
+                    }
+                }
+
+                if (closestPlayer != null)
+                {
+                    m_Player = closestPlayer.transform;
+                }
+            }
+            ButtonPush();
+        }
+    }
+    [MunRPC]
+    private void ButtonPush()
+    {
+        Vector3 Position = transform.position + Vector3.up * 0.5f;
+        Vector3 PlayerDirection = m_Player.transform.position - transform.position;
+        float PlayerDistance = PlayerDirection.magnitude;
+        if (PlayerDistance < m_Distance && isPush)
         {
             m_ButtonCanvas.SetActive(true);
-            if(Input.GetKey(m_KeyCode)||isBulletHit)
+            if (Input.GetKey(m_KeyCode) || isBulletHit)
             {
                 AudioSource.PlayClipAtPoint(m_ButtonSE, transform.position, m_Volume);
-                Instantiate(m_PushParticle,Position, Quaternion.identity);
-                 m_Animator.SetBool("ボタンダウン",true);
+                Instantiate(m_PushParticle, Position, Quaternion.identity);
+                m_Animator.SetBool("ボタンダウン", true);
                 m_Button.SetActive(false);
                 //配列内のオブジェクトを表示
                 foreach (GameObject obj in m_ActiveObject)
@@ -81,7 +141,6 @@ public class ObjectActiveButton : MonoBehaviour
         {
             m_ButtonCanvas.SetActive(false);
         }
-        
     }
     private void OnCollisionEnter(Collision collision)
     {

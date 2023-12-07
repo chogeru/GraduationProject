@@ -16877,6 +16877,7 @@ GameObject:
   - component: {fileID: -4445302557531433212}
   - component: {fileID: 7915787347074540287}
   - component: {fileID: -5981077008189837748}
+  - component: {fileID: 8287270134275017289}
   m_Layer: 0
   m_Name: OneShotPlayer
   m_TagString: Player
@@ -17039,6 +17040,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 6010014585561161228}
   m_RecoverySE: {fileID: 6008842082514372915}
   m_FadInCanvas: {fileID: 6008842083582811527}
+  m_PlayerCanvas: {fileID: 6008842082766422154}
   m_WaterSE: {fileID: 6947393513429100843}
   m_WaterMoveEffect: {fileID: 3641488500133913423}
 --- !u!114 &6916659528876236617
@@ -17192,6 +17194,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &8287270134275017289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025261671458432460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 6008842081880023912}
+  m_PlayerTPSCamera: {fileID: 6008842082413951228}
 --- !u!1 &5025261671460118090
 GameObject:
   m_ObjectHideFlags: 0
@@ -23420,7 +23436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6008842081880023916
 Transform:
   m_ObjectHideFlags: 0
@@ -24719,7 +24735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6008842082413951229
 Transform:
   m_ObjectHideFlags: 0

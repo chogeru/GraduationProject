@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class WaterEnemy : MonoBehaviour
 {
+
+    MonobitEngine.MonobitView m_MonobitView = null;
+
     [SerializeField]
     private string m_PlayerTag = "Player";
 
@@ -27,7 +30,7 @@ public class WaterEnemy : MonoBehaviour
     private float m_ShotCooldown = 10f;
     private float m_CurrentCooldown = 0f;
     [SerializeField]
-    private float projectileSpeed = 10f; 
+    private float projectileSpeed = 10f;
 
     [SerializeField]
     private float m_AvoidanceDistance = 2f;
@@ -51,7 +54,7 @@ public class WaterEnemy : MonoBehaviour
     private AudioSource IdleBGM;
     [SerializeField]
     private AudioSource BossBGM;
-   
+
     private float m_FadeDuration = 5.0f;
 
     private float m_InitialVolumeIdle;
@@ -85,6 +88,28 @@ public class WaterEnemy : MonoBehaviour
     private float m_FireTime;
     private float m_FCTime;
     private bool isFire = false;
+
+    private void Awake()
+    {
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
+        }
+    }
     void Start()
     {
         m_FireEffect.Stop();
@@ -109,12 +134,12 @@ public class WaterEnemy : MonoBehaviour
         m_Timer += Time.deltaTime;
 
         GameObject[] players = GameObject.FindGameObjectsWithTag(m_PlayerTag);
-        if(players.Length>0)
+        if (players.Length > 0)
         {
             float closestDistance = Mathf.Infinity;
             GameObject closestPlayer = null;
 
-            foreach(GameObject player in players)
+            foreach (GameObject player in players)
             {
                 float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
 
@@ -137,7 +162,7 @@ public class WaterEnemy : MonoBehaviour
             mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
             m_BossHoGage.SetActive(true);
             m_Animator.SetBool("isBattle", true);
-            if (m_Hp<=0)
+            if (m_Hp <= 0)
             {
                 BossBGM.gameObject.SetActive(true);
                 // 1つ目のBGMのボリュームをだんだん下げる
@@ -151,7 +176,7 @@ public class WaterEnemy : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
             // ゲームオブジェクト本体の回転は変更しない
-         //   transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            //   transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
         }
         else
@@ -159,22 +184,17 @@ public class WaterEnemy : MonoBehaviour
             isAvoiding = false;
             m_Animator.SetBool("isBattle", false);
         }
-      
-       
-        if(m_Hp <= 0) 
+
+
+        if (m_Hp <= 0)
         {
-            m_Animator.SetBool("isDie", true);
-            m_DestroyTime += Time.deltaTime;
-            m_DestroySE.SetActive(true);
-            IdleBGM.volume = 0.1f;
-    
-            if (m_DestroyTime >= 1.4)
-            {          
-                m_BossHoGage.SetActive(false);
-                m_AttackObj.m_KillCount++;
-                Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-                CoopScoreManager.AddScore(m_Point);
-                Destroy(gameObject);
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("IsDie", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                IsDie();
             }
 
         }
@@ -183,7 +203,15 @@ public class WaterEnemy : MonoBehaviour
         {
             if (m_CurrentCooldown <= 0f)
             {
-                ShootRandomProjectile();
+                if (MonobitEngine.MonobitNetwork.offline == false)
+                {
+                    m_MonobitView.RPC("ShootRandomProjectile", MonobitEngine.MonobitTargets.All, null);
+                }
+                else
+                {
+                    ShootRandomProjectile();
+                }
+
                 // クールダウンをリセット
                 m_CurrentCooldown = m_ShotCooldown;
             }
@@ -224,11 +252,12 @@ public class WaterEnemy : MonoBehaviour
         }
 
     }
+    [MunRPC]
     private void ShootRandomProjectile()
     {
         // 2つの弾のうちランダムに1つを選ぶ
         int randomProjectileIndex = Random.Range(0, 2);
-       
+
         // ランダムな弾を生成し、プレイヤーに向かって発射する処理を実装する
         GameObject projectile = null;
         switch (randomProjectileIndex)
@@ -257,7 +286,23 @@ public class WaterEnemy : MonoBehaviour
             }
         }
     }
- 
+    [MunRPC]
+    private void IsDie()
+    {
+        m_Animator.SetBool("isDie", true);
+        m_DestroyTime += Time.deltaTime;
+        m_DestroySE.SetActive(true);
+        IdleBGM.volume = 0.1f;
+
+        if (m_DestroyTime >= 1.4)
+        {
+            m_BossHoGage.SetActive(false);
+            m_AttackObj.m_KillCount++;
+            Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
+            CoopScoreManager.AddScore(m_Point);
+            Destroy(gameObject);
+        }
+    }
     // アニメーションイベントから呼び出される関数
     public void EndAttackAnimation()
     {

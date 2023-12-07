@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class EnemyMove : MonoBehaviour
 {
-
+    MonobitEngine.MonobitView m_MonobitView = null;
     [SerializeField]
     private string m_PlayerTag = "Player";
     [SerializeField]
@@ -95,6 +95,27 @@ public class EnemyMove : MonoBehaviour
     private float m_SetMoveSpeed;
     private SkinnedMeshRenderer[] childRenderers;
     private Material[] originalMaterials;
+    private void Awake()
+    {
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            // すべての親オブジェクトに対して MonobitView コンポーネントを検索する
+            if (GetComponentInParent<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInParent<MonobitEngine.MonobitView>();
+            }
+            // 親オブジェクトに存在しない場合、すべての子オブジェクトに対して MonobitView コンポーネントを検索する
+            else if (GetComponentInChildren<MonobitEngine.MonobitView>() != null)
+            {
+                m_MonobitView = GetComponentInChildren<MonobitEngine.MonobitView>();
+            }
+            // 親子オブジェクトに存在しない場合、自身のオブジェクトに対して MonobitView コンポーネントを検索して設定する
+            else
+            {
+                m_MonobitView = GetComponent<MonobitEngine.MonobitView>();
+            }
+        }
+    }
     private void Start()
     {
         childRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
@@ -132,6 +153,14 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
+      /*
+        if (MonobitEngine.MonobitNetwork.offline == false)
+        {
+            if (!MonobitEngine.MonobitNetwork.isHost)
+            {
+                return;
+            }
+        }*/
         // "Player"タグを持つすべてのGameObjectを取得する
         GameObject[] players = GameObject.FindGameObjectsWithTag(m_PlayerTag);
 
@@ -161,22 +190,36 @@ public class EnemyMove : MonoBehaviour
 
         if (Hp <= 0)
         {
-            isAlive = false;
-            m_Animator.SetBool("isDie", true);
+          
             m_DestroyTime += Time.deltaTime;
-            m_DestroySE.SetActive(true);
-            m_MoveSpeed = 0;
-            m_RotationSpeed = 0;
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("IsDIeDown", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                IsDIeDown();
+            }
             if (m_DestroyTime >= 1.4)
             {
                 Instantiate(m_DestroyEffect, transform.position, Quaternion.identity);
-                ItemSpown();
-                if (m_stageWall != null)
+                if (MonobitEngine.MonobitNetwork.offline == false)
                 {
-                    m_stageWall.m_DieCount++;
+                    m_MonobitView.RPC("ItemSpown", MonobitEngine.MonobitTargets.All, null);
                 }
+                else
+                {
+                    ItemSpown();
+                }              
                 CoopScoreManager.AddScore(m_Point);
-                Destroy(gameObject);
+                if (MonobitEngine.MonobitNetwork.offline == false)
+                {
+                    m_MonobitView.RPC("IsDie", MonobitEngine.MonobitTargets.All, null);
+                }
+                else
+                {
+                    IsDie();
+                }
             }
 
         }
@@ -257,7 +300,15 @@ public class EnemyMove : MonoBehaviour
         // プレイヤーが一定の距離内にいる場合
         if (distanceToPlayer <= m_AttackRange && m_AttackTime >= m_ATCoolTime)
         {
-            AttackPlayer();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("AttackPlayer", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                AttackPlayer();
+            }
+           
         }
         if (distanceToPlayer > m_AttackRange)
         {
@@ -268,7 +319,14 @@ public class EnemyMove : MonoBehaviour
         }
         if(isFire==true)
         {
-            IsFired();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("IsFired", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                IsFired();
+            }
         }
         if(m_FireTime>5)
         {
@@ -278,6 +336,25 @@ public class EnemyMove : MonoBehaviour
         }
       
     }
+    [MunRPC]
+    private void IsDIeDown()
+    {
+        isAlive = false;
+        m_Animator.SetBool("isDie", true);
+        m_DestroySE.SetActive(true);
+        m_MoveSpeed = 0;
+        m_RotationSpeed = 0;
+    }
+    [MunRPC]
+    private void IsDie()
+    {
+        if (m_stageWall != null)
+        {
+            m_stageWall.m_DieCount++;
+        }
+        Destroy(gameObject);
+    }
+    [MunRPC]
     private void IsFired()
     {
     
@@ -288,7 +365,15 @@ public class EnemyMove : MonoBehaviour
         {
             Hp -= 1;
             m_FCTime = 0;
-            HpSliderUpdate();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("HpSliderUpdate", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                HpSliderUpdate();
+            }
+           
         }
         
     }
@@ -307,6 +392,7 @@ public class EnemyMove : MonoBehaviour
         }
         isAvoiding = false;
     }
+    [MunRPC]
     private void AttackPlayer()
     {
         m_ATCol.SetActive(true);
@@ -320,6 +406,7 @@ public class EnemyMove : MonoBehaviour
         m_ATCol.SetActive(false);
         m_AttackSE.SetActive(false);
     }
+    [MunRPC]
     private void ItemSpown()
     {
         int randam = Random.Range(0, 100);
@@ -350,38 +437,100 @@ public class EnemyMove : MonoBehaviour
             Hp -= m_PlayerMove.m_PlayerDamage;
           
             m_Animator.SetBool("isHit", true);
-            HpSliderUpdate();
+
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("HpSliderUpdate", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                HpSliderUpdate();
+            }
         }
         if (collision.gameObject.CompareTag("ItemBullet"))
         {
             AudioSource.PlayClipAtPoint(m_HitAudio, transform.position);
-            Hp -= 40;
-            HpSliderUpdate();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("HpSliderUpdate", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                HpSliderUpdate();
+            }
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("ItemBulletDamage", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+               ItemBulletDamage();
+            }
         }
+    }
+    [MunRPC]
+    private void ItemBulletDamage()
+    {
+        Hp -= 40;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Water"))
         {
-            InWater();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("InWater", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                InWater();
+            }
         }
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            BurretIsHit();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("BurretIsHit", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                BurretIsHit();
+            }
             m_Animator.SetBool("isHit", true);
-            HpSliderUpdate();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("HpSliderUpdate", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                HpSliderUpdate();
+            }
+            
         }
         if (other.gameObject.CompareTag("Fire"))
         {
             isFire = true;
             m_FireEffect.Play();
-            FireIsHit();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("FireIsHit", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                FireIsHit();
+            }
             m_Animator.SetBool("isHit", true);
-            HpSliderUpdate();
-           
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("HpSliderUpdate", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                HpSliderUpdate();
+            }
         }
 
     }
@@ -389,9 +538,18 @@ public class EnemyMove : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Water"))
         {
-            OutWater();
+            if (MonobitEngine.MonobitNetwork.offline == false)
+            {
+                m_MonobitView.RPC("OutWater", MonobitEngine.MonobitTargets.All, null);
+            }
+            else
+            {
+                OutWater();
+            }
+           
         }
     }
+    [MunRPC]
     private void FireIsHit()
     {
         m_HitCoolTime += Time.deltaTime;
@@ -403,6 +561,7 @@ public class EnemyMove : MonoBehaviour
 
         }
     }
+    [MunRPC]
     private void BurretIsHit()
     {
         m_HitCoolTime += Time.deltaTime;
@@ -414,18 +573,22 @@ public class EnemyMove : MonoBehaviour
 
         }
     }
+    [MunRPC]
     public void SetIsIce(bool value)
     {
         isIce = value;
     }
+    [MunRPC]
     private void HpSliderUpdate()
     {
         mHpSlider.value = (float)Hp / (float)m_MaxHp;
     }
+    [MunRPC]
     private void InWater()
     {
         m_MoveSpeed -= m_DownSpeed;
     }
+    [MunRPC]
     private void OutWater()
     {
         m_MoveSpeed += m_DownSpeed;

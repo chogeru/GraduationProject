@@ -784,6 +784,8 @@ MonoBehaviour:
   - {fileID: 2718248972148250848, guid: b1571b13e888c8e44bf03179033a5692, type: 3}
   - {fileID: 1411970768344658, guid: 2b077f22d5e15e74aaeadc0fcf712397, type: 3}
   - {fileID: 497040793771230054, guid: 7c92a99726fc8454486685eb82beca76, type: 3}
+  m_SetAudio: {fileID: 8300000, guid: a62877206dc51f84eb68f79e2491ec56, type: 3}
+  m_AttckAudio: {fileID: 8300000, guid: 88c6702186edb4b4b9474d6baf3aff61, type: 3}
   m_FireEffect: {fileID: 9131239043981025915}
   m_FireTime: 0
 --- !u!114 &5649797956392930600

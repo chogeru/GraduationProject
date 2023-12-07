@@ -9389,7 +9389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2628743285910504469
 Transform:
   m_ObjectHideFlags: 0
@@ -10214,7 +10214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2628743286444040068
 Transform:
   m_ObjectHideFlags: 0
@@ -37891,6 +37891,7 @@ GameObject:
   - component: {fileID: 246434945022147162}
   - component: {fileID: 2308087994040923441}
   - component: {fileID: 954810647798468774}
+  - component: {fileID: 5572437671038424378}
   m_Layer: 0
   m_Name: RailGunPlayer
   m_TagString: Player
@@ -38053,6 +38054,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 2629893767898473188}
   m_RecoverySE: {fileID: 2628743285943842267}
   m_FadInCanvas: {fileID: 2628743284873175407}
+  m_PlayerCanvas: {fileID: 2628743286229449826}
   m_WaterSE: {fileID: 4669478647038225716}
   m_WaterMoveEffect: {fileID: 5812577080974420272}
 --- !u!114 &2946611090847245217
@@ -38206,6 +38208,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &5572437671038424378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649550412475423012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 2628743286444040064}
+  m_PlayerTPSCamera: {fileID: 2628743285910504468}
 --- !u!1 &3649550412486181589
 GameObject:
   m_ObjectHideFlags: 0

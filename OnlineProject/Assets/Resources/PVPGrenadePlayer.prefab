@@ -7871,13 +7871,10 @@ GameObject:
   - component: {fileID: 4293928332640762647}
   - component: {fileID: 4293928332640762646}
   - component: {fileID: 4293928332640762645}
-  - component: {fileID: 4293928332640762641}
-  - component: {fileID: 3965492222808139103}
   - component: {fileID: 8389043317548804619}
   - component: {fileID: 1076954678749754398}
   - component: {fileID: 2280763803782228155}
   - component: {fileID: 253703915755923211}
-  - component: {fileID: 2548110241566101121}
   m_Layer: 0
   m_Name: PVPGrenadePlayer
   m_TagString: Player
@@ -8026,7 +8023,7 @@ MonoBehaviour:
   m_Rigidbody: {fileID: 4293928332640762644}
   m_HpSlider: {fileID: 5638383419411639966}
   m_HpText: {fileID: 3965492222803625432}
-  playerReSpown: {fileID: 3965492222808139103}
+  playerReSpown: {fileID: 0}
   isGrounded: 1
   isRecovery: 0
   m_MaxHp: 100
@@ -8040,6 +8037,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 3966594090287413840}
   m_RecoverySE: {fileID: 3965492223734492527}
   m_FadInCanvas: {fileID: 3965492222667504091}
+  m_PlayerCanvas: {fileID: 3965492223449146582}
   m_WaterSE: {fileID: 8450273929273134293}
   m_WaterMoveEffect: {fileID: 5241954261359083949}
 --- !u!114 &4293928332640762645
@@ -8076,41 +8074,6 @@ MonoBehaviour:
   m_ShotgunSpreadAngle: 30
   m_NumBulletsInShotgun: 6
   currentGunType: 4
---- !u!114 &4293928332640762641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438313261223821712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4777d9954b143e4db26ee04b65c24f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_RotationSpeed: 100
-  m_EnemyTag: Enemy
-  m_CurrentTarget: {fileID: 0}
-  isTargeting: 0
-  m_RockUI: {fileID: 0}
---- !u!114 &3965492222808139103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438313261223821712}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 942428776a16a864a8b3f42282a09a38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ReSpownEffect: {fileID: 9157105887711914197, guid: c4f829cb7dd4b864caf8832ec5b1ee55, type: 3}
-  m_ReSpownSE: {fileID: 3965492222412644016}
-  m_FadeIN: {fileID: 3965492222667504091}
-  m_LastChackPointPosition: {x: 0, y: 0, z: 0}
-  m_LastChackPointRotation: {x: 0, y: 0, z: 0, w: 0}
-  isHit: 0
 --- !u!114 &8389043317548804619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8193,18 +8156,6 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
---- !u!114 &2548110241566101121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438313261223821712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f68d1b4c8325c64dbc780c595ca58ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2438313261256262437
 GameObject:
   m_ObjectHideFlags: 0
@@ -17431,7 +17382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3965492223768206497
 Transform:
   m_ObjectHideFlags: 0
@@ -18965,7 +18916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3965492224301729584
 Transform:
   m_ObjectHideFlags: 0

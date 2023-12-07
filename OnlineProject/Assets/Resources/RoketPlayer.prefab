@@ -28358,6 +28358,7 @@ GameObject:
   - component: {fileID: 6250692197205820098}
   - component: {fileID: 3013411193682718748}
   - component: {fileID: -8768545799166984924}
+  - component: {fileID: 6434621511572520289}
   m_Layer: 0
   m_Name: RoketPlayer
   m_TagString: Player
@@ -28520,6 +28521,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 8641080605454859001}
   m_RecoverySE: {fileID: 8642169515152338374}
   m_FadInCanvas: {fileID: 8642169514084170098}
+  m_PlayerCanvas: {fileID: 8642169515403863167}
   m_WaterSE: {fileID: 8134847090097613232}
   m_WaterMoveEffect: {fileID: 6235913631370340951}
 --- !u!114 &8894745987395910588
@@ -28673,6 +28675,20 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &6434621511572520289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7003596281386303801}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 8642169515583326109}
+  m_PlayerTPSCamera: {fileID: 8642169515051768841}
 --- !u!1 &7003596281426358652
 GameObject:
   m_ObjectHideFlags: 0
@@ -61167,7 +61183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8642169515051768840
 Transform:
   m_ObjectHideFlags: 0
@@ -62072,7 +62088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8642169515583326105
 Transform:
   m_ObjectHideFlags: 0

@@ -2020,7 +2020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1132919511
 Transform:
   m_ObjectHideFlags: 0
@@ -2925,7 +2925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1674961222
 Transform:
   m_ObjectHideFlags: 0
@@ -3004,7 +3004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 1674961222}
+  volumeTrigger: {fileID: 1132919511}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 2097152
@@ -5358,6 +5358,7 @@ GameObject:
   - component: {fileID: 3502429455253321111}
   - component: {fileID: 887515607138962706}
   - component: {fileID: 3725816589007396024}
+  - component: {fileID: 3748580400170833514}
   m_Layer: 0
   m_Name: BearPlayer
   m_TagString: Player
@@ -5520,6 +5521,7 @@ MonoBehaviour:
   m_RecoveryEffect: {fileID: 1247283089726502}
   m_RecoverySE: {fileID: 1166363417}
   m_FadInCanvas: {fileID: 1982713895}
+  m_PlayerCanvas: {fileID: 1417888416}
   m_WaterSE: {fileID: 8314552207837575236}
   m_WaterMoveEffect: {fileID: 3256761947053302683}
 --- !u!114 &909545962484555107
@@ -5669,10 +5671,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a212333f0fad40b429ea9c65549ab6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Animator: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_SyncAnimLayers: []
-  m_SyncAnimParams: []
+  m_Animator: {fileID: 1648003916318582759}
+  m_Controller: {fileID: 9100000, guid: 67795aa375b7eca48ba2293f54238e5a, type: 2}
+  m_SyncAnimLayers:
+  - m_Index: 0
+    m_Name: Base Layer
+    m_EnableSync: 1
+  m_SyncAnimParams:
+  - m_Type: 4
+    m_Name: Run
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u5DE6\u53F3"
+    m_EnableSync: 1
+  - m_Type: 1
+    m_Name: "\u5F37\u524D\u5F8C"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: Jump
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u653B\u6483"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isHit
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isDie
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: "\u30EA\u30ED\u30FC\u30C9"
+    m_EnableSync: 1
+  - m_Type: 4
+    m_Name: isShot
+    m_EnableSync: 1
+--- !u!114 &3748580400170833514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648003916318582758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3826103a2271b5947a521b8c9157f62f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlayerCamera: {fileID: 1674961218}
+  m_PlayerTPSCamera: {fileID: 1132919510}
 --- !u!1 &1648003916323970144
 GameObject:
   m_ObjectHideFlags: 0
