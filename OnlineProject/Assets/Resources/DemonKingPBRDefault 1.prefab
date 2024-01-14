@@ -1077,6 +1077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05204bd22ac52b4298fd2e48635cfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreManager: {fileID: 0}
   m_MaxHp: 5000
   m_Hp: 5000
   Damage: 0
@@ -1104,6 +1105,9 @@ MonoBehaviour:
   m_AttackSE: {fileID: 7949337460632067665}
   m_ATCol: {fileID: 7949337461594397820}
   m_Wall: {fileID: 0}
+  m_FireEffect: {fileID: 0}
+  m_FireTime: 0
+  m_DestroyBGM: {fileID: 0}
 --- !u!114 &-1873145624055928713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,7 +2016,7 @@ AudioSource:
   m_GameObject: {fileID: 7949337460632067665}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9c737a7f8daae6c47bcc99bc2a44a020, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2254,7 +2258,7 @@ AudioSource:
   m_GameObject: {fileID: 7949337461809813985}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6816214778687389384, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: c2abd22e6fd701b4592c7a8be5ad7c2c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

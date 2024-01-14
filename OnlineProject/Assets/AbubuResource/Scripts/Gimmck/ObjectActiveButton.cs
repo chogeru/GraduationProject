@@ -75,36 +75,37 @@ public class ObjectActiveButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        if (players.Length > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+            GameObject closestPlayer = null;
+
+            // 最も近いプレイヤーを探す
+            foreach (GameObject player in players)
+            {
+                float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
+
+                if (distanceToPlayers < closestDistance)
+                {
+                    closestDistance = distanceToPlayers;
+                    closestPlayer = player;
+                }
+            }
+
+            if (closestPlayer != null)
+            {
+                m_Player = closestPlayer.transform;
+            }
+        }
         if (MonobitEngine.MonobitNetwork.offline == false)
         {
             m_MonobitView.RPC("ButtonPush", MonobitEngine.MonobitTargets.All, null);
         }
         else
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-            if (players.Length > 0)
-            {
-                float closestDistance = Mathf.Infinity;
-                GameObject closestPlayer = null;
-
-                // 最も近いプレイヤーを探す
-                foreach (GameObject player in players)
-                {
-                    float distanceToPlayers = Vector3.Distance(transform.position, player.transform.position);
-
-                    if (distanceToPlayers < closestDistance)
-                    {
-                        closestDistance = distanceToPlayers;
-                        closestPlayer = player;
-                    }
-                }
-
-                if (closestPlayer != null)
-                {
-                    m_Player = closestPlayer.transform;
-                }
-            }
+          
             ButtonPush();
         }
     }

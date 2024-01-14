@@ -20463,7 +20463,7 @@ AudioSource:
   m_GameObject: {fileID: 5553715298419168051}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0a10d643772ab9045848fcabe880ad36, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -28545,6 +28545,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   m_ReloadTime: 1
   m_ReloadCoolTime: 0
+  audioVolumeSetting: {fileID: 2249283843611357084}
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
   m_FlameCol: {fileID: 0}
@@ -28582,7 +28583,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7003596281386303801}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 942428776a16a864a8b3f42282a09a38, type: 3}
   m_Name: 
@@ -28630,7 +28631,7 @@ MonoBehaviour:
   - {fileID: -8768545799166984924}
   ownerId: 0
   group: 0
-  prefixBackup: -1
+  prefixBackup: 0
   ownershipTransfer: 0
   compressedStream: 0
 --- !u!114 &3013411193682718748
@@ -59466,7 +59467,7 @@ AudioSource:
   m_GameObject: {fileID: 8642169514095270796}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -59672,6 +59673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8642169514226150001}
   - component: {fileID: 8642169514226150002}
+  - component: {fileID: 2249283843611357084}
   m_Layer: 5
   m_Name: "\u8A2D\u5B9A\u753B\u9762"
   m_TagString: Untagged
@@ -59726,6 +59728,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2249283843611357084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8642169514226150003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a89d452efb8fb144984b00d368fca4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudioMixer: {fileID: 24100000, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
+  m_BGMSlider: {fileID: 8642169514927226711}
+  m_SESlider: {fileID: 8642169515905710733}
 --- !u!1 &8642169514229964313
 GameObject:
   m_ObjectHideFlags: 0
@@ -60725,13 +60742,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 8642169515865369406}
   m_HandleRect: {fileID: 8642169514945535397}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2249283843611357084}
+        m_TargetAssemblyTypeName: AudioVolumeSetting, Assembly-CSharp
+        m_MethodName: SetBGM
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8642169514945535398
 GameObject:
   m_ObjectHideFlags: 0
@@ -61447,7 +61476,7 @@ AudioSource:
   m_GameObject: {fileID: 8642169515152338374}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: c957600dd46f319409ab0d86ba529e8e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -63007,13 +63036,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 8642169515727587374}
   m_HandleRect: {fileID: 8642169515854922017}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2249283843611357084}
+        m_TargetAssemblyTypeName: AudioVolumeSetting, Assembly-CSharp
+        m_MethodName: SetSE
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8642169515917309688
 GameObject:
   m_ObjectHideFlags: 0

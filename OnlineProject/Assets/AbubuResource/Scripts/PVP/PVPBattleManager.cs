@@ -45,6 +45,10 @@ public class PVPBattleManager : MonobitEngine.MonoBehaviour
             Invoke("GameEnd", 5);
         }
     }
+    private void GameStart()
+    {
+
+    }
     public void ClerScreen()
     {
         m_GameEndScreen.SetActive(true);

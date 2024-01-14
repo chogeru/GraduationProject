@@ -211,7 +211,6 @@ public class EnemyMove : MonoBehaviour
                 {
                     ItemSpown();
                 }              
-                CoopScoreManager.AddScore(m_Point);
                 if (MonobitEngine.MonobitNetwork.offline == false)
                 {
                     m_MonobitView.RPC("IsDie", MonobitEngine.MonobitTargets.All, null);
@@ -348,6 +347,7 @@ public class EnemyMove : MonoBehaviour
     [MunRPC]
     private void IsDie()
     {
+        CoopScoreManager.AddScore(m_Point);
         if (m_stageWall != null)
         {
             m_stageWall.m_DieCount++;

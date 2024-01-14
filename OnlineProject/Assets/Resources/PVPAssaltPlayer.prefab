@@ -6774,7 +6774,7 @@ AudioSource:
   m_GameObject: {fileID: 585699145524285289}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0a10d643772ab9045848fcabe880ad36, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -21074,6 +21074,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   m_ReloadTime: 1
   m_ReloadCoolTime: 0
+  audioVolumeSetting: {fileID: 8140096806537426397}
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
   m_FlameCol: {fileID: 0}
@@ -28236,6 +28237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6139423183820940055}
   - component: {fileID: 6139423183820940052}
+  - component: {fileID: 8140096806537426397}
   m_Layer: 5
   m_Name: "\u8A2D\u5B9A\u753B\u9762"
   m_TagString: Untagged
@@ -28290,6 +28292,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8140096806537426397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139423183820940053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a89d452efb8fb144984b00d368fca4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudioMixer: {fileID: 24100000, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
+  m_BGMSlider: {fileID: 6139423184210589233}
+  m_SESlider: {fileID: 6139423185358943211}
 --- !u!1 &6139423183840327203
 GameObject:
   m_ObjectHideFlags: 0
@@ -28477,7 +28494,7 @@ AudioSource:
   m_GameObject: {fileID: 6139423183947879146}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -29263,13 +29280,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 6139423185415987800}
   m_HandleRect: {fileID: 6139423184238204099}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8140096806537426397}
+        m_TargetAssemblyTypeName: AudioVolumeSetting, Assembly-CSharp
+        m_MethodName: SetBGM
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6139423184238204096
 GameObject:
   m_ObjectHideFlags: 0
@@ -30354,7 +30383,7 @@ AudioSource:
   m_GameObject: {fileID: 6139423185105609888}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: c957600dd46f319409ab0d86ba529e8e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -30899,13 +30928,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 6139423185558176072}
   m_HandleRect: {fileID: 6139423185414064199}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8140096806537426397}
+        m_TargetAssemblyTypeName: AudioVolumeSetting, Assembly-CSharp
+        m_MethodName: SetSE
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6139423185368317854
 GameObject:
   m_ObjectHideFlags: 0

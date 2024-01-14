@@ -1,14 +1,13 @@
-using MalbersAnimations.Controller;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting;
-using UnityEditor.Experimental;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour
 {
     MonobitEngine.MonobitView m_MonobitView = null;
+    [SerializeField]
+    private CoopScoreManager scoreManager;
 
     [SerializeField]
     private int m_MaxHp;
@@ -125,7 +124,7 @@ public class BossEnemy : MonoBehaviour
         m_InitialVolumeIdle = IdleBGM.volume;
         m_InitialVolumeBoss = BossBGM.volume;
         m_Wall.SetActive(false);
-      //  m_Player = GameObject.FindGameObjectWithTag("Player").transform;
+        m_Player = GameObject.FindGameObjectWithTag("Player").transform;
         m_PlayerMove = m_Player.GetComponent<PlayerMove>();
         m_ActiveFloer.SetActive(false);
         BossBGM.gameObject.SetActive(false);
@@ -136,10 +135,9 @@ public class BossEnemy : MonoBehaviour
     {
         m_Timer += Time.deltaTime;
         mHpSlider.value = (float)m_Hp / (float)m_MaxHp;
-
-        Vector3 directionToPlayer = m_Player.position - transform.position;
-        float distanceToPlayer = directionToPlayer.magnitude;
+        // "Player"ƒ^ƒO‚ðŽ‚Â‚·‚×‚Ä‚ÌGameObject‚ðŽæ“¾‚·‚é
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
         if (players.Length > 0)
         {
             float closestDistance = Mathf.Infinity;
@@ -162,6 +160,9 @@ public class BossEnemy : MonoBehaviour
                 m_Player = closestPlayer.transform;
             }
         }
+        Vector3 directionToPlayer = m_Player.position - transform.position;
+
+        float distanceToPlayer = directionToPlayer.magnitude;
         if (distanceToPlayer <= m_DetectionDistance)
         {
             BattleStart();
@@ -284,7 +285,6 @@ public class BossEnemy : MonoBehaviour
         m_AttackTime = 0;
     }
     [MunRPC]
-
     private void AttackStop()
     {
         m_ATCol.SetActive(false);
@@ -329,6 +329,7 @@ public class BossEnemy : MonoBehaviour
             if (isLastBoss && isPoint == false)
             {
                 CoopScoreManager.AddScore(m_Point);
+                scoreManager.SaveJson();
                 isPoint = true;
             }
             if(isLastBoss)

@@ -407,11 +407,13 @@ MonoBehaviour:
   m_ActiveObject:
   - {fileID: 0}
   - {fileID: 0}
+  m_ParticleObject: []
   m_ButtonCanvas: {fileID: 757198695}
   m_Player: {fileID: 0}
   m_Distance: 5
   m_ButtonSE: {fileID: 8300000, guid: 4e7232a4e8ffa2c48857893078a3b468, type: 3}
   m_PushParticle: {fileID: 100004, guid: 757df604761b8ef42831192c70ee1099, type: 3}
+  m_Button: {fileID: 0}
   m_KeyCode: 107
 --- !u!95 &8257214458599011990
 Animator:

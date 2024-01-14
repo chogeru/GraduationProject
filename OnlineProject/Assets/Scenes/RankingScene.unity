@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.38244644, g: 0.30635938, b: 0.3087992, a: 1}
+  m_IndirectSpecularColor: {r: 0.3825675, g: 0.30649337, b: 0.30900177, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3308,6 +3308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1071956451}
+  - component: {fileID: 1071956452}
   m_Layer: 0
   m_Name: RankingManager
   m_TagString: Untagged
@@ -3330,6 +3331,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1071956452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071956450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3bda21a517ed3448ab4ef985ac2700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ScoreText: {fileID: 0}
+  Test: {fileID: 0}
+  m_DownPoint: 0
+  isCountStop: 0
+  topScores: 
+  topScoreText1: {fileID: 886189619}
+  topScoreText2: {fileID: 970828273}
+  topScoreText3: {fileID: 1960370009}
+  isRankingScene: 1
 --- !u!1 &1122825909
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3378,7 @@ AudioSource:
   m_GameObject: {fileID: 1122825909}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6816214778687389384, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: f0396e31b70d4f048a9f1bf31a5ab3e0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1
@@ -4292,7 +4314,7 @@ AudioSource:
   m_GameObject: {fileID: 1541607562}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.4

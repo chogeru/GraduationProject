@@ -690,13 +690,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 293759853509046685}
   m_HandleRect: {fileID: 293759852599691014}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579369239133463517}
+        m_TargetAssemblyTypeName: AudioVolumeSetting, Assembly-CSharp
+        m_MethodName: SetBGM
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &293759852599691013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 293759852949860562}
   - component: {fileID: 293759852949860561}
+  - component: {fileID: 1579369239133463517}
   m_Layer: 5
   m_Name: "\u8A2D\u5B9A\u753B\u9762"
   m_TagString: Untagged
@@ -1416,6 +1429,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1579369239133463517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293759852949860560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a89d452efb8fb144984b00d368fca4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AudioMixer: {fileID: 24100000, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
+  m_BGMSlider: {fileID: 293759852566701556}
+  m_SESlider: {fileID: 293759853417259054}
 --- !u!1 &293759852963043333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +2005,7 @@ AudioSource:
   m_GameObject: {fileID: 293759853349552431}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2257,13 +2285,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 293759853914428045}
   m_HandleRect: {fileID: 293759853502798722}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1579369239133463517}
+        m_TargetAssemblyTypeName: AudioVolumeSetting, Assembly-CSharp
+        m_MethodName: SetSE
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &293759853422570587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4205,7 +4245,7 @@ AudioSource:
   m_GameObject: {fileID: 293759854272411493}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: c957600dd46f319409ab0d86ba529e8e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.2
@@ -30958,6 +30998,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   m_ReloadTime: 2
   m_ReloadCoolTime: 0
+  audioVolumeSetting: {fileID: 1579369239133463517}
   m_AudioGunSE: {fileID: 8300000, guid: d8de7a1cf753d9246b1683a49d52ae17, type: 3}
   m_ParticleGun: {fileID: 8436147838194370269, guid: b690750bb6bf93344bd2c1e4cbc0808f, type: 3}
   m_FlameCol: {fileID: 0}
@@ -46211,7 +46252,7 @@ AudioSource:
   m_GameObject: {fileID: 1711256011876325769}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6308755439338840936, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0a10d643772ab9045848fcabe880ad36, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

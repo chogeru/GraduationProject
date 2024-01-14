@@ -35,6 +35,8 @@ public class GunShot : MonobitEngine.MonoBehaviour
     [SerializeField]
     private float m_ReloadCoolTime;
 
+    [SerializeField]
+    private AudioVolumeSetting audioVolumeSetting;
     [SerializeField, Header("発射SE")]
     private AudioClip m_AudioGunSE;
     private float m_Volume = 0.6f;
@@ -105,7 +107,8 @@ public class GunShot : MonobitEngine.MonoBehaviour
     [MunRPC]
     private void Fire()
     {
-        AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
+        float adjustedVolume = m_Volume * audioVolumeSetting.GetSEVolume();
+        AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, adjustedVolume);
 
         // 各銃口から球を発射する
         foreach (Transform muzzleTransform in m_MuzzleTransforms)
@@ -128,8 +131,8 @@ public class GunShot : MonobitEngine.MonoBehaviour
     private void FireShotgun()
     {
 
-        AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
-
+        float adjustedVolume = m_Volume * audioVolumeSetting.GetSEVolume();
+        AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, adjustedVolume);
         for (int i = 0; i < m_NumBulletsInShotgun; i++)
         {
             foreach (Transform muzzleTransform in m_MuzzleTransforms)
@@ -172,8 +175,8 @@ public class GunShot : MonobitEngine.MonoBehaviour
                 // チャージの強度に応じて弾の速度や威力を調整
                 float bulletSpeed = m_BulletSpeed + chargeTime * 10f; // チャージ時間に応じて速度を増加
                 float bulletDamage = 10f + chargeTime * 5f; // チャージ時間に応じて威力を増加
-                AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
-
+                float adjustedVolume = m_Volume * audioVolumeSetting.GetSEVolume();
+                AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, adjustedVolume);
                 // 球のプレハブから新しい球を生成
                 GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
                 // 球の Rigidbody コンポーネントを取得
@@ -214,7 +217,8 @@ public class GunShot : MonobitEngine.MonoBehaviour
     {
         foreach (Transform muzzleTransform in m_MuzzleTransforms)
         {
-            AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, m_Volume);
+            float adjustedVolume = m_Volume * audioVolumeSetting.GetSEVolume();
+            AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, adjustedVolume);
             // 球のプレハブから新しい球を生成
             GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
             GameObject particle = Instantiate(m_ParticleGun, muzzleTransform.position, muzzleTransform.rotation);
