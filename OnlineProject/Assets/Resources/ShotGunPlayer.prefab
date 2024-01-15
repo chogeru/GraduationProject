@@ -5167,6 +5167,7 @@ GameObject:
   - component: {fileID: 2055762347001938997}
   - component: {fileID: -920001151244534443}
   - component: {fileID: 77173667098441226}
+  - component: {fileID: 4551950698460387693}
   m_Layer: 0
   m_Name: ShotGunPlayer
   m_TagString: Player
@@ -5498,6 +5499,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerCamera: {fileID: 1836051149683725250}
   m_PlayerTPSCamera: {fileID: 1836051149141805142}
+--- !u!114 &4551950698460387693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127047925849019750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 1836051149643516721}
 --- !u!1 &1127047925855956704
 GameObject:
   m_ObjectHideFlags: 0

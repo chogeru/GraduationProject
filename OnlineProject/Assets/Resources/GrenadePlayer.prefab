@@ -7878,6 +7878,7 @@ GameObject:
   - component: {fileID: 2280763803782228155}
   - component: {fileID: 253703915755923211}
   - component: {fileID: 2290604950988442089}
+  - component: {fileID: 5206040500783238398}
   m_Layer: 0
   m_Name: GrenadePlayer
   m_TagString: Player
@@ -8209,6 +8210,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerCamera: {fileID: 3965492224301729588}
   m_PlayerTPSCamera: {fileID: 3965492223768206496}
+--- !u!114 &5206040500783238398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2438313261223821712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 3965492224229089223}
 --- !u!1 &2438313261256262437
 GameObject:
   m_ObjectHideFlags: 0

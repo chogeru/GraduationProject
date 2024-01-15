@@ -24110,6 +24110,7 @@ GameObject:
   - component: {fileID: 6706790713252311699}
   - component: {fileID: 6706790713252311696}
   - component: {fileID: 5549841366604143829}
+  - component: {fileID: 8976889047871548117}
   m_Layer: 5
   m_Name: "\u8A2D\u5B9A\u753B\u9762"
   m_TagString: Untagged
@@ -24179,6 +24180,19 @@ MonoBehaviour:
   m_AudioMixer: {fileID: 24100000, guid: b13f05fbb4eb1ee4b94cb2ccf97a5e04, type: 2}
   m_BGMSlider: {fileID: 6706790713676294069}
   m_SESlider: {fileID: 6706790714793452143}
+--- !u!114 &8976889047871548117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706790713252311697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 6706790714535331724}
 --- !u!1 &6706790713267329604
 GameObject:
   m_ObjectHideFlags: 0

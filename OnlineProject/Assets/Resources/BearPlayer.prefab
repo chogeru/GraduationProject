@@ -5399,6 +5399,7 @@ GameObject:
   - component: {fileID: 887515607138962706}
   - component: {fileID: 3725816589007396024}
   - component: {fileID: 3748580400170833514}
+  - component: {fileID: 4889957205815699537}
   m_Layer: 0
   m_Name: BearPlayer
   m_TagString: Player
@@ -5766,6 +5767,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerCamera: {fileID: 1674961218}
   m_PlayerTPSCamera: {fileID: 1132919510}
+--- !u!114 &4889957205815699537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648003916318582758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 1719564721}
 --- !u!1 &1648003916323970144
 GameObject:
   m_ObjectHideFlags: 0

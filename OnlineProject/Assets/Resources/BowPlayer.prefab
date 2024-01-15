@@ -39214,6 +39214,7 @@ GameObject:
   - component: {fileID: -1021916070155363588}
   - component: {fileID: -3003667667544527363}
   - component: {fileID: 3486041285773984803}
+  - component: {fileID: 4578727184605427320}
   m_Layer: 0
   m_Name: BowPlayer
   m_TagString: Player
@@ -39545,6 +39546,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerCamera: {fileID: 3181088962696865562}
   m_PlayerTPSCamera: {fileID: 3181088962154691726}
+--- !u!114 &4578727184605427320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250163684354859454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 3181088962653323241}
 --- !u!1 &4250163684356315704
 GameObject:
   m_ObjectHideFlags: 0

@@ -37932,6 +37932,7 @@ GameObject:
   - component: {fileID: 2308087994040923441}
   - component: {fileID: 954810647798468774}
   - component: {fileID: 5572437671038424378}
+  - component: {fileID: 1204617734906257931}
   m_Layer: 0
   m_Name: RailGunPlayer
   m_TagString: Player
@@ -38263,6 +38264,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerCamera: {fileID: 2628743286444040064}
   m_PlayerTPSCamera: {fileID: 2628743285910504468}
+--- !u!114 &1204617734906257931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649550412475423012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 2628743286534899571}
 --- !u!1 &3649550412486181589
 GameObject:
   m_ObjectHideFlags: 0

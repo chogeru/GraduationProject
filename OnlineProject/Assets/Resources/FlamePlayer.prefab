@@ -16736,6 +16736,7 @@ GameObject:
   - component: {fileID: -5879280601124253914}
   - component: {fileID: 2245815154609723772}
   - component: {fileID: 1742774380955390911}
+  - component: {fileID: 5505051534547767924}
   m_Layer: 0
   m_Name: FlamePlayer
   m_TagString: Player
@@ -17066,6 +17067,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlayerCamera: {fileID: 6706790714613686143}
   m_PlayerTPSCamera: {fileID: 6706790714073466091}
+--- !u!114 &5505051534547767924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462211357302921691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 6706790714535331724}
 --- !u!1 &5462211357305430621
 GameObject:
   m_ObjectHideFlags: 0

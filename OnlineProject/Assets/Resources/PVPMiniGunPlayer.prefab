@@ -51619,6 +51619,7 @@ GameObject:
   - component: {fileID: 7833571131009749977}
   - component: {fileID: 7642631700677520728}
   - component: {fileID: 4408230529231322467}
+  - component: {fileID: -6353267485267251586}
   m_Layer: 0
   m_Name: PVPMiniGunPlayer
   m_TagString: Player
@@ -51901,6 +51902,19 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &-6353267485267251586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223197135200737133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 4648803359342397754}
 --- !u!1 &6223197135223353378
 GameObject:
   m_ObjectHideFlags: 0

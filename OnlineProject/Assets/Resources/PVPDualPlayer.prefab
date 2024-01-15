@@ -30808,6 +30808,7 @@ GameObject:
   - component: {fileID: -7525491811434035121}
   - component: {fileID: -8922318271366214325}
   - component: {fileID: 1281538524885867579}
+  - component: {fileID: 6717530267015596662}
   m_Layer: 0
   m_Name: PVPDualPlayer
   m_TagString: Player
@@ -31091,6 +31092,19 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &6717530267015596662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354818035046095770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 293759853696271821}
 --- !u!1 &1354818035048341532
 GameObject:
   m_ObjectHideFlags: 0

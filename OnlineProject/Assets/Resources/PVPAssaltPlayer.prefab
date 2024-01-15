@@ -20888,6 +20888,7 @@ GameObject:
   - component: {fileID: 3515919443960920523}
   - component: {fileID: -3261466398768485315}
   - component: {fileID: 6305885035557084068}
+  - component: {fileID: 7629683166548783033}
   m_Layer: 0
   m_Name: PVPAssaltPlayer
   m_TagString: Player
@@ -21206,6 +21207,19 @@ MonoBehaviour:
   - m_Type: 4
     m_Name: isShot
     m_EnableSync: 1
+--- !u!114 &7629683166548783033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4894706973097723999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 6139423185642149384}
 --- !u!1 &4894706973103125465
 GameObject:
   m_ObjectHideFlags: 0

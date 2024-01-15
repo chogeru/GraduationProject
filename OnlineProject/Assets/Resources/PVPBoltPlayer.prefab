@@ -29089,6 +29089,7 @@ GameObject:
   - component: {fileID: -271176941343992721}
   - component: {fileID: 2342800678089818173}
   - component: {fileID: -5235858352276904681}
+  - component: {fileID: 7026339705579242200}
   m_Layer: 0
   m_Name: PVPBoltPlayer
   m_TagString: Player
@@ -29371,6 +29372,19 @@ MonoBehaviour:
   m_Controller: {fileID: 0}
   m_SyncAnimLayers: []
   m_SyncAnimParams: []
+--- !u!114 &7026339705579242200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721133521947642033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9e19c36db0a444b9a993b3fbc4c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutionDropdown: {fileID: 9077032344924034790}
 --- !u!1 &7721133521953272631
 GameObject:
   m_ObjectHideFlags: 0
