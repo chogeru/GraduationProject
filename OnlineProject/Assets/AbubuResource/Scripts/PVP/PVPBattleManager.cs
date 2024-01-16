@@ -12,8 +12,10 @@ public class PVPBattleManager : MonobitEngine.MonoBehaviour
     private float m_CountDownTime;
     [SerializeField]
     private TextMeshProUGUI M_CountDownText;
+
     [SerializeField]
     private string m_Text;
+
 
     [SerializeField]
     private GameObject m_ScoreCanvas;
@@ -31,18 +33,26 @@ public class PVPBattleManager : MonobitEngine.MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_CurrentTime -= Time.deltaTime;
-        if(m_CurrentTime < 0)
+        M_CountDownText.text=m_Text+ m_CurrentTime.ToString("F2");//F2で小数点2桁まで表示
+        if (!isEnd)
         {
-          m_ScoreCanvas.SetActive(true);
+            CheckRemainingPlayers();
+        }
+        if (isEnd)
+        {
+            Invoke("GameEnd", 10);
+        }
+    }
+
+    private void CheckRemainingPlayers()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        if (players.Length == 1)
+        {
+            m_ScoreCanvas.SetActive(true);
             isEnd = true;
             m_CurrentTime = 0;
-        }
-        M_CountDownText.text=m_Text+ m_CurrentTime.ToString("F2");//F2で小数点2桁まで表示
-
-        if(isEnd)
-        {
-            Invoke("GameEnd", 5);
         }
     }
     private void GameStart()

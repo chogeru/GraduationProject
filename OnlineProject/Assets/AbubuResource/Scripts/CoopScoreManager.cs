@@ -11,7 +11,7 @@ public class ScorePoint
     public int score;
 }
 
-public class CoopScoreManager : MonoBehaviour
+public class CoopScoreManager : MonobitEngine.MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI m_ScoreText;
@@ -56,8 +56,14 @@ public class CoopScoreManager : MonoBehaviour
             m_ScorePoint -= m_DownPoint;
             m_ScoreDownCoolTime = 0;
         }
-        m_ScoreText.text = m_ScorePoint.ToString();
-        Test.text = m_ScorePoint.ToString();
+        if (m_ScoreText!=null)
+        {
+            m_ScoreText.text = m_ScorePoint.ToString();
+        }
+        if (Test)
+        {
+            Test.text = m_ScorePoint.ToString();
+        }
     }
 
     public void StartCount()

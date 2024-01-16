@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonobitEngine;
 using MonobitEngineBase;
+using UnityEngine.UIElements;
 
 public class PVPStartButton : MonobitEngine.MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PVPStartButton : MonobitEngine.MonoBehaviour
     [SerializeField, Header("ボタンを押したときのパーティクル")]
     private GameObject m_PushParticle;
 
-    [SerializeField,Header("スポナーオブジェクト")]
+    [SerializeField, Header("スポナーオブジェクト")]
     private GameObject m_Sponwer;
     [SerializeField, Header("PVPバトルマネージャー")]
     private GameObject m_PVPButtleManager;
@@ -83,18 +84,10 @@ public class PVPStartButton : MonobitEngine.MonoBehaviour
                 m_Player = closestPlayer.transform;
             }
         }
-        if (MonobitEngine.MonobitNetwork.offline == false)
-        {
-            m_MonobitView.RPC("ButtonPush", MonobitEngine.MonobitTargets.All, null);
-        }
-        else
-        {
-
-            ButtonPush();
-        }
+        ButtonPlaayerDistance();
     }
     [MunRPC]
-    private void ButtonPush()
+    private void ButtonPlaayerDistance()
     {
         Vector3 Position = transform.position + Vector3.up * 0.5f;
         Vector3 PlayerDirection = m_Player.transform.position - transform.position;
@@ -104,13 +97,14 @@ public class PVPStartButton : MonobitEngine.MonoBehaviour
             m_ButtonCanvas.SetActive(true);
             if (Input.GetKey(m_KeyCode))
             {
-                AudioSource.PlayClipAtPoint(m_ButtonSE, transform.position, m_Volume);
-                Instantiate(m_PushParticle, Position, Quaternion.identity);
-                m_Animator.SetBool("ボタンダウン", true);
-                m_PVPButtleManager.SetActive(true);
-                m_Sponwer.SetActive(true);
-                isPush = false;
-                Invoke("ButtonDestroy", 3);
+                if (MonobitEngine.MonobitNetwork.offline == true)
+                {
+                    Push();
+                }
+                else
+                {
+                    m_MonobitView.RPC("Push", MonobitEngine.MonobitTargets.All, null);
+                }
             }
         }
         else
@@ -118,6 +112,18 @@ public class PVPStartButton : MonobitEngine.MonoBehaviour
             m_ButtonCanvas.SetActive(false);
         }
     }
+    [MunRPC]
+    private void Push()
+    {
+        AudioSource.PlayClipAtPoint(m_ButtonSE, transform.position, m_Volume);
+        Instantiate(m_PushParticle, transform.position, Quaternion.identity);
+        m_Animator.SetBool("ボタンダウン", true);
+        m_PVPButtleManager.SetActive(true);
+        m_Sponwer.SetActive(true);
+        isPush = false;
+        Invoke("ButtonDestroy", 3);
+    }
+
     private void ButtonDestroy()
     {
         GameObject myobj = transform.parent.gameObject;

@@ -23,13 +23,13 @@ public class ButtonSystem : MonoBehaviour
 
     private void Start()
     {
-        m_PlayerNameSettingScreen.SetActive(true);
-        m_ServerSettingScreen.SetActive(false);
+        m_PlayerNameSettingScreen.SetActive(false);
+        m_ServerSettingScreen.SetActive(true);
     }
     public void ButtonClickToServerSettingScreen()
     {
-        m_PlayerNameSettingScreen.SetActive(false);
-        m_ServerSettingScreen.SetActive(true);
+        m_PlayerNameSettingScreen.SetActive(true);
+        m_ServerSettingScreen.SetActive(false);
     }
 
     public void CommunicationScreenAcctive()

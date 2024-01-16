@@ -10,6 +10,8 @@ public class CameraAnimeSystem : MonoBehaviour
     private Animator m_CameraAnimator;
     [SerializeField, Header("キャラクター選択画面")]
     private GameObject m_CharaSlectCanvas;
+    [SerializeField, Header("名前設定画面")]
+    private GameObject m_NameSettingCanvas;
     #region//キャラクター選択画面のキャラクターオブジェクト
     [SerializeField,Header("キャラクター選択画面真ん中")]
     private GameObject m_CharactorSelectMiddle;
@@ -50,6 +52,7 @@ public class CameraAnimeSystem : MonoBehaviour
 
     public void StartButton()
     {
+        m_NameSettingCanvas.SetActive(false);
         StartCoroutine(StartCanvasActive());
         m_CameraAnimator.SetBool("SelectMode", true);
         m_ServerSettingScreen.SetActive(false);

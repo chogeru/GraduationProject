@@ -266,6 +266,10 @@ public class PlayerMove : MonoBehaviour
             isRecovery = false;
         }
     }
+    public int GetHP()
+    {
+        return m_Hp;
+    }
     private void isAttack()
     {
         m_PlayerAnimator.SetBool("攻撃", true);
@@ -288,7 +292,14 @@ public class PlayerMove : MonoBehaviour
             m_PlayerAnimator.SetBool("isHit", true);
             if (m_Hp <= 0)
             {
-                Die();
+                if (MonobitEngine.MonobitNetwork.offline == false)
+                {
+                    m_MonobitView.RPC("Die", MonobitEngine.MonobitTargets.All, null);
+                }
+                else
+                {
+                    Die();
+                }
             }
         }
     }
@@ -297,11 +308,52 @@ public class PlayerMove : MonoBehaviour
 
         m_PlayerAnimator.SetBool("isHit", false);
     }
+    [MunRPC]
     private void Die()
     {
         CoopScoreManager.AddScore(-250);
         isinvincibility = true;
-        playerReSpown.isHit = true;
+        if (playerReSpown)
+        {
+            playerReSpown.isHit = true;
+        }
+        if (!playerReSpown)
+        {
+            // シーン内のすべてのプレイヤーオブジェクトを取得
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+            // 現在のプレイヤー以外で一番近いプレイヤーを検索
+            GameObject closestPlayer = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (GameObject player in players)
+            {
+                if (player != gameObject)
+                {
+                    float distance = Vector3.Distance(transform.position, player.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestPlayer = player;
+                        closestDistance = distance;
+                    }
+                }
+            }
+
+            if (closestPlayer != null)
+            {
+                // カメラを他のプレイヤーオブジェクトの子に設定
+                GameObject newCamera = Instantiate(m_TPSCamera);
+                newCamera.transform.parent = closestPlayer.transform;
+
+                // 位置を変更
+                newCamera.transform.localPosition = new Vector3(0, 3, -3.5f);
+
+                // 回転を変更
+                newCamera.transform.localRotation = Quaternion.Euler(25f, 0f, 0f);
+            }
+            // 現在のプレイヤーオブジェクトを破棄
+            Destroy(gameObject);
+        }
         m_PlayerAnimator.SetBool("isDie", true);
         if (MonobitEngine.MonobitNetwork.offline == false)
         {
