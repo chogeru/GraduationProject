@@ -20,9 +20,12 @@ public class PVPBattleManager : MonobitEngine.MonoBehaviour
     [SerializeField]
     private GameObject m_ScoreCanvas;
     [SerializeField]
+    private GameObject m_LoseCanvas;
+    [SerializeField]
     private GameObject m_GameEndScreen;
     private bool isEnd;
-    
+
+    public bool isDie = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +53,14 @@ public class PVPBattleManager : MonobitEngine.MonoBehaviour
 
         if (players.Length == 1)
         {
-            m_ScoreCanvas.SetActive(true);
+            if (isDie == false)
+            {
+                m_ScoreCanvas.SetActive(true);
+            }
+            if(isDie == true)
+            {
+                m_LoseCanvas.SetActive(true);
+            }
             isEnd = true;
             m_CurrentTime = 0;
         }

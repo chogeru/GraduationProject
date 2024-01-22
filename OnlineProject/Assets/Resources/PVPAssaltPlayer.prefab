@@ -20889,6 +20889,7 @@ GameObject:
   - component: {fileID: -3261466398768485315}
   - component: {fileID: 6305885035557084068}
   - component: {fileID: 7629683166548783033}
+  - component: {fileID: 4888263921583330147}
   m_Layer: 0
   m_Name: PVPAssaltPlayer
   m_TagString: Player
@@ -21220,6 +21221,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 6139423185642149384}
+--- !u!114 &4888263921583330147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4894706973097723999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b497420d04188eb4e85678a80c992cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4894706973103125465
 GameObject:
   m_ObjectHideFlags: 0
@@ -32049,7 +32062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 6139423185139389806}
+  volumeTrigger: {fileID: 6139423185681305343}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 2097152

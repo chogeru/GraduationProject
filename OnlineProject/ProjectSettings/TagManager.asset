@@ -22,6 +22,8 @@ TagManager:
   - Interactive
   - Fire
   - FxTemporaire
+  - EnemyATCol
+  - PVPManager
   layers:
   - Default
   - TransparentFX

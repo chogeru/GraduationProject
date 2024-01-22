@@ -21953,6 +21953,7 @@ GameObject:
   - component: {fileID: -4845135761276836767}
   - component: {fileID: 8283375359499125486}
   - component: {fileID: 2011900848172992922}
+  - component: {fileID: 1474352698768441780}
   m_Layer: 0
   m_Name: PVPBowPlayer
   m_TagString: Player
@@ -22284,6 +22285,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 6254301822265985521}
+--- !u!114 &1474352698768441780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4617698740996626342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b497420d04188eb4e85678a80c992cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4617698741042062669
 GameObject:
   m_ObjectHideFlags: 0
@@ -32109,7 +32122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 6254301821821946519}
+  volumeTrigger: {fileID: 6254301822355607814}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 2097152

@@ -252,7 +252,6 @@ public class GunShot : MonobitEngine.MonoBehaviour
                 switch (currentGunType)
                 {
                     case GunType.Assault:
-                        //  Fire();
                         if (MonobitEngine.MonobitNetwork.offline == false)
                         {
                             m_MonobitView.RPC("Fire", MonobitEngine.MonobitTargets.All, null);

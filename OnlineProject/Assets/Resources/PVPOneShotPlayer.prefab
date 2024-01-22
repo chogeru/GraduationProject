@@ -32902,7 +32902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 3300167473070887315}
+  volumeTrigger: {fileID: 3300167472537356802}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 2097152
@@ -38234,6 +38234,7 @@ GameObject:
   - component: {fileID: 6282734822348375126}
   - component: {fileID: -4253383557274369283}
   - component: {fileID: 8402592865812626801}
+  - component: {fileID: 1011842806766252159}
   m_Layer: 0
   m_Name: PVPOneShotPlayer
   m_TagString: Player
@@ -38529,6 +38530,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 3300167472577565429}
+--- !u!114 &1011842806766252159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256585545115339938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b497420d04188eb4e85678a80c992cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4256585545117333284
 GameObject:
   m_ObjectHideFlags: 0

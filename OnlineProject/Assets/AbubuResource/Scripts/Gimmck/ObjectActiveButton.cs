@@ -99,19 +99,6 @@ public class ObjectActiveButton : MonoBehaviour
                 m_Player = closestPlayer.transform;
             }
         }
-        if (MonobitEngine.MonobitNetwork.offline == false)
-        {
-            m_MonobitView.RPC("ButtonPush", MonobitEngine.MonobitTargets.All, null);
-        }
-        else
-        {
-          
-            ButtonPush();
-        }
-    }
-    [MunRPC]
-    private void ButtonPush()
-    {
         Vector3 Position = transform.position + Vector3.up * 0.5f;
         Vector3 PlayerDirection = m_Player.transform.position - transform.position;
         float PlayerDistance = PlayerDirection.magnitude;
@@ -120,28 +107,44 @@ public class ObjectActiveButton : MonoBehaviour
             m_ButtonCanvas.SetActive(true);
             if (Input.GetKey(m_KeyCode) || isBulletHit)
             {
-                AudioSource.PlayClipAtPoint(m_ButtonSE, transform.position, m_Volume);
-                Instantiate(m_PushParticle, Position, Quaternion.identity);
-                m_Animator.SetBool("ボタンダウン", true);
-                m_Button.SetActive(false);
-                //配列内のオブジェクトを表示
-                foreach (GameObject obj in m_ActiveObject)
+                if (MonobitEngine.MonobitNetwork.offline == false)
                 {
-                    obj.SetActive(true);
+                    m_MonobitView.RPC("Push", MonobitEngine.MonobitTargets.All, null);
                 }
-                // m_ParticleObject 配列内の各オブジェクトを非表示にする
-                foreach (GameObject obj in m_ParticleObject)
+                else
                 {
-                    obj.SetActive(false);
-                }
 
-                isPush = false;
+                    Push();
+                }
             }
         }
         else
         {
             m_ButtonCanvas.SetActive(false);
         }
+    }
+    [MunRPC]
+    void Push()
+    {
+        AudioSource.PlayClipAtPoint(m_ButtonSE, transform.position, m_Volume);
+        Instantiate(m_PushParticle, transform.position, Quaternion.identity);
+        m_Animator.SetBool("ボタンダウン", true);
+        if (m_Button != null)
+        {
+            m_Button.SetActive(false);
+        }
+        //配列内のオブジェクトを表示
+        foreach (GameObject obj in m_ActiveObject)
+        {
+            obj.SetActive(true);
+        }
+        // m_ParticleObject 配列内の各オブジェクトを非表示にする
+        foreach (GameObject obj in m_ParticleObject)
+        {
+            obj.SetActive(false);
+        }
+
+        isPush = false;
     }
     private void OnCollisionEnter(Collision collision)
     {

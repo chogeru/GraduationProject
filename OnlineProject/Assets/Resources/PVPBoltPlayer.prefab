@@ -29090,6 +29090,7 @@ GameObject:
   - component: {fileID: 2342800678089818173}
   - component: {fileID: -5235858352276904681}
   - component: {fileID: 7026339705579242200}
+  - component: {fileID: -8057665509100729096}
   m_Layer: 0
   m_Name: PVPBoltPlayer
   m_TagString: Player
@@ -29385,6 +29386,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionDropdown: {fileID: 9077032344924034790}
+--- !u!114 &-8057665509100729096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721133521947642033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b497420d04188eb4e85678a80c992cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7721133521953272631
 GameObject:
   m_ObjectHideFlags: 0
@@ -37923,7 +37936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTrigger: {fileID: 9077032345362830720}
+  volumeTrigger: {fileID: 9077032344829169169}
   volumeLayer:
     serializedVersion: 2
     m_Bits: 2097152
