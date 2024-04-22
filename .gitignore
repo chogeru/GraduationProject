@@ -8,3 +8,8 @@ UserSettings
 *.csproj
 *.sln
 OnlineProject/Assets/AbubuResource/Text/ZenMaruGothic-Medium SDF.assets
+OnlineProject/Assets/Scenes/CoopScene.unity
+OnlineProject/Assets/AbubuResource/Text/ZenMaruGothic-Medium SDF.asset
+OnlineProject/Assets/Scenes/CoopScene/OcclusionCullingData.asset
+OnlineProject/Assets/Scenes/CoopScene.unity
+OnlineProject/Assets/Scenes/CoopScene.unity

@@ -219,15 +219,12 @@ public class GunShot : MonobitEngine.MonoBehaviour
         {
             float adjustedVolume = m_Volume * audioVolumeSetting.GetSEVolume();
             AudioSource.PlayClipAtPoint(m_AudioGunSE, transform.position, adjustedVolume);
-            // 球のプレハブから新しい球を生成
             GameObject bullet = Instantiate(m_BulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
             GameObject particle = Instantiate(m_ParticleGun, muzzleTransform.position, muzzleTransform.rotation);
-            // 球の Rigidbody コンポーネントを取得
             Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
 
             if (bulletRigidbody != null)
             {
-                // 球をまっすぐ前に発射する力を加える
                 bulletRigidbody.velocity = muzzleTransform.forward * m_BulletSpeed;
             }
         }

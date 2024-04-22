@@ -4260,7 +4260,7 @@ MonoBehaviour:
   - {fileID: 1460571199}
   - {fileID: 1460571199}
   - {fileID: 1460571199}
-  m_Player: {fileID: 0}
+  m_Player: {fileID: 8630545585041775522, guid: 05fbbf6c26b12d944ac0c3688bed0964, type: 3}
   m_DeadCounter: 5
   m_DeadMaxCounter: 5
   m_ReStartObject: {fileID: 0}
